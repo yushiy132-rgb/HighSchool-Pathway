@@ -4685,8 +4685,7 @@ function updateNavUser() {
     navUser.style.alignItems = 'center';
     navUser.style.gap = '0.35rem';
     navUser.innerHTML = `<span class="nav-user-dot"></span><a href="#" onclick="openDashboard();return false;" style="font-size:0.82rem;color:var(--text);white-space:nowrap;max-width:90px;overflow:hidden;text-overflow:ellipsis;">${authState.name}</a><span class="nav-user-separator" style="color:var(--faint);font-size:0.75rem;">·</span><a class="nav-user-logout" href="#" onclick="logOut()" style="font-size:0.78rem;color:var(--faint);white-space:nowrap;">Log out</a>`;
-    navLoginBtn.style.display = 'none';
-    // Update mobile nav to show dashboard + logout instead of login
+    navLoginBtn.style.setProperty('display', 'none', 'important');
     if (mobileNav) {
       const loginBtn = mobileNav.querySelector('.mobile-nav-actions');
       if (loginBtn) loginBtn.innerHTML = `
@@ -4696,8 +4695,7 @@ function updateNavUser() {
   } else if (authState.guest) {
     navUser.style.display = 'flex';
     navUser.innerHTML = `<span style="font-size:0.78rem;color:var(--muted);white-space:nowrap;">Guest</span>&nbsp;<a href="#" onclick="goTo('login')" style="font-size:0.78rem;color:var(--text);text-decoration:underline;white-space:nowrap;">Log in</a>`;
-    navLoginBtn.style.display = 'none';
-  } else {
+    navLoginBtn.style.setProperty('display', 'none', 'important');
     navUser.style.display = 'none';
     navLoginBtn.style.display = 'block';
     // Reset mobile nav actions
