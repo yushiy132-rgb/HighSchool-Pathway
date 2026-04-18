@@ -11610,7 +11610,7 @@ function setProvFilter(val) {
 function renderOpps() {
   const PER_PAGE = 15;
   let list = OPPS.filter(o=>{
-    if (o.type.includes('scholarship')) return false;
+    if (o.type.includes('scholarship') && o.type.length === 1) return false;
     if (state.filterField !== 'all' && !o.field.includes(state.filterField)) return false;
     if (state.filterType !== 'all' && !o.type.includes(state.filterType)) return false;
     if (state.filterProv !== 'all') {
