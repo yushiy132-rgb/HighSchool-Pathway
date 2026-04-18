@@ -1084,6 +1084,9 @@ textarea.dash-form-input{min-height:64px;resize:vertical;line-height:1.5;}
           <button class="opt" data-val="tech" onclick="pickMulti(this,'fields')"><span class="opt-icon">💻</span><span class="opt-label">Technology & Engineering</span><span class="opt-sub"> CS, AI, Robotics</span></button>
           <button class="opt" data-val="law" onclick="pickMulti(this,'fields')"><span class="opt-icon">⚖️</span><span class="opt-label">Law & Social Sciences</span><span class="opt-sub"> Policy, Debate, Economics</span></button>
           <button class="opt" data-val="arts" onclick="pickMulti(this,'fields')"><span class="opt-icon">🎨</span><span class="opt-label">Arts & Humanities</span><span class="opt-sub"> Writing, Design, Philosophy</span></button>
+          <button class="opt" data-val="philosophy" onclick="pickMulti(this,'fields')"><span class="opt-icon">🧠</span><span class="opt-label">Philosophy & Psychology</span><span class="opt-sub"> Ethics, logic, mind, behaviour</span></button>
+          <button class="opt" data-val="nursing" onclick="pickMulti(this,'fields')"><span class="opt-icon">🩺</span><span class="opt-label">Nursing & Health Careers</span><span class="opt-sub"> Clinical, patient care, allied health</span></button>
+          <button class="opt" data-val="media" onclick="pickMulti(this,'fields')"><span class="opt-icon">📹</span><span class="opt-label">Media & Communications</span><span class="opt-sub"> Journalism, film, broadcasting, PR</span></button>
         </div>
         <div class="quiz-footer">
           <button class="btn-back-sm" onclick="goTo('home')">← back</button>
@@ -1103,6 +1106,7 @@ textarea.dash-form-input{min-height:64px;resize:vertical;line-height:1.5;}
           <button class="opt" data-val="tutoring" onclick="pickMulti(this,'types')"><span class="opt-icon">📚</span><span class="opt-label">Tutoring & Mentoring</span><span class="opt-sub">Teach, mentor, and give back</span></button>
           <button class="opt" data-val="nonprofit" onclick="pickMulti(this,'types')"><span class="opt-icon">🌍</span><span class="opt-label">Non-Profits & Volunteering</span><span class="opt-sub">Social impact, advocacy, community</span></button>
           <button class="opt" data-val="writing" onclick="pickMulti(this,'types')"><span class="opt-icon">✍️</span><span class="opt-label">Writing & Publishing</span><span class="opt-sub">Poetry, essays, journalism, fiction</span></button>
+          <button class="opt" data-val="internship" onclick="pickMulti(this,'types')"><span class="opt-icon">💼</span><span class="opt-label">Internships & Co-ops</span><span class="opt-sub">Paid work experience at top companies</span></button>
         </div>
         <div class="quiz-footer">
           <button class="btn-back-sm" onclick="quizBack(2)">← back</button>
@@ -1212,6 +1216,7 @@ textarea.dash-form-input{min-height:64px;resize:vertical;line-height:1.5;}
             <option value="tutoring">Tutoring & Mentoring</option>
             <option value="nonprofit">Non-Profits & Volunteering</option>
             <option value="writing">Writing & Publishing</option>
+            <option value="internship">Internships & Co-ops</option>
           </select>
           <select id="mobile-field-select" onchange="handleMobileFieldChange(this)" style="flex:1;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.5rem 0.75rem;font-size:0.85rem;color:var(--text);font-family:'DM Sans',sans-serif;outline:none;cursor:pointer;appearance:none;background-image:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2210%22 height=%226%22 viewBox=%220 0 10 6%22><path d=%22M0 0l5 6 5-6z%22 fill=%22%23999%22/></svg>');background-repeat:no-repeat;background-position:right 0.75rem center;padding-right:2rem;">
             <option value="all">All Fields</option>
@@ -1221,6 +1226,9 @@ textarea.dash-form-input{min-height:64px;resize:vertical;line-height:1.5;}
             <option value="tech">Technology</option>
             <option value="law">Law & Social Sciences</option>
             <option value="arts">Arts & Humanities</option>
+            <option value="philosophy">Philosophy & Psychology</option>
+            <option value="nursing">Nursing & Health Careers</option>
+            <option value="media">Media & Communications</option>
           </select>
         </div>
         <select id="mobile-prov-select" onchange="handleMobileProvChange(this)" style="width:100%;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.5rem 0.75rem;font-size:0.85rem;color:var(--text);font-family:'DM Sans',sans-serif;outline:none;cursor:pointer;appearance:none;background-image:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2210%22 height=%226%22 viewBox=%220 0 10 6%22><path d=%22M0 0l5 6 5-6z%22 fill=%22%23999%22/></svg>');background-repeat:no-repeat;background-position:right 0.75rem center;padding-right:2rem;">
@@ -1259,6 +1267,7 @@ textarea.dash-form-input{min-height:64px;resize:vertical;line-height:1.5;}
               <button class="filter-btn" data-type="tutoring" onclick="setFilter('tutoring',this)">Tutoring & Mentoring</button>
               <button class="filter-btn" data-type="nonprofit" onclick="setFilter('nonprofit',this)">Non-Profits & Volunteering</button>
               <button class="filter-btn" data-type="writing" onclick="setFilter('writing',this)">Writing & Publishing</button>
+              <button class="filter-btn" data-type="internship" onclick="setFilter('internship',this)">Internships & Co-ops</button>
             </div>
           </div>
           <div class="sidebar-section">
@@ -1271,6 +1280,9 @@ textarea.dash-form-input{min-height:64px;resize:vertical;line-height:1.5;}
               <button class="filter-btn" data-field="tech" onclick="setFieldFilter('tech',this)">Technology</button>
               <button class="filter-btn" data-field="law" onclick="setFieldFilter('law',this)">Law & Social Sciences</button>
               <button class="filter-btn" data-field="arts" onclick="setFieldFilter('arts',this)">Arts &amp; Humanities</button>
+              <button class="filter-btn" data-field="philosophy" onclick="setFieldFilter('philosophy',this)">Philosophy &amp; Psychology</button>
+              <button class="filter-btn" data-field="nursing" onclick="setFieldFilter('nursing',this)">Nursing &amp; Health Careers</button>
+              <button class="filter-btn" data-field="media" onclick="setFieldFilter('media',this)">Media &amp; Communications</button>
             </div>
           </div>
           <div class="sidebar-section">
@@ -1782,7 +1794,7 @@ const OPPS = [
   },
   {
     id:22, title:'DNA Day Essay Contest', org:'American Society of Human Genetics',
-    field:['healthcare','stem'], type:['competition','writing'], national:true,
+    field:['healthcare','stem','arts'], type:['competition','writing'], national:true,
     deadline:'See website (typically January)', cost:'Free', grades:'9-12',
     competitiveness:'Medium', time:'Single essay submission',
     skills:'Scientific writing, genetics knowledge',
@@ -1793,7 +1805,7 @@ const OPPS = [
   },
   {
     id:23, title:'Harvard International Review High School Essay Contest', org:'Harvard International Review',
-    field:['law','healthcare','stem'], type:['competition','writing'], national:true,
+    field:['law','healthcare','stem','arts'], type:['competition','writing'], national:true,
     deadline:'See website', cost:'Free', grades:'9-12',
     competitiveness:'High', time:'Single essay submission',
     skills:'Research, analytical writing, international affairs knowledge',
@@ -1804,7 +1816,7 @@ const OPPS = [
   },
   {
     id:24, title:'In2MedSchool Essay Competition', org:'In2MedSchool',
-    field:['healthcare'], type:['competition','writing'], national:true,
+    field:['healthcare','arts'], type:['competition','writing'], national:true,
     deadline:'See website', cost:'Free', grades:'9-12',
     competitiveness:'Medium', time:'Single essay submission',
     skills:'Medical ethics reasoning, analytical writing',
@@ -1980,7 +1992,7 @@ const OPPS = [
   },
   {
     id:38, title:'Harvard International Economics Essay Competition', org:'Harvard University (student-run)',
-    field:['business','law'], type:['competition','writing'], national:true,
+    field:['business','law','arts'], type:['competition','writing'], national:true,
     deadline:'See website', cost:'Free', grades:'9-12',
     competitiveness:'High', time:'Single essay submission',
     skills:'Economics research, analytical writing, policy reasoning',
@@ -2035,7 +2047,7 @@ const OPPS = [
   },
   {
     id:43, title:'Economic Research Council Essay Competition', org:'Economic Research Council',
-    field:['business'], type:['competition','writing'], national:true,
+    field:['business','arts'], type:['competition','writing'], national:true,
     deadline:'See website', cost:'Free', grades:'9-12',
     competitiveness:'Medium-High', time:'Single essay submission',
     skills:'Economic reasoning, research, academic writing',
@@ -2046,7 +2058,7 @@ const OPPS = [
   },
   {
     id:44, title:'Marshall Society Essay Competition', org:'Marshall Society, University of Cambridge',
-    field:['business'], type:['competition','writing'], national:true,
+    field:['business','arts'], type:['competition','writing'], national:true,
     deadline:'See website (typically December)', cost:'Free', grades:'9-12',
     competitiveness:'High', time:'Single essay submission',
     skills:'Economics research, critical analysis, academic writing',
@@ -2970,7 +2982,7 @@ const OPPS = [
   },
   {
     id:303, title:'Maurice R. Hilleman Essay Competition', org:'Merck & Vaccinology Organizations',
-    field:['healthcare','stem'], type:['competition','writing'], national:true,
+    field:['healthcare','stem','arts'], type:['competition','writing'], national:true,
     provinces:['AB', 'BC', 'MB', 'NB', 'NL', 'NS', 'NT', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT'],
     deadline:'See website', cost:'Free', grades:'9-12',
     competitiveness:'Medium', time:'Single essay submission',
@@ -2982,7 +2994,7 @@ const OPPS = [
   },
   {
     id:304, title:'BioScience Program Essay Competition', org:'BioScience / various organizations',
-    field:['healthcare','stem'], type:['competition','writing'], national:true,
+    field:['healthcare','stem','arts'], type:['competition','writing'], national:true,
     deadline:'See website', cost:'Free', grades:'9-12',
     competitiveness:'Medium', time:'Single essay submission',
     skills:'Biological sciences writing, critical analysis, research literacy',
@@ -2993,7 +3005,7 @@ const OPPS = [
   },
   {
     id:305, title:'SQ Online High School Essay Contest', org:'SQ Online (UC San Diego)',
-    field:['healthcare','stem'], type:['competition','writing'], national:true,
+    field:['healthcare','stem','arts'], type:['competition','writing'], national:true,
     deadline:'See website (typically spring)', cost:'Free', grades:'9-12',
     competitiveness:'Medium', time:'Single essay submission',
     skills:'Science writing, biological or medical research literacy, communication',
@@ -3328,7 +3340,7 @@ const OPPS = [
   },
   {
     id:410, title:'EngineerGirl Writing Contest', org:'National Academy of Engineering',
-    field:['stem','tech'], type:['competition','writing'], national:true,
+    field:['stem','tech','arts'], type:['competition','writing'], national:true,
     provinces:['AB', 'BC', 'MB', 'NB', 'NL', 'NS', 'NT', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT'],
     deadline:'See website (typically winter)', cost:'Free', grades:'3-12 (divisions by grade)',
     competitiveness:'Medium', time:'Single essay submission',
@@ -3686,7 +3698,7 @@ const OPPS = [
   // ── LAW, HUMANITIES & ESSAY COMPETITIONS ──
   {
     id:440, title:'Legal Studies Social Change Essay Contest', org:'Various legal organizations',
-    field:['law'], type:['competition','writing'], national:true,
+    field:['law','arts'], type:['competition','writing'], national:true,
     deadline:'See website', cost:'Free', grades:'9-12',
     competitiveness:'Medium', time:'Single essay submission',
     skills:'Legal analysis, policy writing, social justice awareness',
@@ -3697,7 +3709,7 @@ const OPPS = [
   },
   {
     id:441, title:'Rule of Law Essay Contest', org:'World Justice Project / legal organizations',
-    field:['law'], type:['competition','writing'], national:true,
+    field:['law','arts'], type:['competition','writing'], national:true,
     deadline:'See website', cost:'Free', grades:'9-12',
     competitiveness:'Medium-High', time:'Single essay submission',
     skills:'Legal research, analytical writing, understanding of democratic institutions',
@@ -3708,7 +3720,7 @@ const OPPS = [
   },
   {
     id:442, title:'OJEN Grade 10 Essay Contest', org:'Ontario Justice Education Network',
-    field:['law'], type:['competition','writing'], national:false,
+    field:['law','arts'], type:['competition','writing'], national:false,
     provinces:['ON'],
     deadline:'See website (school year)', cost:'Free', grades:'10',
     competitiveness:'Low-Medium', time:'Single essay submission',
@@ -3720,7 +3732,7 @@ const OPPS = [
   },
   {
     id:443, title:'Canadian Bar Association Essay Contests', org:'Canadian Bar Association',
-    field:['law'], type:['competition','writing'], national:true,
+    field:['law','arts'], type:['competition','writing'], national:true,
     provinces:['AB', 'BC', 'MB', 'NB', 'NL', 'NS', 'NT', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT'],
     deadline:'See CBA website (varies by contest)', cost:'Free', grades:'9-12',
     competitiveness:'Medium-High', time:'Single essay submission',
@@ -3732,7 +3744,7 @@ const OPPS = [
   },
   {
     id:444, title:'Supreme Court of Canada Essay Competition', org:'Supreme Court of Canada / law organizations',
-    field:['law'], type:['competition','writing'], national:true,
+    field:['law','arts'], type:['competition','writing'], national:true,
     provinces:['AB', 'BC', 'MB', 'NB', 'NL', 'NS', 'NT', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT'],
     deadline:'See website', cost:'Free', grades:'9-12',
     competitiveness:'High', time:'Single essay submission',
@@ -4464,7 +4476,7 @@ const OPPS = [
   },
   {
     id:536, title:'American Foreign Service Association Essay Contest', org:'American Foreign Service Association',
-    field:['law'], type:['competition','writing'], national:true,
+    field:['law','arts'], type:['competition','writing'], national:true,
     deadline:'February', cost:'Free', grades:'9-12',
     competitiveness:'Medium', time:'Single essay submission',
     skills:'Foreign policy analysis, international relations, persuasive writing',
@@ -4503,7 +4515,7 @@ const OPPS = [
   },
   {
     id:539, title:'Harvard International Review Academic Writing Contest', org:'Harvard International Review',
-    field:['law','stem','healthcare'], type:['competition','writing'], national:true,
+    field:['law','stem','healthcare','arts'], type:['competition','writing'], national:true,
     deadline:'See website', cost:'Free', grades:'9-12',
     competitiveness:'Very High', time:'Single essay submission',
     skills:'Academic research, policy writing, international affairs',
@@ -4516,7 +4528,7 @@ const OPPS = [
   },
   {
     id:540, title:'St. Gallen Symposium Essay Competition', org:'St. Gallen Symposium',
-    field:['business','law'], type:['competition','writing'], national:true,
+    field:['business','law','arts'], type:['competition','writing'], national:true,
     deadline:'January', cost:'Free', grades:'Any (under 30)',
     competitiveness:'Very High', time:'Single essay submission',
     skills:'Economic and social policy analysis, leadership, global issues',
@@ -4555,7 +4567,7 @@ const OPPS = [
   },
   {
     id:543, title:'Economic Research Essay Competition', org:'Various (e.g. RES, CES)',
-    field:['business'], type:['competition','writing'], national:true,
+    field:['business','arts'], type:['competition','writing'], national:true,
     deadline:'Varies', cost:'Free', grades:'9-12',
     competitiveness:'High', time:'Single essay submission',
     skills:'Economic analysis, quantitative reasoning, persuasive writing',
@@ -4635,7 +4647,7 @@ const OPPS = [
   },
   {
     id:549, title:'Canadian Medical Hall of Fame Essay Award', org:'Canadian Medical Hall of Fame',
-    field:['healthcare'], type:['competition','writing'], national:true,
+    field:['healthcare','arts'], type:['competition','writing'], national:true,
     provinces:['AB', 'BC', 'MB', 'NB', 'NL', 'NS', 'NT', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT'],
     deadline:'See website', cost:'Free', grades:'9-12',
     competitiveness:'Medium', time:'Single essay submission',
@@ -4663,7 +4675,7 @@ const OPPS = [
   },
   {
     id:551, title:'Canadian Civil Liberties Association Essay Contest', org:'Canadian Civil Liberties Association',
-    field:['law'], type:['competition','writing'], national:true,
+    field:['law','arts'], type:['competition','writing'], national:true,
     provinces:['AB', 'BC', 'MB', 'NB', 'NL', 'NS', 'NT', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT'],
     deadline:'See website', cost:'Free', grades:'9-12',
     competitiveness:'Medium', time:'Single essay submission',
@@ -4810,7 +4822,7 @@ const OPPS = [
   },
   {
     id:562, title:'Kemper Human Rights Essay Competition', org:'Kemper Human Rights Education Foundation',
-    field:['law'], type:['competition','writing'], national:true,
+    field:['law','arts'], type:['competition','writing'], national:true,
     deadline:'See website', cost:'Free', grades:'9-12',
     competitiveness:'Medium', time:'Single essay submission',
     skills:'Human rights analysis, international law, persuasive writing',
@@ -4836,7 +4848,7 @@ const OPPS = [
   },
   {
     id:564, title:'ASHG DNA Day Essay Contest', org:'American Society of Human Genetics',
-    field:['healthcare','stem'], type:['competition','writing'], national:true,
+    field:['healthcare','stem','arts'], type:['competition','writing'], national:true,
     deadline:'January', cost:'Free', grades:'9-12',
     competitiveness:'Medium', time:'Single essay submission',
     skills:'Genetics knowledge, scientific writing',
@@ -4849,7 +4861,7 @@ const OPPS = [
   },
   {
     id:565, title:'World Food Prize Youth Institute Essay', org:'World Food Prize Foundation',
-    field:['stem','law'], type:['competition','writing'], national:true,
+    field:['stem','law','arts'], type:['competition','writing'], national:true,
     deadline:'Spring', cost:'Free', grades:'9-12',
     competitiveness:'Medium', time:'Research paper / essay submission',
     skills:'Food security research, international development, analytical writing',
@@ -4862,7 +4874,7 @@ const OPPS = [
   },
   {
     id:566, title:'Bill of Rights Institute Essay Contests', org:'Bill of Rights Institute',
-    field:['law'], type:['competition','writing'], national:true,
+    field:['law','arts'], type:['competition','writing'], national:true,
     deadline:'Varies by contest', cost:'Free', grades:'9-12',
     competitiveness:'Medium', time:'Single essay submission',
     skills:'Constitutional law, civic knowledge, persuasive writing',
@@ -4875,7 +4887,7 @@ const OPPS = [
   },
   {
     id:567, title:'Federal Reserve Essay / Art Competition (Fed Challenge or Essay)', org:'Federal Reserve',
-    field:['business'], type:['competition','writing'], national:true,
+    field:['business','arts'], type:['competition','writing'], national:true,
     deadline:'Varies by district', cost:'Free', grades:'9-12',
     competitiveness:'Medium', time:'Essay or team challenge',
     skills:'Macroeconomics, monetary policy, research writing',
@@ -4888,7 +4900,7 @@ const OPPS = [
   },
   {
     id:568, title:'Cato Institute Essay Competition', org:'Cato Institute',
-    field:['law','business'], type:['competition','writing'], national:true,
+    field:['law','business','arts'], type:['competition','writing'], national:true,
     deadline:'See website', cost:'Free', grades:'9-12',
     competitiveness:'Medium', time:'Single essay submission',
     skills:'Policy analysis, libertarian political philosophy, persuasive writing',
@@ -4953,7 +4965,7 @@ const OPPS = [
   },
   {
     id:573, title:'Stossel in the Classroom Essay Contest', org:'Stossel in the Classroom',
-    field:['law','business'], type:['competition','writing'], national:true,
+    field:['law','business','arts'], type:['competition','writing'], national:true,
     deadline:'See website', cost:'Free', grades:'9-12',
     competitiveness:'Low–Medium', time:'Single essay submission',
     skills:'Economics, free market analysis, persuasive writing',
@@ -4966,7 +4978,7 @@ const OPPS = [
   },
   {
     id:574, title:'We the Students Essay Competition', org:'Bill of Rights Institute',
-    field:['law'], type:['competition','writing'], national:true,
+    field:['law','arts'], type:['competition','writing'], national:true,
     deadline:'Spring', cost:'Free', grades:'9-12',
     competitiveness:'Medium', time:'Single essay submission',
     skills:'Constitutional rights, civics, persuasive writing',
@@ -5748,7 +5760,7 @@ const OPPS = [
   },
   {
     id:634, title:'STEM-E Youth Career Development', org:'STEM-E',
-    field:['stem','tech'], type:['tutoring','program'], national:true,
+    field:['stem','tech'], type:['tutoring','program','volunteer'], national:true,
     provinces:['AB', 'BC', 'MB', 'NB', 'NL', 'NS', 'NT', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT'],
     deadline:'Rolling', cost:'Free', grades:'9-12',
     competitiveness:'Low-Medium', time:'Part-time, flexible',
@@ -5761,7 +5773,7 @@ const OPPS = [
   },
   {
     id:635, title:'OneProser International', org:'OneProser International',
-    field:['arts','business'], type:['tutoring','program'], national:true,
+    field:['arts','business'], type:['tutoring','program','volunteer','writing'], national:true,
     deadline:'Rolling', cost:'Free', grades:'9-12',
     competitiveness:'Low', time:'Flexible',
     skills:'Writing, communication, or language skills',
@@ -5773,7 +5785,7 @@ const OPPS = [
   },
   {
     id:636, title:'Schoolhouse.world', org:'Schoolhouse.world',
-    field:['stem','arts'], type:['tutoring'], national:true,
+    field:['stem','arts'], type:['tutoring','volunteer'], national:true,
     provinces:['AB', 'BC', 'MB', 'NB', 'NL', 'NS', 'NT', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT'],
     deadline:'Rolling — open year-round', cost:'Free', grades:'9-12',
     competitiveness:'Low', time:'Self-paced; tutor whenever you want',
@@ -5953,7 +5965,7 @@ const OPPS = [
   },
   {
     id:650, title:'FELT Initiative', org:'FELT Initiative',
-    field:['arts','stem'], type:['tutoring','program'], national:true,
+    field:['arts','stem'], type:['tutoring','program','volunteer'], national:true,
     provinces:['AB', 'BC', 'MB', 'NB', 'NL', 'NS', 'NT', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT'],
     deadline:'Rolling', cost:'Free', grades:'9-12',
     competitiveness:'Low-Medium', time:'Part-time commitment',
@@ -5966,7 +5978,7 @@ const OPPS = [
   },
   {
     id:651, title:'425 Tutoring', org:'425 Tutoring',
-    field:['stem','arts'], type:['tutoring'], national:true,
+    field:['stem','arts'], type:['tutoring','volunteer'], national:true,
     deadline:'Rolling', cost:'Free', grades:'9-12',
     competitiveness:'Low', time:'Flexible',
     skills:'Academic strengths in any subject',
@@ -6040,7 +6052,7 @@ const OPPS = [
   },
   {
     id:657, title:'Charting Careers', org:'Charting Careers',
-    field:['business','arts'], type:['tutoring','program'], national:true,
+    field:['business','arts'], type:['tutoring','program','volunteer'], national:true,
     deadline:'Rolling', cost:'Free', grades:'10-12',
     competitiveness:'Low-Medium', time:'Part-time',
     skills:'Interest in career development; strong communication skills',
@@ -6113,7 +6125,7 @@ const OPPS = [
   },
   {
     id:663, title:'TeenTeach', org:'TeenTeach',
-    field:['stem','arts'], type:['tutoring','program'], national:true,
+    field:['stem','arts'], type:['tutoring','program','volunteer'], national:true,
     provinces:['AB', 'BC', 'MB', 'NB', 'NL', 'NS', 'NT', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT'],
     deadline:'Rolling', cost:'Free', grades:'9-12',
     competitiveness:'Low-Medium', time:'Part-time',
@@ -6126,7 +6138,7 @@ const OPPS = [
   },
   {
     id:664, title:'Girls Who Code', org:'Girls Who Code',
-    field:['tech','stem'], type:['tutoring','club','program'], national:true,
+    field:['tech','stem'], type:['tutoring','club','program','volunteer'], national:true,
     provinces:['AB', 'BC', 'MB', 'NB', 'NL', 'NS', 'NT', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT'],
     deadline:'Rolling (club year runs September–June)', cost:'Free', grades:'9-12',
     competitiveness:'Low', time:'After-school club; several hours per week',
@@ -6152,7 +6164,7 @@ const OPPS = [
   },
   {
     id:666, title:'STEM Fellowship', org:'STEM Fellowship',
-    field:['stem','tech'], type:['tutoring','program','research'], national:true,
+    field:['stem','tech'], type:['tutoring','program','research','volunteer'], national:true,
     provinces:['AB', 'BC', 'MB', 'NB', 'NL', 'NS', 'NT', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT'],
     deadline:'Rolling (various programs throughout the year)', cost:'Free', grades:'9-12',
     competitiveness:'Medium', time:'Part-time; varies by program',
@@ -6177,7 +6189,7 @@ const OPPS = [
   },
   {
     id:668, title:'Science Mentorship Institute', org:'Science Mentorship Institute',
-    field:['stem'], type:['tutoring','program','research'], national:true,
+    field:['stem'], type:['tutoring','program','research','volunteer'], national:true,
     deadline:'Rolling / Program-specific', cost:'Free', grades:'9-12',
     competitiveness:'Medium', time:'Part-time; varies by mentorship program',
     skills:'Strong science background; curiosity; interest in research',
@@ -6273,20 +6285,7 @@ const OPPS = [
     howToApply:'Apply through the Interverse website.',
     practiceLinks:[{label:'🔗 Interverse', url:'https://interverse.org'}],
     link:'https://interverse.org'
-  },
-  {
-    id:676, title:'FELT Initiative', org:'FELT Initiative',
-    field:['arts','stem'], type:['nonprofit','tutoring','program'], national:true,
-    provinces:['AB', 'BC', 'MB', 'NB', 'NL', 'NS', 'NT', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT'],
-    deadline:'Rolling', cost:'Free', grades:'9-12',
-    competitiveness:'Low-Medium', time:'Part-time',
-    skills:'Academic excellence; interest in education equity',
-    match:85,
-    why:'FELT (Future Educators and Leaders for Tomorrow) trains high school students to tutor and mentor younger students. Combines leadership training with real community impact — a strong credential for students interested in education, public service, or community development.',
-    howToApply:'Apply through the FELT Initiative website.',
-    practiceLinks:[{label:'🔗 FELT Initiative', url:'https://feltinitiative.org'}],
-    link:'https://feltinitiative.org'
-  },
+  },,
   {
     id:677, title:'ConnectED Tutoring', org:'ConnectED Tutoring',
     field:['stem','arts'], type:['nonprofit','tutoring','volunteer'], national:true,
@@ -6299,32 +6298,7 @@ const OPPS = [
     howToApply:'Apply as a volunteer tutor through the ConnectED Tutoring website.',
     practiceLinks:[{label:'🔗 ConnectED Tutoring', url:'https://connectedtutoring.org'}],
     link:'https://connectedtutoring.org'
-  },
-  {
-    id:678, title:'Global Student Tutors', org:'Global Student Tutors',
-    field:['stem','arts','business'], type:['nonprofit','tutoring','volunteer'], national:true,
-    deadline:'Rolling', cost:'Free', grades:'9-12',
-    competitiveness:'Low', time:'Flexible; online sessions',
-    skills:'Strong academic skills; ability to explain concepts clearly',
-    match:84,
-    why:'Global Student Tutors connects high school volunteers with students around the world for free online tutoring. The international dimension enriches your profile and demonstrates a global perspective.',
-    howToApply:'Sign up as a volunteer tutor on the Global Student Tutors website.',
-    practiceLinks:[{label:'🔗 Global Student Tutors', url:'https://globalstudents.org'}],
-    link:'https://globalstudents.org'
-  },
-  {
-    id:679, title:'TeenTeach', org:'TeenTeach',
-    field:['stem','arts'], type:['nonprofit','tutoring','program'], national:true,
-    provinces:['AB', 'BC', 'MB', 'NB', 'NL', 'NS', 'NT', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT'],
-    deadline:'Rolling', cost:'Free', grades:'9-12',
-    competitiveness:'Low-Medium', time:'Part-time',
-    skills:'Academic strength; enthusiasm for teaching',
-    match:86,
-    why:'TeenTeach trains high school students to become tutors for younger students. You receive structured training and gain real teaching experience — a great credential for students considering education, healthcare, or any field that values communication and leadership.',
-    howToApply:'Apply through the TeenTeach website.',
-    practiceLinks:[{label:'🔗 TeenTeach', url:'https://teenteach.org'}],
-    link:'https://teenteach.org'
-  },
+  },,,
   {
     id:680, title:'One Stone', org:'One Stone',
     field:['arts','business','stem'], type:['nonprofit','program'], national:true,
@@ -6581,20 +6555,7 @@ const OPPS = [
     howToApply:'Apply through the TKS website during the annual application window. Expect a competitive selection process.',
     practiceLinks:[{label:'🔗 The Knowledge Society', url:'https://tks.world'}],
     link:'https://tks.world'
-  },
-  {
-    id:700, title:'LaunchX', org:'LaunchX',
-    field:['business','tech'], type:['nonprofit','program'], national:true,
-    provinces:['AB', 'BC', 'MB', 'NB', 'NL', 'NS', 'NT', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT'],
-    deadline:'Applications typically open January–March', cost:'Varies (financial aid available)', grades:'10-12',
-    competitiveness:'High', time:'Intensive summer program',
-    skills:'Entrepreneurial drive; interest in launching a real startup',
-    match:90,
-    why:"LaunchX is an MIT-founded entrepreneurship program where students launch real companies during a summer program. Participants have raised venture funding, appeared in media, and built lasting startups. One of the most recognized entrepreneurship credentials in North American high school applications.",
-    howToApply:'Apply through the LaunchX website. Applications typically open in late winter.',
-    practiceLinks:[{label:'🔗 LaunchX', url:'https://launchx.com'}],
-    link:'https://launchx.com'
-  },
+  },,
   {
     id:701, title:'Blue Ocean Student Entrepreneurs', org:'Blue Ocean Student Entrepreneurs',
     field:['business'], type:['nonprofit','program','competition'], national:true,
@@ -9569,19 +9530,7 @@ const OPPS = [
     howToApply:'Create a free account on Write the World and start submitting to weekly contests.',
     practiceLinks:[{label:'🔗 Write the World', url:'https://writetheworld.com'}],
     link:'https://writetheworld.com'
-  },
-  {
-    id:948, title:'Ocean Awareness Student Contest', org:'Bow Seat Ocean Awareness Programs',
-    field:['arts','stem'], type:['writing','competition'], national:true,
-    deadline:'June annually', cost:'Free', grades:'9-12',
-    competitiveness:'Medium', time:'Submit one piece of creative work',
-    skills:'Creative writing, visual art, film, or music with an ocean/climate focus',
-    match:85,
-    why:"Bow Seat's Ocean Awareness Contest invites creative work across writing, art, film, and music focused on ocean conservation. The writing category is particularly strong — winners receive cash prizes and publication. A distinctive credential that combines creative writing with environmental advocacy.",
-    howToApply:'Submit your creative work through the Bow Seat Ocean Awareness Programs website before the June deadline.',
-    practiceLinks:[{label:'🔗 Ocean Awareness Contest', url:'https://bowseat.org/programs/ocean-awareness-contest/'}],
-    link:'https://bowseat.org/programs/ocean-awareness-contest/'
-  },
+  },,
   {
     id:949, title:'River of Words Poetry & Art Contest', org:'River of Words',
     field:['arts','stem'], type:['writing','competition'], national:true,
@@ -9905,6 +9854,1518 @@ const OPPS = [
     howToApply:'Create a free Medium account and start publishing articles on topics you care about.',
     practiceLinks:[{label:'🔗 Medium', url:'https://medium.com/new-story'}],
     link:'https://medium.com/new-story'
+  },
+  {
+    id:976, title:'FSWEP — Federal Student Work Experience Program', org:'Government of Canada',
+    field:['business','stem','tech','law','arts'], type:['internship'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Applications open year-round on the GC Jobs portal', cost:'Free to apply', grades:'11-12',
+    competitiveness:'Medium', time:'Part-time or full-time; semester or summer',
+    skills:'Enrolled in full-time post-secondary (or high school in some cases); Canadian citizenship or PR',
+    match:90,
+    why:"FSWEP is the Government of Canada's flagship student employment program, placing students in paid roles across every federal department — from Environment Canada to the RCMP to Innovation Canada. It's one of the most accessible paid internship programs in the country, with positions in virtually every field and every province. A federal government internship is a prestigious credential that demonstrates public service commitment.",
+    howToApply:'Create a profile and apply through the GC Jobs portal (jobs.gc.ca). Search "FSWEP" to find current postings.',
+    practiceLinks:[{label:'🔗 FSWEP on GC Jobs', url:'https://www.canada.ca/en/public-service-commission/jobs/services/recruitment/students/federal-student-work-program.html'}],
+    link:'https://www.canada.ca/en/public-service-commission/jobs/services/recruitment/students/federal-student-work-program.html'
+  },
+  {
+    id:977, title:'CRA — Canada Revenue Agency Student Roles', org:'Canada Revenue Agency',
+    field:['business','law'], type:['internship'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Rolling; major intakes in fall and winter', cost:'Free to apply', grades:'11-12',
+    competitiveness:'Medium', time:'Part-time or full-time co-op terms',
+    skills:'Interest in accounting, finance, or public administration; attention to detail',
+    match:87,
+    why:"The CRA is one of Canada's largest federal employers of students, offering paid co-op and student positions in tax administration, IT, finance, and communications across the country. A CRA placement demonstrates rigour, attention to detail, and public service — excellent for students interested in accounting, business, or law.",
+    howToApply:'Apply through the CRA student employment page or the GC Jobs portal.',
+    practiceLinks:[{label:'🔗 CRA Student Jobs', url:'https://www.canada.ca/en/revenue-agency/corporate/careers-cra/students-graduates.html'}],
+    link:'https://www.canada.ca/en/revenue-agency/corporate/careers-cra/students-graduates.html'
+  },
+  {
+    id:978, title:'Shopify Internships', org:'Shopify',
+    field:['tech','business'], type:['internship'], national:false, provinces:['ON','BC'],
+    deadline:'Applications typically open September–November for winter/summer terms', cost:'Free to apply', grades:'11-12',
+    competitiveness:'Very High', time:'4-month co-op terms (winter, summer, fall)',
+    skills:'Software engineering, data science, UX, product management, or business; strong portfolio',
+    match:93,
+    why:"Shopify is one of Canada's most prestigious tech companies and a global e-commerce giant. A Shopify internship is one of the most coveted student positions in Canadian tech — alumni go on to top universities and careers at world-leading companies. Positions are available in engineering, product, design, data, and business primarily in Ottawa and Toronto.",
+    howToApply:'Apply through the Shopify careers page. Technical roles require a strong portfolio or GitHub. Applications typically open in fall for next year.',
+    practiceLinks:[{label:'🔗 Shopify Internships', url:'https://www.shopify.com/careers/internships'}],
+    link:'https://www.shopify.com/careers/internships'
+  },
+  {
+    id:979, title:'Google Canada — Student & Internship Programs', org:'Google Canada',
+    field:['tech','business'], type:['internship'], national:false, provinces:['ON','BC'],
+    deadline:'Applications typically open August–October for the following year', cost:'Free to apply', grades:'11-12',
+    competitiveness:'Extremely High', time:'12–14 week summer internship',
+    skills:'Computer science, software engineering, or related field; strong coding skills (LeetCode-level); exceptional academics',
+    match:93,
+    why:"A Google internship is among the most prestigious tech credentials in the world. Google Canada has offices in Toronto, Waterloo, and Vancouver. The STEP (Student Training in Engineering Program) is specifically designed for first and second-year students from underrepresented groups — worth researching for eligible students. Competitive beyond measure, but the credential is transformative.",
+    howToApply:'Apply through the Google Careers portal. Prepare for technical interviews with LeetCode/competitive programming practice. Apply early — positions fill fast.',
+    practiceLinks:[{label:'🔗 Google Careers', url:'https://careers.google.com/students/'}],
+    link:'https://careers.google.com/students/'
+  },
+  {
+    id:980, title:'Amazon Canada — Student & Internship Programs', org:'Amazon Canada',
+    field:['tech','business'], type:['internship'], national:false, provinces:['ON','BC'],
+    deadline:'Applications open year-round; peak hiring August–November', cost:'Free to apply', grades:'11-12',
+    competitiveness:'Very High', time:'12–16 week internship terms',
+    skills:'Software engineering, operations, business, or finance; strong academics',
+    match:91,
+    why:"Amazon is one of the world's largest tech companies and has a major Canadian presence in Vancouver and Toronto. Amazon internships are highly prestigious, well-paid, and open doors to full-time roles at one of the world's most recognizable companies. Technical and business roles available.",
+    howToApply:'Apply through the Amazon Jobs portal. Technical roles require coding interview preparation.',
+    practiceLinks:[{label:'🔗 Amazon Student Programs', url:'https://www.amazon.jobs/en/teams/internships-for-students'}],
+    link:'https://www.amazon.jobs/en/teams/internships-for-students'
+  },
+  {
+    id:981, title:'Microsoft Canada — Internship Programs', org:'Microsoft Canada',
+    field:['tech','business'], type:['internship'], national:false, provinces:['ON','BC'],
+    deadline:'Applications typically open August–October', cost:'Free to apply', grades:'11-12',
+    competitiveness:'Very High', time:'12-week summer internship',
+    skills:'Software engineering, product management, data science, or business; strong academics',
+    match:91,
+    why:"Microsoft is one of the world's most respected tech companies with offices in Vancouver and Toronto. A Microsoft internship is a globally recognized credential — alumni go on to top universities and careers worldwide. Microsoft's Explorer Program is specifically designed for first and second-year students exploring tech careers.",
+    howToApply:'Apply through the Microsoft careers portal. The Explorer Program is worth applying to for students newer to tech.',
+    practiceLinks:[{label:'🔗 Microsoft Internships', url:'https://careers.microsoft.com/students/us/en/us-urp-internship-search'}],
+    link:'https://careers.microsoft.com/students/us/en/us-urp-internship-search'
+  },
+  {
+    id:982, title:'RBC — Student & Co-op Programs', org:'Royal Bank of Canada',
+    field:['business','tech'], type:['internship'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Applications open September–November for winter/summer terms', cost:'Free to apply', grades:'11-12',
+    competitiveness:'High', time:'4-month co-op terms',
+    skills:'Finance, business, technology, or data science; strong academics; communication skills',
+    match:90,
+    why:"RBC is Canada's largest bank and one of its most prestigious employers. RBC's student and co-op programs span finance, technology, risk, and operations across Canada. A co-op at RBC is a highly respected credential for students pursuing careers in finance, banking, tech, or consulting.",
+    howToApply:'Apply through the RBC Careers portal. Positions are posted on RBC Careers and university co-op boards.',
+    practiceLinks:[{label:'🔗 RBC Student Programs', url:'https://jobs.rbc.com/ca/en/students'}],
+    link:'https://jobs.rbc.com/ca/en/students'
+  },
+  {
+    id:983, title:'TD Bank — Student Co-op Programs', org:'TD Bank Group',
+    field:['business','tech'], type:['internship'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Applications open September–November for winter/summer terms', cost:'Free to apply', grades:'11-12',
+    competitiveness:'High', time:'4-month co-op terms',
+    skills:'Finance, business, technology, or data; strong academics',
+    match:89,
+    why:"TD is one of Canada's largest and most respected banks, with student co-op programs across finance, technology, risk management, and corporate functions. TD is known for investing in student development — a TD co-op is a prestigious credential across financial services and tech.",
+    howToApply:'Apply through the TD Careers portal. Most roles are posted in fall for the following year.',
+    practiceLinks:[{label:'🔗 TD Student Programs', url:'https://jobs.td.com/en-CA/student-and-new-graduate-opportunities/'}],
+    link:'https://jobs.td.com/en-CA/student-and-new-graduate-opportunities/'
+  },
+  {
+    id:984, title:'Scotiabank — Student & New Grad Programs', org:'Scotiabank',
+    field:['business','tech'], type:['internship'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Applications open fall for winter and summer terms', cost:'Free to apply', grades:'11-12',
+    competitiveness:'High', time:'4-month co-op terms',
+    skills:'Finance, business, technology, or data; strong academics',
+    match:88,
+    why:"Scotiabank is Canada's most international bank with student programs spanning finance, digital banking, data science, and technology. Scotia is known for strong student culture and development — a co-op here is a respected financial services credential.",
+    howToApply:'Apply through the Scotiabank Careers portal.',
+    practiceLinks:[{label:'🔗 Scotiabank Student Programs', url:'https://www.scotiabank.com/careers/en/students.html'}],
+    link:'https://www.scotiabank.com/careers/en/students.html'
+  },
+  {
+    id:985, title:'Deloitte Canada — Student Internships', org:'Deloitte Canada',
+    field:['business','tech','law'], type:['internship'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Applications typically open fall', cost:'Free to apply', grades:'11-12',
+    competitiveness:'High', time:'4-month co-op or summer internship',
+    skills:'Business, accounting, consulting, technology, or risk; strong academics; communication skills',
+    match:90,
+    why:"Deloitte is one of the Big Four professional services firms and one of the world's most recognized employers. A Deloitte student internship spans audit, consulting, tax, and technology advisory — a prestigious credential for students pursuing careers in business, consulting, finance, or accounting.",
+    howToApply:'Apply through the Deloitte Canada Careers portal. Most student intakes happen in fall.',
+    practiceLinks:[{label:'🔗 Deloitte Student Programs', url:'https://www2.deloitte.com/ca/en/pages/careers/articles/students.html'}],
+    link:'https://www2.deloitte.com/ca/en/pages/careers/articles/students.html'
+  },
+  {
+    id:986, title:'KPMG Canada — Student Internships', org:'KPMG Canada',
+    field:['business','law'], type:['internship'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Applications open fall for winter and summer terms', cost:'Free to apply', grades:'11-12',
+    competitiveness:'High', time:'4-month co-op or summer internship',
+    skills:'Accounting, business, audit, tax, or advisory; strong academics',
+    match:89,
+    why:"KPMG is one of the Big Four accounting and advisory firms. A KPMG student internship in audit, tax, or advisory is a prestigious credential for students pursuing CPA, business, or law careers. KPMG has offices in major cities across Canada.",
+    howToApply:'Apply through the KPMG Canada Careers portal.',
+    practiceLinks:[{label:'🔗 KPMG Student Programs', url:'https://home.kpmg/ca/en/home/careers/students-graduates.html'}],
+    link:'https://home.kpmg/ca/en/home/careers/students-graduates.html'
+  },
+  {
+    id:987, title:'PwC Canada — Student Internships', org:'PricewaterhouseCoopers Canada',
+    field:['business','tech','law'], type:['internship'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Applications open fall', cost:'Free to apply', grades:'11-12',
+    competitiveness:'High', time:'4-month co-op or summer internship',
+    skills:'Accounting, consulting, technology, deals, or tax; strong academics',
+    match:89,
+    why:"PwC is one of the Big Four professional services firms globally. A PwC student internship across audit, deals, consulting, or technology is one of the most recognized business credentials available — PwC alumni go on to top finance, consulting, and executive careers worldwide.",
+    howToApply:'Apply through the PwC Canada Careers portal.',
+    practiceLinks:[{label:'🔗 PwC Canada Students', url:'https://www.pwc.com/ca/en/careers/students.html'}],
+    link:'https://www.pwc.com/ca/en/careers/students.html'
+  },
+  {
+    id:988, title:'NSERC USRA — Undergraduate Student Research Awards', org:'Natural Sciences and Engineering Research Council of Canada',
+    field:['stem','tech'], type:['internship','research'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Varies by university — typically January–March', cost:'Free to apply', grades:'11-12',
+    competitiveness:'High', time:'16 weeks (typically summer)',
+    skills:'Strong academics in science or engineering; genuine research interest',
+    match:92,
+    why:"NSERC USRA is Canada's premier undergraduate research funding program, placing students in university research labs with a stipend. While technically for undergrads, exceptional high school students in their final year sometimes access equivalent programs. A NSERC-funded research position is one of the strongest STEM credentials available — it signals academic excellence and research ability to top graduate schools and employers.",
+    howToApply:'Apply through your target university\'s NSERC USRA coordinator. Each university manages its own allocation. Contact professors whose research interests you and ask about USRA-funded positions.',
+    practiceLinks:[{label:'🔗 NSERC USRA', url:'https://www.nserc-crsng.gc.ca/Students-Etudiants/UG-PC/USRA-BRPC_eng.asp'}],
+    link:'https://www.nserc-crsng.gc.ca/Students-Etudiants/UG-PC/USRA-BRPC_eng.asp'
+  },
+  {
+    id:989, title:'MITACS STEP — Science and Technology Internship Program', org:'MITACS',
+    field:['stem','tech','business'], type:['internship','research'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Rolling applications; placements available year-round', cost:'Free to apply', grades:'11-12',
+    competitiveness:'Medium', time:'Flexible; project-based placements',
+    skills:'STEM, business, or social sciences background; curiosity and initiative',
+    match:91,
+    why:"MITACS is Canada's national research and training organization, connecting students with paid internship placements in industry and non-profit organizations. MITACS STEP specifically targets high school and undergraduate students for research-adjacent work experience. A MITACS placement is a nationally recognized credential — it signals research aptitude and professional readiness.",
+    howToApply:'Explore current internship opportunities on the MITACS website and apply directly.',
+    practiceLinks:[{label:'🔗 MITACS STEP', url:'https://www.mitacs.ca/en/programs/step'}],
+    link:'https://www.mitacs.ca/en/programs/step'
+  },
+  {
+    id:990, title:'International Philosophy Olympiad (IPO)', org:'International Philosophy Olympiad',
+    field:['philosophy','arts'], type:['competition'], national:true,
+    deadline:'National qualifying rounds typically winter/spring', cost:'Free', grades:'10-12',
+    competitiveness:'Very High', time:'Essay-based competition',
+    skills:'Exceptional philosophical reasoning; ability to construct original arguments in writing',
+    match:93,
+    why:"The International Philosophy Olympiad is the world's most prestigious philosophy competition for high school students. Participants write a philosophical essay on a given theme and top national performers represent their country internationally. Qualifying — let alone placing — is an extraordinary credential demonstrating rare depth of thought. One of the most distinctive competition credentials available to a high school student.",
+    howToApply:'Compete through your national philosophy olympiad qualifying competition. In Canada, contact the Canadian Philosophical Association for qualifying information.',
+    practiceLinks:[{label:'🔗 International Philosophy Olympiad', url:'https://www.ipho.net'}],
+    link:'https://www.ipho.net'
+  },
+  {
+    id:991, title:'American Philosophy Olympiad', org:'American Philosophy Olympiad',
+    field:['philosophy','arts'], type:['competition'], national:true,
+    deadline:'Registration typically fall; competition winter/spring', cost:'Free', grades:'9-12',
+    competitiveness:'High', time:'Essay and oral rounds',
+    skills:'Philosophical reasoning; argumentation; ethical thinking',
+    match:90,
+    why:"The American Philosophy Olympiad is open to Canadian students and is one of the primary pathways to the International Philosophy Olympiad. A rigorous, prestigious competition that tests original philosophical thinking — a rare and impressive credential for students who genuinely love ideas.",
+    howToApply:'Register through the American Philosophy Olympiad website. Canadian students can typically participate.',
+    practiceLinks:[{label:'🔗 American Philosophy Olympiad', url:'https://www.usaphilosophyolympics.org'}],
+    link:'https://www.usaphilosophyolympics.org'
+  },
+  {
+    id:992, title:'Ethics Bowl Canada', org:'Canadian Centre for Ethics in Sport / various university hosts',
+    field:['philosophy','law','arts'], type:['competition','club'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Regional competitions typically fall/winter', cost:'Free or low', grades:'9-12',
+    competitiveness:'Medium-High', time:'Team-based tournament',
+    skills:'Ethical reasoning; collaborative discussion; ability to analyze complex moral scenarios',
+    match:91,
+    why:"Ethics Bowl is a team competition where students collaboratively analyze and discuss complex ethical dilemmas. Unlike debate, it rewards nuanced thinking over winning — judges reward teams that reason carefully rather than argue forcefully. A distinctive, intellectually rigorous credential for students interested in philosophy, law, medicine, or public policy.",
+    howToApply:'Find a regional Ethics Bowl competition or start a team at your school through the Ethics Bowl Canada network.',
+    practiceLinks:[{label:'🔗 Ethics Bowl Canada', url:'https://ethicsbowl.ca'}],
+    link:'https://ethicsbowl.ca'
+  },
+  {
+    id:993, title:'Canadian Philosophical Association — Student Engagement', org:'Canadian Philosophical Association',
+    field:['philosophy','arts'], type:['program','club'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Annual conference typically spring', cost:'Low (student rates)', grades:'11-12',
+    competitiveness:'Low-Medium', time:'Conference attendance or paper submission',
+    skills:'Philosophical writing and thinking; interest in academic philosophy',
+    match:85,
+    why:"The CPA is the national professional body for philosophy in Canada. High school students can engage with student sections, attend conferences, and submit to student essay competitions. A distinctive credential that connects you to Canada's academic philosophy community — rare and impressive for a high schooler.",
+    howToApply:'Check the CPA website for student sections, youth engagement programs, and annual conference opportunities.',
+    practiceLinks:[{label:'🔗 Canadian Philosophical Association', url:'https://www.acpcpa.ca'}],
+    link:'https://www.acpcpa.ca'
+  },
+  {
+    id:994, title:'Royal Institute of Philosophy — Essay Competitions', org:'Royal Institute of Philosophy',
+    field:['philosophy','arts'], type:['competition','writing'], national:true,
+    deadline:'Annual competition — check website for dates', cost:'Free', grades:'9-12',
+    competitiveness:'High', time:'Submit philosophical essay',
+    skills:'Philosophical essay writing; original argumentation',
+    match:88,
+    why:"The Royal Institute of Philosophy is one of the world's oldest and most respected philosophical organisations. Its essay competitions for young people reward original philosophical thinking — getting recognized here is an extraordinary international credential for a high school philosopher.",
+    howToApply:'Submit a philosophical essay through the Royal Institute of Philosophy website during the competition window.',
+    practiceLinks:[{label:'🔗 Royal Institute of Philosophy', url:'https://www.royalinstitutephilosophy.org/schools/'}],
+    link:'https://www.royalinstitutephilosophy.org/schools/'
+  },
+  {
+    id:995, title:'American Philosophical Association — Student Programs', org:'American Philosophical Association',
+    field:['philosophy','arts'], type:['program'], national:true,
+    deadline:'Program-specific', cost:'Low (student rates)', grades:'11-12',
+    competitiveness:'Low-Medium', time:'Conference or program based',
+    skills:'Philosophical curiosity; essay writing; interest in academic philosophy',
+    match:84,
+    why:"The APA is the primary professional organization for philosophers in North America. High school students can engage with student essay competitions and pre-college outreach programs. A connection to the professional philosophical community is a rare and distinctive credential.",
+    howToApply:'Check the APA website for student and pre-college programs.',
+    practiceLinks:[{label:'🔗 American Philosophical Association', url:'https://www.apaonline.org'}],
+    link:'https://www.apaonline.org'
+  },
+  {
+    id:996, title:'Davidson Fellows Scholarship', org:'Davidson Institute',
+    field:['philosophy','stem','arts','law'], type:['competition','writing'], national:true,
+    deadline:'February annually', cost:'Free', grades:'9-12',
+    competitiveness:'Very High', time:'Submit original research or project',
+    skills:'Exceptional original research or creative work in any field; must demonstrate genuine contribution to knowledge',
+    match:92,
+    why:"The Davidson Fellows Scholarship awards $50,000, $25,000, or $10,000 to extraordinary young people who have completed significant projects in science, technology, mathematics, music, literature, philosophy, or outside the box. One of the most prestigious youth awards in North America — winning or placing is a transformative credential that signals genuine intellectual achievement.",
+    howToApply:'Submit your original research or creative project through the Davidson Institute website by the February deadline.',
+    practiceLinks:[{label:'🔗 Davidson Fellows Scholarship', url:'https://www.davidsongifted.org/fellows-scholarship/'}],
+    link:'https://www.davidsongifted.org/fellows-scholarship/'
+  },
+  {
+    id:997, title:'University of Waterloo — Philosophy Outreach & Events', org:'University of Waterloo Department of Philosophy',
+    field:['philosophy','arts'], type:['program'], national:false, provinces:['ON'],
+    deadline:'Program-specific', cost:'Free', grades:'10-12',
+    competitiveness:'Low-Medium', time:'Flexible; event and workshop based',
+    skills:'Interest in philosophical questions and argumentation',
+    match:86,
+    why:"UWaterloo's philosophy department runs outreach events and workshops for high school students. Engaging directly with a university philosophy department is a rare and impressive credential — it demonstrates genuine intellectual curiosity beyond the school curriculum and builds early connections to university.",
+    howToApply:'Check the UWaterloo Philosophy Department website for current outreach events and high school programs.',
+    practiceLinks:[{label:'🔗 UWaterloo Philosophy', url:'https://uwaterloo.ca/philosophy/'}],
+    link:'https://uwaterloo.ca/philosophy/'
+  },
+  {
+    id:998, title:'Western University — Philosophy Clubs & Outreach', org:'Western University Department of Philosophy',
+    field:['philosophy','arts'], type:['program','club'], national:false, provinces:['ON'],
+    deadline:'Program-specific', cost:'Free', grades:'10-12',
+    competitiveness:'Low', time:'Flexible',
+    skills:'Enthusiasm for philosophical questions',
+    match:84,
+    why:"Western's philosophy department is one of Canada's strongest, particularly in logic and philosophy of mind. Their outreach to high school students provides early exposure to rigorous philosophical thinking. A distinctive credential for London-area students applying to humanities or social science programs.",
+    howToApply:'Contact the Western University Philosophy Department to inquire about high school outreach events and programs.',
+    practiceLinks:[{label:'🔗 Western Philosophy', url:'https://www.uwo.ca/philosophy/'}],
+    link:'https://www.uwo.ca/philosophy/'
+  },
+  {
+    id:999, title:'McGill Philosophy Outreach Initiatives', org:'McGill University Department of Philosophy',
+    field:['philosophy','arts'], type:['program'], national:false, provinces:['QC'],
+    deadline:'Program-specific', cost:'Free', grades:'10-12',
+    competitiveness:'Low-Medium', time:'Flexible',
+    skills:'Interest in philosophy; bilingual (English/French) an asset',
+    match:85,
+    why:"McGill's philosophy department has a strong tradition of public engagement and outreach. Connecting with McGill philosophy programs as a high schooler is a distinctive credential — particularly for Montreal-area students applying to philosophy, law, or cognitive science programs.",
+    howToApply:'Check the McGill Philosophy Department website for outreach events and high school engagement programs.',
+    practiceLinks:[{label:'🔗 McGill Philosophy', url:'https://www.mcgill.ca/philosophy/'}],
+    link:'https://www.mcgill.ca/philosophy/'
+  },
+  {
+    id:1000, title:'MIT Research Science Institute (RSI)', org:'Massachusetts Institute of Technology / Center for Excellence in Education',
+    field:['stem','philosophy','tech','arts'], type:['program','research'], national:true,
+    deadline:'Applications open November; deadline typically January', cost:'Free (fully funded)', grades:'11',
+    competitiveness:'Very High', time:'6 weeks (summer)',
+    skills:'Exceptional academic achievement across all subjects; research potential; intellectual range',
+    match:95,
+    why:"RSI is widely considered the most prestigious free summer research program in the world for high school students. Held at MIT, students conduct original research with faculty mentors and present findings at a symposium. Acceptance rates are below 1%. An RSI acceptance is transformative for a university application — it signals genuine research potential at the highest level.",
+    howToApply:'Apply through the Center for Excellence in Education website. The application opens in November and requires strong academics, test scores, and research experience.',
+    practiceLinks:[{label:'🔗 MIT RSI', url:'https://www.cee.org/research-science-institute'}],
+    link:'https://www.cee.org/research-science-institute'
+  },
+  {
+    id:1001, title:'Johns Hopkins CTY — Psychology & Philosophy Courses', org:'Johns Hopkins Center for Talented Youth',
+    field:['philosophy','stem','arts'], type:['program'], national:true,
+    deadline:'Applications open January; rolling thereafter', cost:'Varies (financial aid available)', grades:'9-12',
+    competitiveness:'Medium', time:'Online or residential courses (3–6 weeks)',
+    skills:'Strong academic performance; curiosity and drive',
+    match:88,
+    why:"Johns Hopkins CTY is one of the world's most respected gifted education programs, offering rigorous university-level courses in psychology, philosophy, ethics, and cognitive science for high schoolers. Completing a CTY course demonstrates academic excellence and intellectual ambition — a well-recognized credential among top university admissions offices.",
+    howToApply:'Apply through the Johns Hopkins CTY website. Some courses require qualifying test scores; others are open enrollment.',
+    practiceLinks:[{label:'🔗 Johns Hopkins CTY', url:'https://cty.jhu.edu'}],
+    link:'https://cty.jhu.edu'
+  },
+  {
+    id:1002, title:'Georgetown University — Nursing Academy', org:'Georgetown University',
+    field:['nursing','healthcare'], type:['program'], national:true,
+    deadline:'Applications typically open January–March', cost:'Varies (financial aid available)', grades:'10-12',
+    competitiveness:'Medium-High', time:'1–2 weeks (summer)',
+    skills:'Interest in nursing and patient care; strong science background',
+    match:91,
+    why:"Georgetown's Nursing Academy is a prestigious pre-college nursing program at one of the top nursing schools in the US. Students shadow nurses, attend clinical simulations, and learn from faculty — gaining real insight into the nursing profession. A highly regarded credential for students committed to a nursing career.",
+    howToApply:'Apply through the Georgetown University pre-college programs website.',
+    practiceLinks:[{label:'🔗 Georgetown Nursing Academy', url:'https://scs.georgetown.edu/programs/109/pre-college-programs/'}],
+    link:'https://scs.georgetown.edu/programs/109/pre-college-programs/'
+  },
+  {
+    id:1003, title:'Quinnipiac University — Nursing: Explore Your Career', org:'Quinnipiac University',
+    field:['nursing','healthcare'], type:['program'], national:true,
+    deadline:'Applications open spring', cost:'Varies', grades:'10-12',
+    competitiveness:'Low-Medium', time:'1 week (summer)',
+    skills:'Interest in nursing; no prior experience required',
+    match:88,
+    why:"Quinnipiac's nursing exploration program gives high school students hands-on exposure to nursing through simulation labs, clinical shadowing, and faculty interaction. Quinnipiac has one of the top nursing programs in the northeast US — a strong credential for students considering nursing at competitive universities.",
+    howToApply:'Apply through the Quinnipiac University pre-college programs website.',
+    practiceLinks:[{label:'🔗 Quinnipiac Nursing Explore', url:'https://www.qu.edu/student-life/pre-college-programs/'}],
+    link:'https://www.qu.edu/student-life/pre-college-programs/'
+  },
+  {
+    id:1004, title:'Auburn University — Nursing Camp', org:'Auburn University',
+    field:['nursing','healthcare'], type:['program'], national:true,
+    deadline:'Applications open spring', cost:'Varies', grades:'10-12',
+    competitiveness:'Low-Medium', time:'Residential summer camp',
+    skills:'Interest in nursing; strong science grades',
+    match:86,
+    why:"Auburn's Nursing Camp gives students a first-hand look at nursing education and the profession through simulations, clinical tours, and faculty mentorship. A concrete credential demonstrating early commitment to nursing — particularly useful for students applying to competitive nursing programs.",
+    howToApply:'Apply through the Auburn University School of Nursing website.',
+    practiceLinks:[{label:'🔗 Auburn Nursing Camp', url:'https://nursing.auburn.edu'}],
+    link:'https://nursing.auburn.edu'
+  },
+  {
+    id:1005, title:'UTHealth Houston — Pre-Health Summer Programs', org:'UTHealth Houston',
+    field:['nursing','healthcare'], type:['program'], national:true,
+    deadline:'Applications open winter/spring', cost:'Varies', grades:'10-12',
+    competitiveness:'Medium', time:'Summer program',
+    skills:'Strong science background; interest in health professions',
+    match:88,
+    why:"UTHealth Houston is one of the US's leading health science universities. Their pre-health programs expose students to nursing, medicine, and allied health professions through clinical shadowing, simulation labs, and lectures. Texas Medical Center affiliation gives students exposure to the world's largest medical complex.",
+    howToApply:'Check the UTHealth Houston website for pre-health high school program applications.',
+    practiceLinks:[{label:'🔗 UTHealth Houston', url:'https://www.uth.edu/outreach/high-school'}],
+    link:'https://www.uth.edu/outreach/high-school'
+  },
+  {
+    id:1006, title:'University of Pennsylvania — Pre-College Health & Nursing Track', org:'University of Pennsylvania',
+    field:['nursing','healthcare'], type:['program'], national:true,
+    deadline:'Applications open January–March', cost:'Varies (financial aid available)', grades:'10-12',
+    competitiveness:'High', time:'2–6 weeks (summer)',
+    skills:'Strong academics; genuine interest in health sciences',
+    match:92,
+    why:"Penn's pre-college programs include health science and nursing tracks at one of the world's top universities. Students take university-level courses, earn credit, and experience Penn's world-class nursing and medical school environment. A prestigious credential — Penn's nursing school consistently ranks among the top globally.",
+    howToApply:'Apply through the University of Pennsylvania pre-college programs website.',
+    practiceLinks:[{label:'🔗 UPenn Pre-College', url:'https://www.sas.upenn.edu/lps/pre-college'}],
+    link:'https://www.sas.upenn.edu/lps/pre-college'
+  },
+  {
+    id:1007, title:'UCLA Pre-Med Summer Institute — Nursing-Adjacent Programs', org:'UCLA',
+    field:['nursing','healthcare'], type:['program'], national:true,
+    deadline:'Applications open January–March', cost:'Varies (financial aid available)', grades:'10-12',
+    competitiveness:'High', time:'Summer residential program',
+    skills:'Strong science and math background; interest in health professions',
+    match:90,
+    why:"UCLA's Pre-Med Summer Institute and health science programs give students exposure to medicine, nursing, and allied health in a world-class academic environment. Attending a UCLA summer program is a prestigious credential with a globally recognized university brand behind it.",
+    howToApply:'Apply through the UCLA Pre-College programs website.',
+    practiceLinks:[{label:'🔗 UCLA Pre-College', url:'https://www.summer.ucla.edu/institute/PreMedical'}],
+    link:'https://www.summer.ucla.edu/institute/PreMedical'
+  },
+  {
+    id:1008, title:'Columbia University Pre-College — Health Sciences Track', org:'Columbia University',
+    field:['nursing','healthcare'], type:['program'], national:true,
+    deadline:'Applications open January–March', cost:'Varies (financial aid available)', grades:'10-12',
+    competitiveness:'High', time:'2–3 weeks (summer)',
+    skills:'Strong academics; interest in health sciences and medicine',
+    match:92,
+    why:"Columbia's pre-college health science programs place students in one of the world's great research and clinical environments — Columbia is home to a top medical school and hospital network. Students take university-level courses and gain early exposure to health professions. A prestigious credential for nursing and pre-health applicants.",
+    howToApply:'Apply through the Columbia University Pre-College programs website.',
+    practiceLinks:[{label:'🔗 Columbia Pre-College', url:'https://precollege.sps.columbia.edu'}],
+    link:'https://precollege.sps.columbia.edu'
+  },
+  {
+    id:1009, title:'Johns Hopkins Pre-College — Health Pathways', org:'Johns Hopkins University',
+    field:['nursing','healthcare'], type:['program'], national:true,
+    deadline:'Applications open January–February', cost:'Varies (financial aid available)', grades:'10-12',
+    competitiveness:'Very High', time:'Summer program',
+    skills:'Exceptional academics; genuine passion for health sciences',
+    match:93,
+    why:"Johns Hopkins is the world's leading biomedical research university and home to a top nursing school. Their pre-college health pathways programs place students at the cutting edge of nursing and medical education. A Johns Hopkins program credential is among the most prestigious a pre-nursing student can have on their application.",
+    howToApply:'Apply through the Johns Hopkins Pre-College programs website.',
+    practiceLinks:[{label:'🔗 Johns Hopkins Pre-College', url:'https://krieger.jhu.edu/summer/programs/'}],
+    link:'https://krieger.jhu.edu/summer/programs/'
+  },
+  {
+    id:1010, title:'Duke University Summer Academy — Health Sciences', org:'Duke University',
+    field:['nursing','healthcare'], type:['program'], national:true,
+    deadline:'Applications open January–March', cost:'Varies (financial aid available)', grades:'10-12',
+    competitiveness:'High', time:'2 weeks (summer)',
+    skills:'Strong academics; interest in health sciences and research',
+    match:91,
+    why:"Duke's Summer Academy includes health science tracks at one of the US's top universities and medical centers. Students engage with Duke's world-class health system and nursing faculty — a prestigious credential for students committed to nursing or health sciences.",
+    howToApply:'Apply through the Duke University pre-college programs website.',
+    practiceLinks:[{label:'🔗 Duke Summer Academy', url:'https://learnmore.duke.edu/precollege'}],
+    link:'https://learnmore.duke.edu/precollege'
+  },
+  {
+    id:1011, title:'Bay School of Canada — Pre-Nursing Program', org:'Bay School of Canada',
+    field:['nursing','healthcare'], type:['program'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Rolling', cost:'Varies', grades:'10-12',
+    competitiveness:'Low-Medium', time:'Short-term program',
+    skills:'Interest in nursing and patient care',
+    match:87,
+    why:"Bay School of Canada offers pre-nursing exposure programs for Canadian high school students. A Canadian-specific credential that demonstrates early commitment to nursing — particularly valuable for students planning to apply to competitive Canadian nursing programs.",
+    howToApply:'Check the Bay School of Canada website for current pre-nursing program offerings.',
+    practiceLinks:[{label:'🔗 Bay School of Canada', url:'https://www.bayschool.ca'}],
+    link:'https://www.bayschool.ca'
+  },
+  {
+    id:1012, title:'University of Toronto — Summer Health Programs', org:'University of Toronto',
+    field:['nursing','healthcare'], type:['program'], national:false, provinces:['ON'],
+    deadline:'Applications open winter/spring', cost:'Varies', grades:'10-12',
+    competitiveness:'Medium-High', time:'Summer program',
+    skills:'Strong science background; interest in health professions',
+    match:91,
+    why:"U of T is home to one of Canada's top nursing and medical schools. Their summer health programs give high school students exposure to nursing, medicine, and allied health in one of the world's great research universities. A prestigious Canadian credential — U of T programs are widely recognized by Canadian nursing school admissions.",
+    howToApply:'Check the U of T Continuing Studies or Faculty of Nursing website for current high school health programs.',
+    practiceLinks:[{label:'🔗 U of T Nursing', url:'https://www.nursing.utoronto.ca'}],
+    link:'https://www.nursing.utoronto.ca'
+  },
+  {
+    id:1013, title:'Western University — Health Sciences Outreach', org:'Western University',
+    field:['nursing','healthcare'], type:['program'], national:false, provinces:['ON'],
+    deadline:'Program-specific', cost:'Free or low', grades:'10-12',
+    competitiveness:'Low-Medium', time:'Day or short program',
+    skills:'Interest in health sciences and nursing',
+    match:88,
+    why:"Western has one of the top health sciences programs in Canada and a strong nursing faculty. Their high school outreach events give students a first-hand look at health science education and career pathways — a valuable credential for London-area and Ontario students applying to competitive nursing programs.",
+    howToApply:'Check the Western University Faculty of Health Sciences website for outreach and high school programs.',
+    practiceLinks:[{label:'🔗 Western Health Sciences', url:'https://www.uwo.ca/fhs/'}],
+    link:'https://www.uwo.ca/fhs/'
+  },
+  {
+    id:1014, title:'McMaster University — Health Sciences Summer Programs', org:'McMaster University',
+    field:['nursing','healthcare'], type:['program'], national:false, provinces:['ON'],
+    deadline:'Applications open winter/spring', cost:'Varies', grades:'10-12',
+    competitiveness:'Medium-High', time:'Summer program',
+    skills:'Strong science background; interest in health professions',
+    match:91,
+    why:"McMaster is home to one of the world's most innovative health sciences programs and a top nursing school. Their high school health science programs give students early exposure to McMaster's problem-based learning approach and clinical environments — a prestigious credential widely recognized by Canadian health sciences admissions offices.",
+    howToApply:'Check the McMaster University continuing education and health sciences faculty website for high school programs.',
+    practiceLinks:[{label:'🔗 McMaster Health Sciences', url:'https://healthsci.mcmaster.ca'}],
+    link:'https://healthsci.mcmaster.ca'
+  },
+  {
+    id:1015, title:'University of Ottawa — Nursing Exposure Days', org:'University of Ottawa Faculty of Health Sciences',
+    field:['nursing','healthcare'], type:['program'], national:false, provinces:['ON'],
+    deadline:'Program-specific', cost:'Free', grades:'10-12',
+    competitiveness:'Low', time:'Day program',
+    skills:'Interest in nursing; bilingual (English/French) an asset',
+    match:86,
+    why:"uOttawa's nursing exposure days introduce high school students to nursing education in a bilingual environment. Canada's national capital university — and a bilingual one — offers a unique nursing credential with both English and French programming options.",
+    howToApply:'Contact the University of Ottawa Faculty of Health Sciences for upcoming nursing exposure day events.',
+    practiceLinks:[{label:'🔗 uOttawa Health Sciences', url:'https://www.uottawa.ca/faculty-health-sciences/'}],
+    link:'https://www.uottawa.ca/faculty-health-sciences/'
+  },
+  {
+    id:1016, title:'Toronto Metropolitan University — Nursing Workshops', org:'Toronto Metropolitan University',
+    field:['nursing','healthcare'], type:['program'], national:false, provinces:['ON'],
+    deadline:'Program-specific', cost:'Free or low', grades:'10-12',
+    competitiveness:'Low', time:'Workshop or day program',
+    skills:'Interest in nursing and patient care',
+    match:86,
+    why:"TMU (formerly Ryerson) has a growing nursing faculty in downtown Toronto. Their nursing workshops give high school students exposure to clinical simulation and nursing education in an accessible, urban environment. A practical credential for Toronto-area students committed to nursing.",
+    howToApply:'Contact the TMU Daphne Cockwell School of Nursing for upcoming high school workshops.',
+    practiceLinks:[{label:'🔗 TMU Nursing', url:'https://www.torontomu.ca/nursing/'}],
+    link:'https://www.torontomu.ca/nursing/'
+  },
+  {
+    id:1017, title:'University of British Columbia — Health Career Days', org:'University of British Columbia',
+    field:['nursing','healthcare'], type:['program'], national:false, provinces:['BC'],
+    deadline:'Program-specific', cost:'Free or low', grades:'10-12',
+    competitiveness:'Low-Medium', time:'Day or short program',
+    skills:'Interest in health professions; curiosity about clinical work',
+    match:88,
+    why:"UBC's School of Nursing is consistently ranked among the top in Canada. Their health career days introduce high school students to nursing, medicine, and allied health professions on one of Canada's most beautiful campuses. A strong credential for BC students applying to health sciences programs.",
+    howToApply:'Check the UBC School of Nursing and Faculty of Medicine websites for high school outreach events.',
+    practiceLinks:[{label:'🔗 UBC Nursing', url:'https://nursing.ubc.ca'}],
+    link:'https://nursing.ubc.ca'
+  },
+  {
+    id:1018, title:'Dalhousie University — Health Career Exploration', org:'Dalhousie University',
+    field:['nursing','healthcare'], type:['program'], national:false, provinces:['NS'],
+    deadline:'Program-specific', cost:'Free or low', grades:'10-12',
+    competitiveness:'Low', time:'Day or short program',
+    skills:'Interest in health professions',
+    match:86,
+    why:"Dal's nursing school is Atlantic Canada's leading nursing faculty. Their health career exploration events give high school students a first-hand look at nursing education and the profession — a strong credential for Atlantic Canadian students applying to competitive nursing programs.",
+    howToApply:'Contact the Dalhousie School of Nursing for upcoming high school outreach and career exploration events.',
+    practiceLinks:[{label:'🔗 Dalhousie Nursing', url:'https://www.dal.ca/faculty/health/nursing.html'}],
+    link:'https://www.dal.ca/faculty/health/nursing.html'
+  },
+  {
+    id:1019, title:'McGill University — Health Sciences Summer Outreach', org:'McGill University',
+    field:['nursing','healthcare'], type:['program'], national:false, provinces:['QC'],
+    deadline:'Program-specific', cost:'Varies', grades:'10-12',
+    competitiveness:'Medium', time:'Summer or short program',
+    skills:'Strong science background; interest in health sciences; bilingual an asset',
+    match:90,
+    why:"McGill is one of the world's top medical schools and home to a respected nursing program. Their health sciences outreach programs give high school students exposure to nursing, medicine, and health research at a globally recognized institution. A prestigious Canadian credential — particularly for Quebec students.",
+    howToApply:'Check the McGill Faculty of Medicine and Health Sciences website for high school outreach and summer programs.',
+    practiceLinks:[{label:'🔗 McGill Health Sciences', url:'https://www.mcgill.ca/nursing/'}],
+    link:'https://www.mcgill.ca/nursing/'
+  },
+  {
+    id:1020, title:'NorthBay Health — Student Healthcare Programs', org:'NorthBay Health',
+    field:['nursing','healthcare'], type:['program','volunteer'], national:false, provinces:['ON'],
+    deadline:'Rolling', cost:'Free', grades:'10-12',
+    competitiveness:'Low-Medium', time:'Flexible',
+    skills:'Interest in nursing and clinical healthcare; maturity',
+    match:85,
+    why:"NorthBay Health in Northern Ontario runs student healthcare programs giving high school students exposure to nursing and clinical environments in a regional hospital setting. A meaningful credential for students in Northern Ontario committed to healthcare careers.",
+    howToApply:'Contact NorthBay Health to inquire about student healthcare programs and volunteer opportunities.',
+    practiceLinks:[{label:'🔗 NorthBay Health', url:'https://www.northbayregional.com'}],
+    link:'https://www.northbayregional.com'
+  },
+  {
+    id:1021, title:'Kaiser Permanente — High School Nursing Programs', org:'Kaiser Permanente',
+    field:['nursing','healthcare'], type:['program'], national:true,
+    deadline:'Program-specific', cost:'Free', grades:'10-12',
+    competitiveness:'Medium', time:'Short program or job shadow',
+    skills:'Interest in nursing; strong science grades',
+    match:87,
+    why:"Kaiser Permanente is one of the largest healthcare systems in the US and runs dedicated programs introducing high school students to nursing careers. For Canadian students applying to US nursing programs, participating in a Kaiser program demonstrates serious clinical interest and initiative.",
+    howToApply:'Check the Kaiser Permanente educational partnership website for high school nursing programs near you.',
+    practiceLinks:[{label:'🔗 Kaiser Permanente Education', url:'https://www.kaiserpermanente.org/about-kaiser-permanente/community-health'}],
+    link:'https://www.kaiserpermanente.org/about-kaiser-permanente/community-health'
+  },
+  {
+    id:1022, title:'Envision Medical Programs — Nursing & Health Career Exploration', org:'Envision Experience',
+    field:['nursing','healthcare'], type:['program'], national:true,
+    deadline:'Applications open year-round', cost:'Varies (financial aid available)', grades:'9-12',
+    competitiveness:'Low-Medium', time:'1 week (summer)',
+    skills:'Interest in nursing or medicine; no prior experience needed',
+    match:87,
+    why:"Envision runs nursing and health career exploration programs at major US hospitals and universities. Students shadow nurses and health professionals, attend simulations, and hear from career mentors. A structured, accredited program that gives concrete clinical exposure — a meaningful credential for students who haven't yet secured hospital volunteering.",
+    howToApply:'Apply through the Envision Experience website for their medical and nursing programs.',
+    practiceLinks:[{label:'🔗 Envision Medical Programs', url:'https://www.envisionexperience.com/explore-our-programs/medical-and-health-care-programs'}],
+    link:'https://www.envisionexperience.com/explore-our-programs/medical-and-health-care-programs'
+  },
+  {
+    id:1023, title:'Boston University RISE — Research Internship in Science & Engineering', org:'Boston University',
+    field:['nursing','healthcare','stem'], type:['program','research'], national:true,
+    deadline:'Applications open January; deadline typically February/March', cost:'Varies (financial aid available)', grades:'11',
+    competitiveness:'High', time:'6 weeks (summer)',
+    skills:'Exceptional science and math performance; interest in research',
+    match:91,
+    why:"BU RISE is a prestigious six-week research internship placing students in BU faculty labs — including health sciences, biomedical engineering, and neuroscience. Students conduct real research and present findings. A top-tier research credential for students interested in nursing, pre-med, or health sciences at a respected research university.",
+    howToApply:'Apply through the Boston University RISE program website.',
+    practiceLinks:[{label:'🔗 BU RISE', url:'https://www.bu.edu/summer/high-school-programs/research-internship/'}],
+    link:'https://www.bu.edu/summer/high-school-programs/research-internship/'
+  },
+  {
+    id:1024, title:'Red Cross First Aid & CPR Certification', org:'Canadian Red Cross',
+    field:['nursing','healthcare'], type:['program'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Courses offered year-round', cost:'~$50–$120', grades:'9-12',
+    competitiveness:'Low', time:'1–2 days',
+    skills:'Physical ability to perform CPR; willingness to learn emergency response',
+    match:88,
+    why:"Red Cross First Aid and CPR certification is a fundamental credential for anyone pursuing nursing or healthcare. It demonstrates basic clinical readiness and is often required for hospital volunteering and healthcare programs. A low-barrier, high-value credential every pre-nursing student should have.",
+    howToApply:'Register for a course through the Canadian Red Cross website. Courses are available in person across Canada.',
+    practiceLinks:[{label:'🔗 Red Cross First Aid', url:'https://www.redcross.ca/training-and-certification/'}],
+    link:'https://www.redcross.ca/training-and-certification/'
+  },
+  {
+    id:1025, title:"St. John Ambulance — Youth Programs", org:"St. John Ambulance Canada",
+    field:['nursing','healthcare'], type:['program','club'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Rolling enrollment', cost:'Low', grades:'9-12',
+    competitiveness:'Low', time:'Regular training sessions; volunteer events',
+    skills:'Interest in first aid and emergency response; reliability',
+    match:89,
+    why:"St. John Ambulance is one of Canada's most recognized first aid organizations. Their youth programs train students in first aid, emergency response, and patient care — giving practical clinical skills while earning a credentialed certification. Volunteering with St. John Ambulance at public events is a meaningful healthcare credential widely recognized by nursing school admissions.",
+    howToApply:'Find your nearest St. John Ambulance chapter and enroll in youth programs through their website.',
+    practiceLinks:[{label:'🔗 St. John Ambulance Youth', url:'https://www.sja.ca/en/learn-first-aid/youth'}],
+    link:'https://www.sja.ca/en/learn-first-aid/youth'
+  },
+  {
+    id:1026, title:'Mental Health First Aid Certification', org:'Mental Health Commission of Canada',
+    field:['nursing','healthcare'], type:['program'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Courses offered year-round', cost:'~$150 (youth subsidies often available)', grades:'11-12',
+    competitiveness:'Low', time:'2 days',
+    skills:'Empathy; interest in mental health and patient support',
+    match:88,
+    why:"Mental Health First Aid teaches students how to recognize and respond to mental health crises — a skill increasingly valued in nursing and all health professions. Certified by the Mental Health Commission of Canada, this credential demonstrates clinical and emotional readiness for healthcare careers. A distinctive addition to any nursing application that sets you apart from students with only physical first aid training.",
+    howToApply:'Register for a Mental Health First Aid course through the Mental Health Commission of Canada website.',
+    practiceLinks:[{label:'🔗 Mental Health First Aid Canada', url:'https://www.mentalhealthfirstaid.ca'}],
+    link:'https://www.mentalhealthfirstaid.ca'
+  },
+  {
+    id:1027, title:'Northwestern Medill — Cherubs Journalism Program', org:'Northwestern University Medill School of Journalism',
+    field:['media','arts'], type:['program','writing'], national:true,
+    deadline:'Applications open January–February', cost:'Varies (financial aid available)', grades:'11',
+    competitiveness:'Very High', time:'5 weeks (summer residential)',
+    skills:'Exceptional writing; genuine passion for journalism; curiosity about the world',
+    match:94,
+    why:"Cherubs is the most prestigious high school journalism program in the world, held at Northwestern's Medill — consistently ranked the #1 journalism school in the US. Alumni include leading journalists at the New York Times, CNN, and major publications globally. Acceptance is highly competitive and a Cherubs credential is transformative on any journalism or communications application.",
+    howToApply:'Apply through the Northwestern Medill website. Requires writing samples, teacher recommendations, and an essay.',
+    practiceLinks:[{label:'🔗 Medill Cherubs', url:'https://cherubs.medill.northwestern.edu'}],
+    link:'https://cherubs.medill.northwestern.edu'
+  },
+  {
+    id:1028, title:'USC Annenberg Youth Academy for Media & Civic Engagement', org:'USC Annenberg School for Communication and Journalism',
+    field:['media','arts','law'], type:['program'], national:true,
+    deadline:'Applications open winter/spring', cost:'Free (fully funded)', grades:'10-11',
+    competitiveness:'High', time:'Summer residential program',
+    skills:'Interest in journalism, media, and civic engagement; strong communication skills',
+    match:92,
+    why:"USC Annenberg's Youth Academy is a fully funded program at one of the top journalism and communications schools in the world. Students explore media, storytelling, and civic engagement with USC faculty and industry professionals. A prestigious, fully funded credential with a globally recognized school behind it.",
+    howToApply:'Apply through the USC Annenberg Youth Academy website. The program is free with an application process.',
+    practiceLinks:[{label:'🔗 USC Annenberg Youth Academy', url:'https://annenberg.usc.edu/'}],
+    link:'https://annenberg.usc.edu/'
+  },
+  {
+    id:1029, title:'Asian American Journalists Association — JCamp', org:'Asian American Journalists Association',
+    field:['media','arts'], type:['program','writing'], national:true,
+    deadline:'Applications open winter/spring', cost:'Free (fully funded)', grades:'10-11',
+    competitiveness:'High', time:'1 week (summer)',
+    skills:'Interest in journalism; writing ability; commitment to diverse representation in media',
+    match:91,
+    why:"AAJA's JCamp is a fully funded journalism program specifically for Asian American and Pacific Islander high school students. Participants learn multimedia journalism skills from professional journalists and media executives. A prestigious, inclusive credential for Asian Canadian students interested in journalism or communications.",
+    howToApply:'Apply through the AAJA JCamp website. The program covers travel and accommodation.',
+    practiceLinks:[{label:'🔗 AAJA JCamp', url:'https://www.aaja.org/programs-and-events/jcamp/'}],
+    link:'https://www.aaja.org/programs-and-events/jcamp/'
+  },
+  {
+    id:1030, title:'School of The New York Times — Summer Academy', org:'The New York Times',
+    field:['media','arts','law'], type:['program'], national:true,
+    deadline:'Applications open January–March', cost:'Varies (financial aid available)', grades:'10-12',
+    competitiveness:'High', time:'1–2 weeks (summer)',
+    skills:'Intellectual curiosity; writing ability; interest in current affairs and journalism',
+    match:92,
+    why:"The New York Times Summer Academy puts students inside one of the world's most influential newsrooms. Students work with NYT journalists, editors, and media professionals on real journalism projects. The NYT brand on a high school credential is immediately recognizable and highly valued.",
+    howToApply:'Apply through the School of The New York Times website.',
+    practiceLinks:[{label:'🔗 NYT Summer Academy', url:'https://www.nytimes.com/programs/school'}],
+    link:'https://www.nytimes.com/programs/school'
+  },
+  {
+    id:1031, title:'Boston University Summer Journalism Academy', org:'Boston University College of Communication',
+    field:['media','arts'], type:['program','writing'], national:true,
+    deadline:'Applications open winter/spring', cost:'Varies (financial aid available)', grades:'10-12',
+    competitiveness:'Medium-High', time:'1–2 weeks (summer)',
+    skills:'Writing ability; interest in journalism and media production',
+    match:89,
+    why:"BU's Summer Journalism Academy takes place at one of the top US communications schools. Students produce real journalism content and learn from BU faculty and working journalists. A strong credential for students interested in print, broadcast, or digital journalism.",
+    howToApply:'Apply through the BU College of Communication pre-college programs website.',
+    practiceLinks:[{label:'🔗 BU Summer Journalism', url:'https://www.bu.edu/com/academics/journalism/'}],
+    link:'https://www.bu.edu/com/academics/journalism/'
+  },
+  {
+    id:1032, title:'Princeton Summer Journalism Program', org:'Princeton University',
+    field:['media','arts'], type:['program','writing'], national:true,
+    deadline:'Applications open January–February', cost:'Free (fully funded)', grades:'11',
+    competitiveness:'Very High', time:'10 days (summer)',
+    skills:'Exceptional writing; commitment to journalism; ideally first-generation college student',
+    match:93,
+    why:"Princeton's Summer Journalism Program is fully funded and aimed at talented students who may be first-generation college attendees. Students work with professional journalists and experience Princeton's campus. A Princeton credential is extraordinary — and the fully funded aspect makes this one of the most equitable and prestigious journalism programs available.",
+    howToApply:'Apply through the Princeton University Summer Journalism Program website.',
+    practiceLinks:[{label:'🔗 Princeton Summer Journalism', url:'https://journalism.princeton.edu/summer/'}],
+    link:'https://journalism.princeton.edu/summer/'
+  },
+  {
+    id:1033, title:'Vogue Summer School', org:'Condé Nast / Vogue',
+    field:['media','arts'], type:['program'], national:true,
+    deadline:'Applications open spring', cost:'Varies', grades:'11-12',
+    competitiveness:'High', time:'Short program (online or residential)',
+    skills:'Interest in fashion media, journalism, and visual storytelling; strong aesthetic sensibility',
+    match:88,
+    why:"Vogue Summer School offers students access to the world's most iconic fashion media brand — editors, photographers, and creative directors from Vogue. A distinctive credential for students interested in fashion journalism, media production, or brand communications.",
+    howToApply:'Check the Vogue / Condé Nast website for current Vogue Summer School offerings.',
+    practiceLinks:[{label:'🔗 Vogue Summer School', url:'https://www.vogue.co.uk/arts-and-lifestyle/article/vogue-summer-school'}],
+    link:'https://www.vogue.co.uk/arts-and-lifestyle/article/vogue-summer-school'
+  },
+  {
+    id:1034, title:'Carleton University — High School Journalism Awards & Workshops', org:'Carleton University School of Journalism and Communication',
+    field:['media','arts'], type:['program','competition','writing'], national:false, provinces:['ON'],
+    deadline:'Program-specific', cost:'Free or low', grades:'10-12',
+    competitiveness:'Low-Medium', time:'Day workshops or competition-based',
+    skills:'Writing, photography, or broadcasting skills; interest in journalism',
+    match:88,
+    why:"Carleton's journalism school is one of the top in Canada. Their high school journalism awards and workshops give students direct engagement with Canada's leading journalism faculty. A strong Canadian journalism credential — particularly for Ottawa-area students applying to journalism or communications programs.",
+    howToApply:'Check the Carleton School of Journalism and Communication website for high school programs and journalism awards.',
+    practiceLinks:[{label:'🔗 Carleton Journalism', url:'https://carleton.ca/journalism/'}],
+    link:'https://carleton.ca/journalism/'
+  },
+  {
+    id:1035, title:'Toronto Metropolitan University — Journalism Workshops', org:'Toronto Metropolitan University School of Journalism',
+    field:['media','arts'], type:['program','writing'], national:false, provinces:['ON'],
+    deadline:'Program-specific', cost:'Free or low', grades:'10-12',
+    competitiveness:'Low-Medium', time:'Workshop or day program',
+    skills:'Writing, reporting, or multimedia interest',
+    match:87,
+    why:"TMU's journalism school (formerly Ryerson) is one of Canada's most respected, known for its hands-on, professional approach. Their workshops give high school students a first-hand look at journalism education in downtown Toronto. A practical Canadian journalism credential.",
+    howToApply:'Contact the TMU School of Journalism for upcoming high school workshops and events.',
+    practiceLinks:[{label:'🔗 TMU Journalism', url:'https://www.torontomu.ca/journalism/'}],
+    link:'https://www.torontomu.ca/journalism/'
+  },
+  {
+    id:1036, title:'CBC — Student Journalism Mentorship Programs', org:'CBC/Radio-Canada',
+    field:['media','arts','law'], type:['program','writing'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Program-specific — check CBC website', cost:'Free', grades:'11-12',
+    competitiveness:'Medium-High', time:'Program-based; mentorship over weeks or months',
+    skills:'Strong writing and reporting skills; interest in public broadcasting and journalism',
+    match:91,
+    why:"CBC is Canada's national public broadcaster and the most trusted news organization in the country. Student mentorship programs at CBC give high schoolers access to professional journalists and editors at a world-class news organization. A CBC credential is among the most prestigious available to a Canadian aspiring journalist.",
+    howToApply:'Check the CBC website and CBC Gem for student journalism programs and mentorship opportunities.',
+    practiceLinks:[{label:'🔗 CBC News', url:'https://www.cbc.ca/news'}],
+    link:'https://www.cbc.ca/news'
+  },
+  {
+    id:1037, title:'The Globe and Mail — Student Contributor Opportunities', org:'The Globe and Mail',
+    field:['media','arts','law'], type:['program','writing'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Rolling', cost:'Free', grades:'11-12',
+    competitiveness:'Very High', time:'Submit article or pitch',
+    skills:'Exceptional writing and reporting; strong understanding of Canadian current affairs',
+    match:92,
+    why:"The Globe and Mail is Canada's national newspaper of record. Getting published or contributing to The Globe as a student is an extraordinary journalism credential — it demonstrates professional-level writing ability and public voice. Highly visible to Canadian university admissions and journalism programs.",
+    howToApply:"Review The Globe and Mail's contributor guidelines. Pitch a compelling, well-reported piece on a current Canadian topic. The bar is high — treat it as a professional submission.",
+    practiceLinks:[{label:'🔗 Globe and Mail', url:'https://www.theglobeandmail.com'}],
+    link:'https://www.theglobeandmail.com'
+  },
+  {
+    id:1038, title:'National Film Board of Canada — Youth Programs', org:'National Film Board of Canada',
+    field:['media','arts'], type:['program'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Program-specific', cost:'Free', grades:'9-12',
+    competitiveness:'Low-Medium', time:'Project and program based',
+    skills:'Filmmaking, storytelling, or animation interest; creativity',
+    match:88,
+    why:"The NFB is Canada's national film and documentary production agency — one of the most respected documentary filmmakers in the world. Their youth programs give students hands-on film and media production experience with Canada's foremost storytelling institution. A distinctive Canadian media credential.",
+    howToApply:'Check the NFB website for current youth programs and film production workshops.',
+    practiceLinks:[{label:'🔗 NFB Youth Programs', url:'https://www.nfb.ca/education/'}],
+    link:'https://www.nfb.ca/education/'
+  },
+  {
+    id:1039, title:'TIFF — Next Wave Committee', org:'Toronto International Film Festival',
+    field:['media','arts'], type:['program'], national:false, provinces:['ON'],
+    deadline:'Applications open spring', cost:'Free', grades:'10-12',
+    competitiveness:'High', time:'Year-round committee commitment',
+    skills:'Passion for film; critical thinking; communication skills; commitment',
+    match:92,
+    why:"TIFF's Next Wave Committee is a year-round program where a select group of teen film enthusiasts program a film festival, write film criticism, and engage with the international film community. TIFF is one of the world's top film festivals — being a Next Wave Committee member is an extraordinary media credential unique to Toronto. Alumni have gone on to careers in film, journalism, and media.",
+    howToApply:'Apply through the TIFF Next Wave website during the spring application window.',
+    practiceLinks:[{label:'🔗 TIFF Next Wave', url:'https://www.tiff.net/tiff/next-wave/'}],
+    link:'https://www.tiff.net/tiff/next-wave/'
+  },
+  {
+    id:1040, title:'Youth Journalism International', org:'Youth Journalism International',
+    field:['media','arts'], type:['program','writing'], national:true,
+    deadline:'Rolling submissions', cost:'Free', grades:'9-12',
+    competitiveness:'Low-Medium', time:'Submit articles or join as contributor',
+    skills:'Writing and reporting; interest in student journalism',
+    match:87,
+    why:"Youth Journalism International is a global student journalism organization publishing work by teen journalists worldwide. Canadian students can submit stories, photos, and multimedia pieces for publication. A meaningful journalism credential that demonstrates real-world publishing experience.",
+    howToApply:'Apply as a student journalist contributor through the Youth Journalism International website.',
+    practiceLinks:[{label:'🔗 Youth Journalism International', url:'https://www.youthjournalism.org'}],
+    link:'https://www.youthjournalism.org'
+  },
+  {
+    id:1041, title:'Media Now Summer Institute', org:'Media Now',
+    field:['media','arts'], type:['program','writing'], national:true,
+    deadline:'Applications open spring', cost:'Varies', grades:'10-12',
+    competitiveness:'Low-Medium', time:'1 week (summer)',
+    skills:'Interest in journalism, media, and communications; any skill level welcome',
+    match:86,
+    why:"Media Now runs summer journalism and media production institutes at major universities. Students learn reporting, broadcasting, photography, and digital media from professional journalists. An accessible, structured credential for students building their journalism portfolio.",
+    howToApply:'Apply through the Media Now website for a summer institute near you.',
+    practiceLinks:[{label:'🔗 Media Now', url:'https://medianow.org'}],
+    link:'https://medianow.org'
+  },
+  {
+    id:1042, title:'Indiana University High School Journalism Institute', org:'Indiana University Media School',
+    field:['media','arts'], type:['program','writing'], national:true,
+    deadline:'Applications open spring', cost:'Varies', grades:'10-12',
+    competitiveness:'Low-Medium', time:'1 week (summer)',
+    skills:'Writing, photography, broadcasting, or design interest',
+    match:85,
+    why:"IU's High School Journalism Institute is one of the longest-running journalism programs in the US, held at a major journalism school. Students produce real journalism content and learn from faculty and professionals across print, broadcast, and digital platforms.",
+    howToApply:'Apply through the Indiana University Media School website.',
+    practiceLinks:[{label:'🔗 IU Journalism Institute', url:'https://mediaschool.indiana.edu/'}],
+    link:'https://mediaschool.indiana.edu/'
+  },
+  {
+    id:1043, title:'Missouri School of Journalism — Summer Workshops', org:'University of Missouri School of Journalism',
+    field:['media','arts'], type:['program','writing'], national:true,
+    deadline:'Applications open spring', cost:'Varies', grades:'10-12',
+    competitiveness:'Low-Medium', time:'1 week (summer)',
+    skills:'Writing, reporting, or multimedia interest',
+    match:87,
+    why:"Missouri's journalism school is one of the oldest and most respected in the world — the J-School invented the model of hands-on journalism education. Their summer workshops give students access to world-class faculty and a tradition of excellence in journalism.",
+    howToApply:'Apply through the University of Missouri School of Journalism website.',
+    practiceLinks:[{label:'🔗 Mizzou Journalism Summer', url:'https://journalism.missouri.edu/'}],
+    link:'https://journalism.missouri.edu/'
+  },
+  {
+    id:1044, title:'Washington Journalism and Media Conference', org:'George Mason University / WJMC',
+    field:['media','arts','law'], type:['program','writing'], national:true,
+    deadline:'Applications open winter/spring', cost:'Varies', grades:'11-12',
+    competitiveness:'Medium', time:'1 week (summer, Washington DC)',
+    skills:'Interest in journalism and media; writing or communications skills',
+    match:88,
+    why:"WJMC brings high school journalists to Washington DC for a week of access to media professionals, government officials, and newsrooms. Students meet journalists from major US outlets and experience the media capital of the world. A distinctive credential combining journalism with civic engagement.",
+    howToApply:'Apply through the Washington Journalism and Media Conference website.',
+    practiceLinks:[{label:'🔗 WJMC', url:'https://wjmc.gmu.edu'}],
+    link:'https://wjmc.gmu.edu'
+  },
+  {
+    id:1045, title:'Cronkite Institute — Summer Journalism Institute', org:'Arizona State University Walter Cronkite School of Journalism',
+    field:['media','arts'], type:['program','writing'], national:true,
+    deadline:'Applications open spring', cost:'Varies', grades:'10-12',
+    competitiveness:'Medium', time:'1 week (summer)',
+    skills:'Interest in journalism and storytelling; any skill level',
+    match:87,
+    why:"ASU's Cronkite School is one of the top journalism programs in the US. Their summer institute gives students access to world-class faculty and state-of-the-art broadcast and digital facilities. Named after Walter Cronkite — the gold standard of American journalism — this program carries real prestige.",
+    howToApply:'Apply through the ASU Cronkite School website for their summer programs.',
+    practiceLinks:[{label:'🔗 Cronkite Summer Institute', url:'https://cronkite.asu.edu/'}],
+    link:'https://cronkite.asu.edu/'
+  },
+  {
+    id:1046, title:'NYU Summer Journalism Program', org:'New York University',
+    field:['media','arts'], type:['program','writing'], national:true,
+    deadline:'Applications open January–March', cost:'Varies (financial aid available)', grades:'10-12',
+    competitiveness:'Medium-High', time:'2–4 weeks (summer)',
+    skills:'Writing, reporting, or multimedia interest; curiosity about New York media',
+    match:89,
+    why:"NYU is situated in the heart of New York's media industry — home to the New York Times, CNN, and hundreds of media organizations. NYU's summer journalism programs give students access to this ecosystem with world-class faculty. A prestigious credential in the media capital of the world.",
+    howToApply:'Apply through the NYU pre-college programs website.',
+    practiceLinks:[{label:'🔗 NYU Summer Programs', url:'https://www.nyu.edu/admissions/high-school-programs.html'}],
+    link:'https://www.nyu.edu/admissions/high-school-programs.html'
+  },
+  {
+    id:1047, title:'UCLA Summer Institute — Media Production', org:'UCLA',
+    field:['media','arts'], type:['program'], national:true,
+    deadline:'Applications open January–March', cost:'Varies (financial aid available)', grades:'10-12',
+    competitiveness:'High', time:'Summer residential program',
+    skills:'Interest in film, television, or digital media production; creativity',
+    match:90,
+    why:"UCLA is the gateway to Hollywood — home to the top film, television, and media programs in the world. Their summer media production institute puts students inside the LA entertainment ecosystem. A prestigious credential for students interested in film, TV, or digital content creation.",
+    howToApply:'Apply through the UCLA Summer Programs website.',
+    practiceLinks:[{label:'🔗 UCLA Summer Media', url:'https://www.summer.ucla.edu'}],
+    link:'https://www.summer.ucla.edu'
+  },
+  {
+    id:1048, title:'Michigan State Journalism Camp', org:'Michigan State University School of Journalism',
+    field:['media','arts'], type:['program','writing'], national:true,
+    deadline:'Applications open spring', cost:'Varies', grades:'9-12',
+    competitiveness:'Low-Medium', time:'1 week (summer)',
+    skills:'Interest in journalism and communications; any skill level',
+    match:85,
+    why:"MSU's journalism camp is an accessible, well-run program at a strong journalism school. Students learn reporting, writing, photography, and broadcasting basics from MSU faculty. A solid credential for students beginning their journalism journey.",
+    howToApply:'Apply through the MSU School of Journalism website.',
+    practiceLinks:[{label:'🔗 MSU Journalism Camp', url:'https://journalism.msu.edu/'}],
+    link:'https://journalism.msu.edu/'
+  },
+  {
+    id:1049, title:'University of Georgia — Summer Media Program', org:'University of Georgia Grady College of Journalism',
+    field:['media','arts'], type:['program'], national:true,
+    deadline:'Applications open spring', cost:'Varies', grades:'10-12',
+    competitiveness:'Low-Medium', time:'1 week (summer)',
+    skills:'Interest in journalism, advertising, or public relations',
+    match:85,
+    why:"UGA's Grady College is one of the top journalism and mass communication schools in the US. Their summer programs cover journalism, advertising, and PR — a broad media credential for students exploring different communications careers.",
+    howToApply:'Apply through the UGA Grady College website for summer programs.',
+    practiceLinks:[{label:'🔗 UGA Grady College', url:'https://grady.uga.edu/'}],
+    link:'https://grady.uga.edu/'
+  },
+  {
+    id:1050, title:'Arizona State Cronkite Summer Camp', org:'Arizona State University Walter Cronkite School of Journalism',
+    field:['media','arts'], type:['program'], national:true,
+    deadline:'Applications open spring', cost:'Varies', grades:'9-12',
+    competitiveness:'Low', time:'Day/week camp',
+    skills:'Curiosity about journalism; any skill level',
+    match:84,
+    why:"ASU Cronkite's summer camp is an entry-level journalism experience for younger or newer students. A practical starting point for building journalism skills at one of the top journalism schools in the US.",
+    howToApply:'Apply through the ASU Cronkite School website for summer camp offerings.',
+    practiceLinks:[{label:'🔗 ASU Cronkite', url:'https://cronkite.asu.edu/'}],
+    link:'https://cronkite.asu.edu/'
+  },
+  {
+    id:1051, title:'National Youth Film Academy — Online Options', org:'National Youth Film Academy',
+    field:['media','arts'], type:['program'], national:true,
+    deadline:'Rolling enrollment', cost:'Varies', grades:'9-12',
+    competitiveness:'Low-Medium', time:'Online or residential; flexible',
+    skills:'Interest in filmmaking, screenwriting, or media production',
+    match:86,
+    why:"The National Youth Film Academy offers filmmaking and media production programs with online options available to Canadian students. Students learn scriptwriting, directing, cinematography, and editing from industry professionals. A practical media production credential accessible from anywhere.",
+    howToApply:'Register through the National Youth Film Academy website.',
+    practiceLinks:[{label:'🔗 National Youth Film Academy', url:'https://nationalyouthfilmacademy.com'}],
+    link:'https://nationalyouthfilmacademy.com'
+  },
+  {
+    id:1052, title:'Vancouver Film School — Youth Programs', org:'Vancouver Film School',
+    field:['media','arts'], type:['program'], national:false, provinces:['BC'],
+    deadline:'Rolling enrollment', cost:'Varies', grades:'10-12',
+    competitiveness:'Low-Medium', time:'Short program or workshop',
+    skills:'Interest in film, animation, or media production; creativity',
+    match:88,
+    why:"Vancouver Film School is one of the world's top film and media production schools — and Vancouver is a major global film production hub. VFS youth programs give students hands-on production experience with industry professionals in the city that produced some of Hollywood's biggest films. A prestigious and practical BC media credential.",
+    howToApply:'Check the VFS website for current youth program offerings.',
+    practiceLinks:[{label:'🔗 Vancouver Film School', url:'https://vfs.edu'}],
+    link:'https://vfs.edu'
+  },
+  {
+    id:1053, title:'Toronto Film School — Youth Workshops', org:'Toronto Film School',
+    field:['media','arts'], type:['program'], national:false, provinces:['ON'],
+    deadline:'Rolling enrollment', cost:'Varies', grades:'10-12',
+    competitiveness:'Low-Medium', time:'Short workshop or program',
+    skills:'Interest in film, media production, or digital storytelling',
+    match:86,
+    why:"Toronto Film School is a hands-on media and entertainment school in Canada's film production capital. Youth workshops give students real production experience in one of North America's most active film cities — a practical credential for Toronto-area students interested in media.",
+    howToApply:'Check the Toronto Film School website for current youth workshop offerings.',
+    practiceLinks:[{label:'🔗 Toronto Film School', url:'https://www.triostudent.com/toronto-film-school'}],
+    link:'https://www.triostudent.com/toronto-film-school'
+  },
+  {
+    id:1054, title:'New York Film Academy — Teen Camps', org:'New York Film Academy',
+    field:['media','arts'], type:['program'], national:true,
+    deadline:'Rolling enrollment; summer programs open spring', cost:'Varies (financial aid available)', grades:'9-12',
+    competitiveness:'Low-Medium', time:'1–4 weeks (summer or year-round)',
+    skills:'Interest in filmmaking, acting, or media production; creativity',
+    match:88,
+    why:"NYFA is one of the world's best-known film schools, with campuses in New York, LA, and online. Their teen camps give students intensive, hands-on filmmaking experience — students produce real short films, screenplays, and media projects. A globally recognized media production credential.",
+    howToApply:'Apply through the NYFA website for teen camps in New York, Los Angeles, or online.',
+    practiceLinks:[{label:'🔗 NYFA Teen Programs', url:'https://www.nyfa.edu/high-school-programs/'}],
+    link:'https://www.nyfa.edu/high-school-programs/'
+  },
+  {
+    id:1055, title:'BFI Film Academy', org:'British Film Institute',
+    field:['media','arts'], type:['program'], national:true,
+    deadline:'Applications open winter/spring', cost:'Free (UK-based; online options available)', grades:'10-12',
+    competitiveness:'High', time:'Intensive program; online or residential',
+    skills:'Passion for film; creative storytelling; critical film analysis',
+    match:89,
+    why:"The BFI is the UK's lead film organization — one of the most respected film institutions in the world. The BFI Film Academy runs intensive filmmaking programs with online options accessible to international students. A prestigious international film credential backed by the organization that supports the UK's entire film industry.",
+    howToApply:'Check the BFI Film Academy website for online and international program options.',
+    practiceLinks:[{label:'🔗 BFI Film Academy', url:'https://www.bfi.org.uk/education-research/film-industry-statistics-research/bfi-film-academy'}],
+    link:'https://www.bfi.org.uk/education-research/film-industry-statistics-research/bfi-film-academy'
+  },
+  {
+    id:1056, title:'Sundance Institute — Youth Programs', org:'Sundance Institute',
+    field:['media','arts'], type:['program'], national:true,
+    deadline:'Program-specific', cost:'Varies (some free options)', grades:'10-12',
+    competitiveness:'High', time:'Program-based; varies',
+    skills:'Filmmaking, screenwriting, or documentary storytelling; genuine artistic voice',
+    match:91,
+    why:"Sundance is the world's most celebrated independent film festival and a leading arts organization. Sundance youth programs connect students with independent filmmakers, storytellers, and the global film community. Engagement with Sundance signals serious artistic ambition — a prestigious and distinctive media credential.",
+    howToApply:'Check the Sundance Institute website for youth and emerging filmmaker programs.',
+    practiceLinks:[{label:'🔗 Sundance Institute', url:'https://www.sundance.org/programs/'}],
+    link:'https://www.sundance.org/programs/'
+  },
+  {
+    id:1057, title:'Reel Works — Youth Media Production Program', org:'Reel Works',
+    field:['media','arts'], type:['program'], national:true,
+    deadline:'Applications open fall', cost:'Free', grades:'9-12',
+    competitiveness:'Medium', time:'Year-round program; produce a short documentary',
+    skills:'Interest in documentary filmmaking and storytelling; commitment to community',
+    match:88,
+    why:"Reel Works pairs high school students with professional filmmakers to produce original short documentaries about their own communities. Students receive mentorship, equipment, and professional support — and their films screen publicly. A powerful, equity-focused media credential where students create real work with real impact.",
+    howToApply:'Apply through the Reel Works website for their youth documentary program.',
+    practiceLinks:[{label:'🔗 Reel Works', url:'https://www.reelworks.org'}],
+    link:'https://www.reelworks.org'
+  },
+  {
+    id:1058, title:'KPMG Black High School Internship Program', org:'KPMG Canada',
+    field:['business','law'], type:['internship'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Applications typically open fall/winter', cost:'Free (paid internship)', grades:'11-12',
+    competitiveness:'High', time:'Summer internship (several weeks)',
+    skills:'Strong academics; interest in accounting, consulting, or finance; leadership potential',
+    match:92,
+    why:"KPMG's Black High School Internship Program is specifically designed to create pathways for Black students into professional services. Participants receive paid work experience, mentorship, and early access to KPMG's network — one of the Big Four accounting and consulting firms globally. An exceptional credential for Black students interested in business, finance, or consulting.",
+    howToApply:'Apply through the KPMG Canada careers website. Check for the dedicated Black High School Internship Program listing.',
+    practiceLinks:[{label:'🔗 KPMG Canada Careers', url:'https://home.kpmg/ca/en/home/careers/students.html'}],
+    link:'https://home.kpmg/ca/en/home/careers/students.html'
+  },
+  {
+    id:1059, title:'Ladder Internships — Startup Placements', org:'Ladder Internships',
+    field:['business','tech'], type:['internship'], national:true,
+    deadline:'Rolling — apply anytime', cost:'Free (paid placements)', grades:'11-12',
+    competitiveness:'Medium-High', time:'Part-time remote internship (8–16 weeks)',
+    skills:'Self-motivation; interest in startups, tech, or business; specific skills in marketing, operations, or product',
+    match:89,
+    why:"Ladder Internships places high school and university students in paid internship roles at funded startups worldwide — including remote placements accessible to Canadian students. Working at a real startup as a high schooler is an extraordinary credential that signals initiative, maturity, and professional capability far beyond most peers.",
+    howToApply:'Apply through the Ladder Internships website. You can filter for remote roles accessible from Canada.',
+    practiceLinks:[{label:'🔗 Ladder Internships', url:'https://ladderinternships.com'}],
+    link:'https://ladderinternships.com'
+  },
+  {
+    id:1060, title:'BMO — Student & Co-op Programs', org:'BMO Financial Group',
+    field:['business','tech'], type:['internship'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Applications typically open fall for summer positions', cost:'Free (paid)', grades:'11-12',
+    competitiveness:'High', time:'Summer internship or co-op',
+    skills:'Strong academics; interest in banking, finance, or technology; professionalism',
+    match:90,
+    why:"BMO is one of Canada's Big Five banks and a major employer across finance, technology, and operations. Their student co-op and internship programs offer paid work experience at a globally recognized financial institution — a prestigious credential that opens doors across the business world.",
+    howToApply:'Apply through the BMO careers website under student and co-op programs.',
+    practiceLinks:[{label:'🔗 BMO Student Programs', url:'https://jobs.bmo.com/ca/en/student-jobs'}],
+    link:'https://jobs.bmo.com/ca/en/student-jobs'
+  },
+  {
+    id:1061, title:'Futurpreneur Canada — Youth Business Programs', org:'Futurpreneur Canada',
+    field:['business'], type:['internship','program'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Rolling', cost:'Free', grades:'11-12',
+    competitiveness:'Low-Medium', time:'Flexible; program and mentorship based',
+    skills:'Entrepreneurial mindset; interest in starting or growing a business',
+    match:88,
+    why:"Futurpreneur Canada is the country's leading entrepreneurship support organization for young people. Their programs connect aspiring business owners with mentors, resources, and networks. Engaging with Futurpreneur as a high schooler demonstrates serious entrepreneurial intent — a strong credential for business and economics university applications.",
+    howToApply:'Explore programs and mentorship opportunities through the Futurpreneur Canada website.',
+    practiceLinks:[{label:'🔗 Futurpreneur Canada', url:'https://www.futurpreneur.ca/en/'}],
+    link:'https://www.futurpreneur.ca/en/'
+  },
+  {
+    id:1062, title:'Wealthsimple — Internship Programs (Older HS Students)', org:'Wealthsimple',
+    field:['business','tech'], type:['internship'], national:false, provinces:['ON'],
+    deadline:'Applications open fall/winter', cost:'Free (paid)', grades:'12',
+    competitiveness:'Very High', time:'Summer internship',
+    skills:'Strong quantitative or technical skills; interest in fintech; self-directed learning',
+    match:88,
+    why:"Wealthsimple is Canada's most prominent fintech company and a globally recognized brand in digital finance. Their internship programs are extremely competitive and highly regarded — a Wealthsimple credential signals exceptional business and technical ability. Best suited for mature Grade 12 students with demonstrated interest in finance or technology.",
+    howToApply:'Monitor the Wealthsimple careers website for student and internship openings.',
+    practiceLinks:[{label:'🔗 Wealthsimple Careers', url:'https://www.wealthsimple.com/en-ca/careers'}],
+    link:'https://www.wealthsimple.com/en-ca/careers'
+  },
+  {
+    id:1063, title:'Ontario Summer Employment Opportunities — Business Roles', org:'Government of Ontario',
+    field:['business','law'], type:['internship'], national:false, provinces:['ON'],
+    deadline:'Applications open winter/spring for summer positions', cost:'Free (paid)', grades:'11-12',
+    competitiveness:'Low-Medium', time:'Summer placement (8–12 weeks)',
+    skills:'Interest in government, public administration, or business; professionalism',
+    match:86,
+    why:"The Ontario government's Summer Employment Opportunities program places students in paid roles across Ontario's ministries — including finance, economic development, and business administration. Working in provincial government as a high schooler is a distinctive credential that demonstrates civic engagement and professional maturity.",
+    howToApply:'Apply through the Ontario Public Service careers website for student summer roles.',
+    practiceLinks:[{label:'🔗 Ontario Student Employment', url:'https://www.ontario.ca/page/summer-jobs-for-students'}],
+    link:'https://www.ontario.ca/page/summer-jobs-for-students'
+  },
+  {
+    id:1064, title:'City of Toronto — Business & Admin Student Internships', org:'City of Toronto',
+    field:['business','law'], type:['internship'], national:false, provinces:['ON'],
+    deadline:'Applications open winter for summer positions', cost:'Free (paid)', grades:'11-12',
+    competitiveness:'Low-Medium', time:'Summer placement',
+    skills:'Interest in municipal government, business administration, or public policy; professionalism',
+    match:85,
+    why:"The City of Toronto is one of the largest municipal governments in North America. Student placements in business, finance, and administration give high schoolers hands-on experience in public sector management — a distinctive credential for students interested in business, urban planning, or public policy.",
+    howToApply:'Apply through the City of Toronto careers website for student and summer job positions.',
+    practiceLinks:[{label:'🔗 City of Toronto Jobs', url:'https://www.toronto.ca/city-government/jobs/'}],
+    link:'https://www.toronto.ca/city-government/jobs/'
+  },
+  {
+    id:1065, title:'City of London — Student Business Placements', org:'City of London, Ontario',
+    field:['business','law'], type:['internship'], national:false, provinces:['ON'],
+    deadline:'Applications open winter/spring for summer', cost:'Free (paid)', grades:'11-12',
+    competitiveness:'Low', time:'Summer placement',
+    skills:'Interest in municipal operations, business, or administration',
+    match:83,
+    why:"The City of London places students in paid summer roles across municipal departments including finance, economic development, and communications. A practical credential for London-area students interested in public sector business and administration — particularly useful for Western University applicants.",
+    howToApply:'Check the City of London job postings for student and summer positions.',
+    practiceLinks:[{label:'🔗 City of London Jobs', url:'https://www.london.ca/business-development/city-hall/employment-city'}],
+    link:'https://www.london.ca/business-development/city-hall/employment-city'
+  },
+  {
+    id:1066, title:'YES Employment Services — Youth Internship Programs', org:'YES Employment Services',
+    field:['business','arts'], type:['internship'], national:false, provinces:['BC'],
+    deadline:'Rolling', cost:'Free', grades:'11-12',
+    competitiveness:'Low', time:'Flexible placements',
+    skills:'Interest in business, communications, or community employment; readiness to work',
+    match:83,
+    why:"YES Employment Services is a Vancouver-based non-profit that connects youth with meaningful employment and internship placements across various sectors. For BC students seeking their first professional business experience, YES provides supported job matching, training, and career coaching — a practical stepping stone credential.",
+    howToApply:'Register with YES Employment Services through their website for youth job placement support.',
+    practiceLinks:[{label:'🔗 YES Employment Services', url:'https://www.yesvan.org'}],
+    link:'https://www.yesvan.org'
+  },
+  {
+    id:1067, title:'Canadian Blood Services — Student & Youth Programs', org:'Canadian Blood Services',
+    field:['healthcare','stem'], type:['internship','volunteer'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Rolling', cost:'Free', grades:'11-12',
+    competitiveness:'Low-Medium', time:'Flexible; volunteer or placement based',
+    skills:'Interest in healthcare, public health, or biomedical science; reliability',
+    match:89,
+    why:"Canadian Blood Services manages the country's blood supply and runs one of the most important public health operations in Canada. Student volunteers and placement participants contribute to life-saving work — collecting blood donations, supporting laboratory operations, and running public education campaigns. A meaningful and distinctive healthcare credential that most students would never think to pursue.",
+    howToApply:'Check the Canadian Blood Services website for student volunteer and placement opportunities in your region.',
+    practiceLinks:[{label:'🔗 Canadian Blood Services', url:'https://www.blood.ca/en/about-us/careers/student-programs'}],
+    link:'https://www.blood.ca/en/about-us/careers/student-programs'
+  },
+  {
+    id:1068, title:'MITACS — Healthcare & Biomedical Research Internships', org:'MITACS',
+    field:['healthcare','stem'], type:['internship','research'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Rolling applications; placements available year-round', cost:'Free to apply', grades:'11-12',
+    competitiveness:'Medium-High', time:'Flexible; research placement (weeks to months)',
+    skills:'Strong science background; genuine interest in biomedical or clinical research; initiative',
+    match:92,
+    why:"MITACS connects high school and university students with paid research placements at Canadian universities and research hospitals — many in healthcare, biomedical science, and public health. A MITACS placement in a hospital or health research lab is one of the strongest possible credentials for pre-med and health sciences applicants — demonstrating real research experience that very few high schoolers have.",
+    howToApply:'Apply through the MITACS website for healthcare or biomedical research placements. Contact university health science departments directly about hosting a MITACS-funded student.',
+    practiceLinks:[{label:'🔗 MITACS Research Programs', url:'https://www.mitacs.ca/en/programs'}],
+    link:'https://www.mitacs.ca/en/programs'
+  },
+  {
+    id:1069, title:'Public Health Agency of Canada — Youth Placements', org:'Public Health Agency of Canada',
+    field:['healthcare','stem','law'], type:['internship'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Applications open winter/spring for summer placements', cost:'Free (paid)', grades:'11-12',
+    competitiveness:'Medium', time:'Summer placement (8–16 weeks)',
+    skills:'Interest in public health, epidemiology, or health policy; strong science or social science background',
+    match:91,
+    why:"The Public Health Agency of Canada leads the country's public health response — from disease surveillance to health promotion and emergency preparedness. Student placements give high schoolers exposure to real public health work at the national level. An extraordinary and distinctive credential for students interested in medicine, epidemiology, or health policy — and one very few applicants will have.",
+    howToApply:'Apply through the Government of Canada student employment portal (jobs.gc.ca) for PHAC student placements.',
+    practiceLinks:[{label:'🔗 PHAC Student Programs', url:'https://www.canada.ca/en/public-health/corporate/about/student-youth-programs.html'}],
+    link:'https://www.canada.ca/en/public-health/corporate/about/student-youth-programs.html'
+  },
+  {
+    id:1070, title:'Nokia — Future Tech Internship', org:'Nokia',
+    field:['tech','stem','business'], type:['internship'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Applications open fall/winter', cost:'Free (paid)', grades:'11-12',
+    competitiveness:'High', time:'Summer internship',
+    skills:'Strong math, physics, or computer science background; interest in telecommunications or network technology',
+    match:90,
+    why:"Nokia is a global technology leader in telecommunications infrastructure and network innovation, with a significant Canadian R&D presence. Their Future Tech Internship program places high-achieving students in real engineering and research roles. A distinctive and globally recognized tech credential — Nokia's work underpins the internet and wireless networks that power the world.",
+    howToApply:'Apply through the Nokia careers website for Canadian student and internship roles.',
+    practiceLinks:[{label:'🔗 Nokia Careers', url:'https://www.nokia.com/about-us/careers/students-and-graduates/'}],
+    link:'https://www.nokia.com/about-us/careers/students-and-graduates/'
+  },
+  {
+    id:1071, title:'Canadian Space Agency — Student Internships', org:'Canadian Space Agency',
+    field:['tech','stem'], type:['internship','research'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Applications open through the Government of Canada student portal', cost:'Free (paid)', grades:'11-12',
+    competitiveness:'Very High', time:'Summer or co-op placement',
+    skills:'Exceptional STEM performance; interest in aerospace, engineering, or space science',
+    match:94,
+    why:"The Canadian Space Agency manages Canada's space program — from the Canadarm to astronaut training to satellite science. A CSA student placement is one of the most prestigious and distinctive tech credentials available to a Canadian high school student. Very few people can say they worked at Canada's space agency before university — it signals exceptional STEM ability and ambition.",
+    howToApply:'Apply through the Government of Canada student employment portal (jobs.gc.ca) for CSA placements.',
+    practiceLinks:[{label:'🔗 Canadian Space Agency', url:'https://www.asc-csa.gc.ca/eng/youth-educators/student-programs.asp'}],
+    link:'https://www.asc-csa.gc.ca/eng/youth-educators/student-programs.asp'
+  },
+  {
+    id:1072, title:"Queen's University QHIC — Computing Internship", org:"Queen's University",
+    field:['tech','stem'], type:['internship','research'], national:false, provinces:['ON'],
+    deadline:'Applications open winter/spring', cost:'Free', grades:'11-12',
+    competitiveness:'High', time:'Summer research placement',
+    skills:'Strong CS or math background; interest in computing research',
+    match:90,
+    why:"Queen's Human-Computer Interaction lab and computing research groups offer summer research placements for exceptional high school students. Working in a university computing research lab as a high schooler is a rare and impressive credential — it signals genuine CS ability and academic potential at one of Canada's top engineering schools.",
+    howToApply:"Contact the Queen's University School of Computing directly to inquire about summer research placement opportunities for high school students.",
+    practiceLinks:[{label:"🔗 Queen's Computing", url:'https://www.cs.queensu.ca'}],
+    link:'https://www.cs.queensu.ca'
+  },
+  {
+    id:1073, title:'IBM Canada — Early Talent & Student Programs', org:'IBM Canada',
+    field:['tech','business','stem'], type:['internship'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Applications open fall/winter for summer positions', cost:'Free (paid)', grades:'11-12',
+    competitiveness:'High', time:'Summer internship or co-op',
+    skills:'Strong CS, math, or business background; interest in AI, cloud, or enterprise tech',
+    match:91,
+    why:"IBM is one of the world's oldest and most influential technology companies — a leader in AI (Watson), cloud computing, and quantum computing. IBM Canada has major offices in Toronto, Ottawa, and Vancouver. An IBM internship credential is globally recognized and demonstrates ability in enterprise-level technology. IBM's early talent programs are specifically designed to identify future leaders.",
+    howToApply:'Apply through the IBM Canada careers website for student and early talent programs.',
+    practiceLinks:[{label:'🔗 IBM Student Programs', url:'https://www.ibm.com/ca-en/careers/students'}],
+    link:'https://www.ibm.com/ca-en/careers/students'
+  },
+  {
+    id:1074, title:'OpenText — Student & Internship Programs', org:'OpenText',
+    field:['tech','business'], type:['internship'], national:false, provinces:['ON'],
+    deadline:'Applications open fall/winter', cost:'Free (paid)', grades:'11-12',
+    competitiveness:'Medium-High', time:'Summer co-op or internship',
+    skills:'CS, software engineering, or business interest; strong academics',
+    match:88,
+    why:"OpenText is Canada's largest software company and a global leader in enterprise information management. Based in Waterloo, Ontario, their student programs offer paid co-op and internship roles in software development, data analytics, and business. A distinctly Canadian tech credential from one of the country's most important software companies.",
+    howToApply:'Apply through the OpenText careers website for student co-op and internship roles.',
+    practiceLinks:[{label:'🔗 OpenText Careers', url:'https://www.opentext.com/about/careers/students'}],
+    link:'https://www.opentext.com/about/careers/students'
+  },
+  {
+    id:1075, title:'Lightspeed Commerce — Student Internships', org:'Lightspeed Commerce',
+    field:['tech','business'], type:['internship'], national:false, provinces:['QC','ON'],
+    deadline:'Applications open fall/winter', cost:'Free (paid)', grades:'11-12',
+    competitiveness:'High', time:'Summer internship',
+    skills:'Strong CS or business background; interest in fintech or e-commerce',
+    match:88,
+    why:"Lightspeed is a major Canadian tech company (TSX/NYSE listed) building commerce platforms for retailers and restaurants globally. Founded in Montreal, it's one of Canada's most successful tech scale-ups. A Lightspeed internship credential demonstrates ability in a high-growth, globally recognized Canadian tech company — a strong signal for students applying to CS or business programs.",
+    howToApply:'Apply through the Lightspeed careers website for student and internship positions.',
+    practiceLinks:[{label:'🔗 Lightspeed Careers', url:'https://www.lightspeedhq.com/careers/'}],
+    link:'https://www.lightspeedhq.com/careers/'
+  },
+  {
+    id:1076, title:'Interac — Student & Tech Programs', org:'Interac Corp.',
+    field:['tech','business'], type:['internship'], national:false, provinces:['ON'],
+    deadline:'Applications open fall/winter', cost:'Free (paid)', grades:'11-12',
+    competitiveness:'High', time:'Summer internship or co-op',
+    skills:'CS, data science, or business interest; interest in fintech and payments',
+    match:88,
+    why:"Interac powers Canada's payment infrastructure — virtually every debit transaction and e-transfer in the country runs through Interac. Their student programs offer rare exposure to critical financial technology infrastructure at a uniquely Canadian institution. A prestigious fintech credential that most students would never think to pursue.",
+    howToApply:'Apply through the Interac careers website for student co-op and internship roles.',
+    practiceLinks:[{label:'🔗 Interac Careers', url:'https://www.interac.ca/en/about/careers/'}],
+    link:'https://www.interac.ca/en/about/careers/'
+  },
+  {
+    id:1077, title:'Hack Club — Projects, Internships & Community', org:'Hack Club',
+    field:['tech','business'], type:['internship','club','program'], national:true,
+    deadline:'Rolling — join anytime', cost:'Free', grades:'9-12',
+    competitiveness:'Low', time:'Self-paced; project and community based',
+    skills:'Coding skills (any language); curiosity; desire to build things',
+    match:91,
+    why:"Hack Club is the world's largest network of high school coding clubs and teen hackers. Beyond running school clubs, Hack Club offers paid summer internships, grants for coding projects, access to industry mentors, and a community of the most talented young coders globally. Hack Club alumni have gone on to top CS programs and leading tech companies. Starting or leading a Hack Club is a strong credential; participating in their internship programs is even stronger.",
+    howToApply:'Join or start a Hack Club at your school, or apply directly to Hack Club programs through their website.',
+    practiceLinks:[{label:'🔗 Hack Club', url:'https://hackclub.com'}],
+    link:'https://hackclub.com'
+  },
+  {
+    id:1078, title:'BlackBerry — Student & Co-op Programs', org:'BlackBerry',
+    field:['tech','business'], type:['internship'], national:false, provinces:['ON'],
+    deadline:'Applications open fall/winter', cost:'Free (paid)', grades:'11-12',
+    competitiveness:'High', time:'Summer co-op or internship',
+    skills:'CS, cybersecurity, or software engineering interest; strong academics',
+    match:88,
+    why:"BlackBerry has reinvented itself as a world leader in cybersecurity and embedded systems software — protecting critical infrastructure, government systems, and autonomous vehicles globally. Based in Waterloo, Ontario, their student programs offer paid roles in cybersecurity, AI, and software development. A prestigious Canadian tech credential in one of the country's most strategically important technology companies.",
+    howToApply:'Apply through the BlackBerry careers website for student co-op and internship roles.',
+    practiceLinks:[{label:'🔗 BlackBerry Careers', url:'https://www.blackberry.com/en-us/company/careers/students'}],
+    link:'https://www.blackberry.com/en-us/company/careers/students'
+  },
+  {
+    id:1079, title:'Rogers Communications — Tech Student Internships', org:'Rogers Communications',
+    field:['tech','business'], type:['internship'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Applications open fall/winter for summer positions', cost:'Free (paid)', grades:'11-12',
+    competitiveness:'Medium-High', time:'Summer internship or co-op',
+    skills:'CS, engineering, or business interest; strong academics',
+    match:87,
+    why:"Rogers is one of Canada's largest telecommunications and media companies, operating wireless networks, internet, TV, and sports properties. Their student programs offer exposure to large-scale tech infrastructure, network engineering, and digital media — a nationally recognized Canadian tech credential.",
+    howToApply:'Apply through the Rogers careers website for student and co-op programs.',
+    practiceLinks:[{label:'🔗 Rogers Student Programs', url:'https://jobs.rogers.com/students'}],
+    link:'https://jobs.rogers.com/students'
+  },
+  {
+    id:1080, title:'Bell Canada — Student & Tech Programs', org:'Bell Canada',
+    field:['tech','business'], type:['internship'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Applications open fall/winter', cost:'Free (paid)', grades:'11-12',
+    competitiveness:'Medium-High', time:'Summer internship or co-op',
+    skills:'CS, engineering, or business interest; bilingual an asset',
+    match:87,
+    why:"Bell is Canada's largest telecommunications company, operating the country's largest wireless and fibre network. Their student programs offer tech, engineering, and business roles across Canada — a nationally recognized Canadian tech credential with a bilingual environment that values French-English skills.",
+    howToApply:'Apply through the Bell Canada careers website for student co-op and internship positions.',
+    practiceLinks:[{label:'🔗 Bell Student Programs', url:'https://jobs.bell.ca/en/students-and-grads'}],
+    link:'https://jobs.bell.ca/en/students-and-grads'
+  },
+  {
+    id:1081, title:'TELUS — Student & Tech Internships', org:'TELUS',
+    field:['tech','business','healthcare'], type:['internship'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Applications open fall/winter', cost:'Free (paid)', grades:'11-12',
+    competitiveness:'Medium-High', time:'Summer internship or co-op',
+    skills:'CS, engineering, or business interest; interest in telecom or digital health',
+    match:88,
+    why:"TELUS is one of Canada's top three telecom companies and a global leader in digital health through TELUS Health. Their student programs span technology, engineering, and business — and increasingly digital health roles through their TELUS Health division. A strong Canadian tech credential with bonus relevance for students interested in health technology.",
+    howToApply:'Apply through the TELUS careers website for student co-op and internship positions.',
+    practiceLinks:[{label:'🔗 TELUS Student Programs', url:'https://www.telus.com/en/about/careers/students'}],
+    link:'https://www.telus.com/en/about/careers/students'
+  },
+  {
+    id:1082, title:'UBC — Tech Research Placements for High School Students', org:'University of British Columbia',
+    field:['tech','stem'], type:['internship','research'], national:false, provinces:['BC'],
+    deadline:'Applications vary by lab — typically winter/spring', cost:'Free', grades:'11-12',
+    competitiveness:'High', time:'Summer research placement',
+    skills:'Strong CS or math background; genuine research interest; self-directed learning',
+    match:91,
+    why:"UBC's CS and engineering departments occasionally accept high school students for summer research placements in AI, machine learning, human-computer interaction, and other computing fields. Working in a UBC research lab as a high schooler is an extraordinary credential — it demonstrates exceptional CS ability and research potential at one of Canada's top universities.",
+    howToApply:'Contact UBC CS or ECE faculty directly with a strong academic profile and research pitch. The NSERC USRA program and MITACS can also fund placements.',
+    practiceLinks:[{label:'🔗 UBC Computer Science', url:'https://www.cs.ubc.ca'}],
+    link:'https://www.cs.ubc.ca'
+  },
+  {
+    id:1083, title:'Youth Fusion — Tech Placements', org:'Youth Fusion / Fusion Jeunesse',
+    field:['tech','stem','business'], type:['internship','program'], national:false, provinces:['QC'],
+    deadline:'Program-specific — typically September intake', cost:'Free', grades:'9-12',
+    competitiveness:'Low-Medium', time:'Part-time; school year program',
+    skills:'Interest in tech, coding, or STEM; curiosity and initiative',
+    match:86,
+    why:"Youth Fusion embeds university student mentors in Quebec high schools to run hands-on STEAM projects — including tech and coding programs. High school students gain real project experience and mentorship in technology. A well-known Quebec credential for students interested in tech and innovation.",
+    howToApply:'Check with your school guidance office or the Youth Fusion website for tech-focused programs at your school.',
+    practiceLinks:[{label:'🔗 Youth Fusion', url:'https://youthfusion.ca/en/'}],
+    link:'https://youthfusion.ca/en/'
+  },
+  {
+    id:1084, title:'Department of Justice Canada — Student Programs', org:'Department of Justice Canada',
+    field:['law','arts'], type:['internship'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Applications through the Government of Canada student portal; open winter/spring', cost:'Free (paid)', grades:'11-12',
+    competitiveness:'High', time:'Summer placement (8–16 weeks)',
+    skills:'Strong academics; interest in law, policy, and justice; bilingual (English/French) a significant asset',
+    match:93,
+    why:"The Department of Justice Canada is the federal government's legal advisor — responsible for criminal law, constitutional law, and access to justice. Student placements here expose you to the highest level of Canadian law and policy. A DOJ placement is one of the most prestigious law credentials a high school student can have — extremely rare and immediately noticed by law school admissions.",
+    howToApply:'Apply through the Government of Canada student employment portal (jobs.gc.ca) for Department of Justice student placements.',
+    practiceLinks:[{label:'🔗 DOJ Canada Student Programs', url:'https://www.justice.gc.ca/eng/abt-apd/js-sj/student-etudiant.html'}],
+    link:'https://www.justice.gc.ca/eng/abt-apd/js-sj/student-etudiant.html'
+  },
+  {
+    id:1085, title:'Ontario Ministry of the Attorney General — Student Internships', org:'Ontario Ministry of the Attorney General',
+    field:['law','arts'], type:['internship'], national:false, provinces:['ON'],
+    deadline:'Applications open winter/spring for summer positions', cost:'Free (paid)', grades:'11-12',
+    competitiveness:'High', time:'Summer placement',
+    skills:'Strong academics; interest in law and Ontario justice system; professionalism',
+    match:91,
+    why:"Ontario's Ministry of the Attorney General oversees the province's courts, prosecution service, and legal aid system. A student placement here provides direct exposure to the administration of justice in Canada's largest province — an exceptional credential for students applying to pre-law, political science, or criminology programs.",
+    howToApply:'Apply through the Ontario Public Service careers portal for Ministry of the Attorney General student roles.',
+    practiceLinks:[{label:'🔗 Ontario MAG', url:'https://www.ontario.ca/page/ministry-attorney-general'}],
+    link:'https://www.ontario.ca/page/ministry-attorney-general'
+  },
+  {
+    id:1086, title:'Canadian Civil Liberties Association — Student Roles', org:'Canadian Civil Liberties Association',
+    field:['law','arts'], type:['internship','volunteer'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Rolling', cost:'Free', grades:'11-12',
+    competitiveness:'Medium-High', time:'Flexible; research and advocacy based',
+    skills:'Passion for civil liberties and human rights; strong writing and research skills',
+    match:91,
+    why:"The CCLA is Canada's most prominent civil liberties organization — defending rights of free expression, privacy, equality, and due process. Student roles involve legal research, advocacy, and public education. An outstanding credential for students interested in law, human rights, or public policy — the CCLA's work is widely respected across Canadian law schools.",
+    howToApply:'Check the CCLA website for current student and volunteer opportunities.',
+    practiceLinks:[{label:'🔗 Canadian Civil Liberties Association', url:'https://ccla.org/get-involved/'}],
+    link:'https://ccla.org/get-involved/'
+  },
+  {
+    id:1087, title:'Law Society of Ontario — Youth Programs', org:'Law Society of Ontario',
+    field:['law'], type:['program','internship'], national:false, provinces:['ON'],
+    deadline:'Program-specific', cost:'Free', grades:'11-12',
+    competitiveness:'Medium', time:'Flexible; event and program based',
+    skills:'Interest in the legal profession and law as a career',
+    match:88,
+    why:"The Law Society of Ontario regulates the legal profession in Canada's largest province. Their youth engagement programs give high school students insight into legal careers, the profession's ethics and responsibilities, and pathways to law school. A distinctive credential that demonstrates awareness of the legal profession beyond just academic interest.",
+    howToApply:'Check the Law Society of Ontario website for youth programs and law career exploration events.',
+    practiceLinks:[{label:'🔗 Law Society of Ontario', url:'https://lso.ca/becoming-licensed/pathways-to-licensing'}],
+    link:'https://lso.ca/becoming-licensed/pathways-to-licensing'
+  },
+  {
+    id:1088, title:'Toronto Youth in Policing Initiative', org:'Toronto Police Service / City of Toronto',
+    field:['law','arts'], type:['internship'], national:false, provinces:['ON'],
+    deadline:'Applications open winter/spring', cost:'Free (paid)', grades:'10-12',
+    competitiveness:'Medium', time:'Summer placement (8 weeks)',
+    skills:'Interest in public safety, law enforcement, and community service; professionalism',
+    match:88,
+    why:"The Toronto Youth in Policing Initiative is a paid summer program placing youth in Toronto Police Service divisions to learn about policing, community safety, and the justice system. A unique and rare credential — few high schoolers have direct exposure to policing and law enforcement work. Strong for students interested in law, criminology, or public safety.",
+    howToApply:'Apply through the Toronto Police Service Youth in Policing Initiative website.',
+    practiceLinks:[{label:'🔗 Toronto Youth in Policing', url:'https://www.torontopolice.on.ca/youthprograms/yip.php'}],
+    link:'https://www.torontopolice.on.ca/youthprograms/yip.php'
+  },
+  {
+    id:1089, title:'RCMP — Youth Internship & Cadet Programs', org:'Royal Canadian Mounted Police',
+    field:['law','arts'], type:['internship','program'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Program-specific', cost:'Free', grades:'10-12',
+    competitiveness:'Low-Medium', time:'Flexible; program based',
+    skills:'Interest in law enforcement and public safety; physical fitness; leadership potential',
+    match:87,
+    why:"The RCMP is Canada's national police force, with a presence in every province and territory. Youth programs and cadet initiatives give students exposure to policing, law enforcement, and public safety at the national level. A distinctive Canadian law credential — particularly meaningful for students in provinces where the RCMP serves as the provincial police.",
+    howToApply:'Contact your local RCMP detachment or check the RCMP website for youth programs and cadet opportunities.',
+    practiceLinks:[{label:'🔗 RCMP Youth Programs', url:'https://www.rcmp-grc.gc.ca/en/youth'}],
+    link:'https://www.rcmp-grc.gc.ca/en/youth'
+  },
+  {
+    id:1090, title:'City of Toronto — Legal Division Student Placements', org:'City of Toronto Legal Services',
+    field:['law'], type:['internship'], national:false, provinces:['ON'],
+    deadline:'Applications open winter for summer positions', cost:'Free (paid)', grades:'11-12',
+    competitiveness:'High', time:'Summer placement',
+    skills:'Strong academics; interest in municipal law and government legal services',
+    match:89,
+    why:"The City of Toronto's Legal Services division handles all legal matters for one of North America's largest municipal governments — land use, contracts, labour, and litigation. A placement here provides rare exposure to public sector law at scale. An exceptional credential for students applying to law or political science programs.",
+    howToApply:'Apply through the City of Toronto careers website for student legal placements.',
+    practiceLinks:[{label:'🔗 City of Toronto Jobs', url:'https://www.toronto.ca/city-government/jobs/'}],
+    link:'https://www.toronto.ca/city-government/jobs/'
+  },
+  {
+    id:1091, title:'Legal Aid Ontario — Student Roles', org:'Legal Aid Ontario',
+    field:['law','arts'], type:['internship','volunteer'], national:false, provinces:['ON'],
+    deadline:'Rolling', cost:'Free', grades:'11-12',
+    competitiveness:'Medium', time:'Flexible; placement based',
+    skills:'Strong academics; passion for access to justice and equity; communication skills',
+    match:90,
+    why:"Legal Aid Ontario provides free legal services to people who cannot afford a lawyer — one of the most important access-to-justice institutions in the province. Student roles here combine legal exposure with genuine social impact. An outstanding credential that demonstrates both legal interest and commitment to equity — highly valued by law schools.",
+    howToApply:'Check the Legal Aid Ontario website for student volunteer and placement opportunities.',
+    practiceLinks:[{label:'🔗 Legal Aid Ontario', url:'https://www.legalaid.on.ca/about-us/careers/'}],
+    link:'https://www.legalaid.on.ca/about-us/careers/'
+  },
+  {
+    id:1092, title:'Justice for Children and Youth — Student Internships', org:'Justice for Children and Youth',
+    field:['law','healthcare'], type:['internship','volunteer'], national:false, provinces:['ON'],
+    deadline:'Rolling', cost:'Free', grades:'11-12',
+    competitiveness:'Medium', time:'Flexible; advocacy and research based',
+    skills:'Passion for children\'s rights and youth justice; strong communication and research skills',
+    match:90,
+    why:"Justice for Children and Youth is Canada's only national public interest law firm dedicated exclusively to the rights of children and youth. Student roles involve legal research, advocacy, and casework support. An extraordinary pre-law credential combining law with social justice for the most vulnerable population — immediately noticed by law school admissions offices.",
+    howToApply:'Contact Justice for Children and Youth to inquire about student volunteer and internship opportunities.',
+    practiceLinks:[{label:'🔗 Justice for Children and Youth', url:'https://jfcy.org/en/get-involved/'}],
+    link:'https://jfcy.org/en/get-involved/'
+  },
+  {
+    id:1093, title:'Parliament of Canada — Page Program', org:'Parliament of Canada',
+    field:['law','arts'], type:['internship'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Applications open in fall for the following year', cost:'Free (paid)', grades:'11-12',
+    competitiveness:'Very High', time:'One academic year (Ottawa)',
+    skills:'Exceptional academics; English-French bilingualism required; leadership; maturity',
+    match:95,
+    why:"The Parliament of Canada Page Program is one of the most prestigious opportunities available to any Canadian high school student. Pages work on the floor of the House of Commons and Senate, interacting with MPs, Senators, and the machinery of Canadian democracy. Full bilingualism (English and French) is required. A Page credential is extraordinary — it demonstrates academic excellence, bilingualism, and civic commitment at the highest level.",
+    howToApply:'Apply through the Parliament of Canada Page Program website during the fall application window. Requires English-French bilingualism and strong academics.',
+    practiceLinks:[{label:'🔗 Parliament Page Program', url:'https://www.ourcommons.ca/PageProgram/en/pages-house-commons'}],
+    link:'https://www.ourcommons.ca/PageProgram/en/pages-house-commons'
+  },
+  {
+    id:1094, title:'Forum for Young Canadians — Policy Placement', org:'Forum for Young Canadians',
+    field:['law','arts','business'], type:['program'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Applications open fall/winter', cost:'Low (bursaries available)', grades:'10-12',
+    competitiveness:'Medium', time:'1 week (Ottawa)',
+    skills:'Interest in Canadian democracy and policy; communication skills',
+    match:89,
+    why:"Forum for Young Canadians brings high school students to Ottawa for an immersive week of engagement with Parliament, government, and policy. Students meet MPs, Senators, lobbyists, and public servants — experiencing Canadian democracy first-hand. A well-established and widely recognized Canadian civic credential.",
+    howToApply:'Apply through the Forum for Young Canadians website.',
+    practiceLinks:[{label:'🔗 Forum for Young Canadians', url:'https://forum.ca/programs/'}],
+    link:'https://forum.ca/programs/'
+  },
+  {
+    id:1095, title:'YMCA Youth Government — Internship Program', org:'YMCA Canada',
+    field:['law','arts'], type:['program','internship'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Program-specific by region', cost:'Low', grades:'10-12',
+    competitiveness:'Low-Medium', time:'Program based; typically a week',
+    skills:'Interest in government, law, and civic leadership; communication skills',
+    match:87,
+    why:"YMCA Youth Government programs simulate the legislative process — students take on the roles of MPPs, MLAs, or MPs to debate and pass mock legislation. A unique credential that builds understanding of democratic governance and public speaking. Active in multiple Canadian provinces.",
+    howToApply:'Find your provincial YMCA Youth Government program through the YMCA Canada website.',
+    practiceLinks:[{label:'🔗 YMCA Youth Government', url:'https://www.ymca.ca/what-we-do/youth-development/youth-government/'}],
+    link:'https://www.ymca.ca/what-we-do/youth-development/youth-government/'
+  },
+  {
+    id:1096, title:'Model Parliament Canada — Policy Simulation', org:'Model Parliament Canada',
+    field:['law','arts'], type:['program','competition'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Program-specific', cost:'Low', grades:'10-12',
+    competitiveness:'Low-Medium', time:'Program based',
+    skills:'Interest in Canadian politics and policy; public speaking; debate',
+    match:87,
+    why:"Model Parliament programs simulate Canada's parliamentary system — students take on party roles, introduce bills, and debate legislation. A distinctive credential for students interested in law, politics, and public policy that demonstrates understanding of how Canadian democracy actually works.",
+    howToApply:'Find a Model Parliament program through your school or check provincial legislative assembly youth programs.',
+    practiceLinks:[{label:'🔗 Model Parliament Canada', url:'https://www.parl.ca/en/education/model-parliament'}],
+    link:'https://www.parl.ca/en/education/model-parliament'
+  },
+  {
+    id:1097, title:'Municipal Government — Policy Internships', org:'Various Canadian Municipalities',
+    field:['law','arts','business'], type:['internship'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Varies by municipality — typically winter/spring for summer', cost:'Free (paid or volunteer)', grades:'11-12',
+    competitiveness:'Low-Medium', time:'Summer placement',
+    skills:'Interest in local government, public policy, or urban planning; professionalism',
+    match:86,
+    why:"Municipal governments across Canada place students in policy, planning, and administration roles each summer. Your local city hall — whether in Vancouver, Calgary, Winnipeg, Hamilton, or Halifax — likely has student placement opportunities. Municipal experience is a practical and distinctive credential that demonstrates civic engagement and public sector professional skills.",
+    howToApply:'Check your local municipal government careers website for student and summer job postings.',
+    practiceLinks:[{label:'🔗 Find Your Municipal Government', url:'https://www.canada.ca/en/services/government/municipal.html'}],
+    link:'https://www.canada.ca/en/services/government/municipal.html'
+  },
+  {
+    id:1098, title:'Canadian Think Tanks — Student Research Roles', org:'Various (C.D. Howe, Fraser Institute, Broadbent Institute, etc.)',
+    field:['law','business','arts'], type:['internship'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Rolling / program-specific', cost:'Free (some paid)', grades:'11-12',
+    competitiveness:'High', time:'Summer or part-time placement',
+    skills:'Exceptional research and writing ability; interest in public policy; strong analytical thinking',
+    match:91,
+    why:"Canada's leading think tanks — including the C.D. Howe Institute, Fraser Institute, Broadbent Institute, and Institute for Research on Public Policy — occasionally place exceptional student researchers. Think tank experience is an extraordinary credential that signals serious policy thinking. Alumni of think tank programs are frequently admitted to top law, economics, and political science programs.",
+    howToApply:'Apply directly to think tanks through their websites. The C.D. Howe Institute, Fraser Institute, and Broadbent Institute all accept student applications.',
+    practiceLinks:[{label:'🔗 C.D. Howe Institute', url:'https://cdhowe.org/about/careers/'}],
+    link:'https://cdhowe.org/about/careers/'
+  },
+  {
+    id:1099, title:'Courthouse Volunteer Programs', org:'Provincial Court Services (varies by province)',
+    field:['law'], type:['volunteer','internship'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Rolling', cost:'Free', grades:'11-12',
+    competitiveness:'Low-Medium', time:'Regular commitment during court hours',
+    skills:'Professionalism; discretion; interest in the justice system and court proceedings',
+    match:88,
+    why:"Provincial courthouses across Canada accept student volunteers who assist with administrative duties, observe proceedings, and support court services. Court volunteering gives direct exposure to the justice system in action — a rare and distinctive credential. Watching real trials and hearings provides context no textbook can match.",
+    howToApply:'Contact your nearest provincial courthouse directly to inquire about student volunteer and placement opportunities.',
+    practiceLinks:[{label:'🔗 Court Services Ontario (example)', url:'https://www.ontario.ca/page/court-services'}],
+    link:'https://www.ontario.ca/page/court-services'
+  },
+  {
+    id:1100, title:'University Law Clinics — Student Volunteer Roles', org:'Various Canadian Law Schools',
+    field:['law'], type:['volunteer','internship'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Rolling', cost:'Free', grades:'11-12',
+    competitiveness:'Medium', time:'Flexible; ongoing commitment',
+    skills:'Strong interest in law and access to justice; research and communication skills',
+    match:91,
+    why:"Law school clinics across Canada — at Osgoode, UBC, McGill, Dalhousie, U of A, and others — provide free legal services to low-income clients. Many accept high school volunteers to assist with intake, research, and client support. Working in a law school clinic is an outstanding pre-law credential — it connects you to law school culture, real legal work, and the access-to-justice mission that law schools care deeply about.",
+    howToApply:'Contact the law clinic at your nearest law school directly to inquire about high school volunteer opportunities.',
+    practiceLinks:[{label:'🔗 Osgoode Community Legal Aid Services', url:'https://www.osgoode.yorku.ca/programs/jd-program/clinical-education/'}],
+    link:'https://www.osgoode.yorku.ca/programs/jd-program/clinical-education/'
+  },
+  {
+    id:1101, title:'Public Policy Institutes — Student Internships', org:'Various (Munk School, IRPP, SPP, etc.)',
+    field:['law','business','arts'], type:['internship'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Rolling / program-specific', cost:'Free (some paid)', grades:'11-12',
+    competitiveness:'High', time:'Summer or part-time placement',
+    skills:'Exceptional research and writing; interest in public policy; analytical thinking',
+    match:91,
+    why:"Canada's leading public policy institutes — including U of T's Munk School of Global Affairs, the School of Public Policy at the University of Calgary, and the Institute for Research on Public Policy — offer student research and internship roles. A policy institute credential signals the kind of rigorous, systems-level thinking that top universities and law schools look for in applicants.",
+    howToApply:'Apply directly to policy institutes through their websites. The Munk School, SPP Calgary, and IRPP all accept student inquiries.',
+    practiceLinks:[{label:'🔗 Munk School of Global Affairs', url:'https://munkschool.utoronto.ca/'}],
+    link:'https://munkschool.utoronto.ca/'
   }
 ];
 
@@ -9987,7 +11448,7 @@ function goTo(pg) {
     const surveyBtn = document.getElementById('results-survey-btn');
     if (surveyBtn) surveyBtn.textContent = hasQuiz ? 'Retake survey →' : 'Take the survey →';
     if (hasQuiz) {
-      const fieldLabels = {healthcare:'Healthcare',business:'Business',stem:'Science & Research',tech:'Technology',law:'Law & Social Sciences',arts:'Arts & Humanities'};
+      const fieldLabels = {healthcare:'Healthcare',business:'Business',stem:'Science & Research',tech:'Technology',law:'Law & Social Sciences',arts:'Arts & Humanities',philosophy:'Philosophy & Psychology',nursing:'Nursing & Health Careers',media:'Media & Communications'};
       const labels = state.fields.map(f=>fieldLabels[f]||f).join(', ');
       document.getElementById('results-heading').textContent = 'Opportunities for you';
       document.getElementById('results-sub').textContent = 'Matched to your answers in: '+labels+'. Click any card to see full details.';
@@ -10080,7 +11541,7 @@ function quizBack(q) {
 
 // ── RESULTS ──
 function showResults() {
-  const fieldLabels = {healthcare:'Healthcare',business:'Business',stem:'Science & Research',tech:'Technology',law:'Law & Social Sciences',arts:'Arts & Humanities'};
+  const fieldLabels = {healthcare:'Healthcare',business:'Business',stem:'Science & Research',tech:'Technology',law:'Law & Social Sciences',arts:'Arts & Humanities',philosophy:'Philosophy & Psychology',nursing:'Nursing & Health Careers',media:'Media & Communications'};
   if (state.fromQuiz && state.fields.length) {
     const labels = state.fields.map(f=>fieldLabels[f]||f).join(', ');
     document.getElementById('results-heading').textContent = 'Opportunities for you';
