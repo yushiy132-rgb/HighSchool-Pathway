@@ -1324,6 +1324,7 @@ textarea.dash-form-input{min-height:64px;resize:vertical;line-height:1.5;}
         <div class="pagination" id="pagination" style="display:none;">
           <button class="page-btn" id="prev-btn" onclick="changePage(-1)" disabled>← Previous</button>
           <span class="page-info" id="page-info"></span>
+          <input id="page-jump" type="number" min="1" onkeydown="if(event.key==='Enter')jumpToPage(this.value)" style="width:52px;padding:0.3rem 0.4rem;font-size:0.82rem;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text);text-align:center;outline:none;font-family:'DM Sans',sans-serif;" placeholder=""/>
           <button class="page-btn" id="next-btn" onclick="changePage(1)">Next →</button>
         </div>
       </div>
@@ -1379,6 +1380,7 @@ textarea.dash-form-input{min-height:64px;resize:vertical;line-height:1.5;}
       <div class="sch-pagination" id="sch-pagination" style="display:none;">
         <button class="page-btn" id="sch-prev-btn" onclick="changeSchPage(-1)" disabled>← Previous</button>
         <span class="page-info" id="sch-page-info"></span>
+        <input id="sch-page-jump" type="number" min="1" onkeydown="if(event.key==='Enter')jumpToSchPage(this.value)" style="width:52px;padding:0.3rem 0.4rem;font-size:0.82rem;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text);text-align:center;outline:none;font-family:'DM Sans',sans-serif;" placeholder=""/>
         <button class="page-btn" id="sch-next-btn" onclick="changeSchPage(1)">Next →</button>
       </div>
     </div>
@@ -11657,6 +11659,8 @@ function renderOpps() {
   if (list.length > PER_PAGE) {
     pag.style.display = 'flex';
     document.getElementById('page-info').textContent = 'Page '+state.currentPage+' of '+totalPages;
+    const jumpInput = document.getElementById('page-jump');
+    if (jumpInput) jumpInput.placeholder = state.currentPage;
     document.getElementById('prev-btn').disabled = state.currentPage === 1;
     document.getElementById('next-btn').disabled = state.currentPage === totalPages;
   } else {
@@ -11669,6 +11673,16 @@ function changePage(dir) {
   state.currentPage += dir;
   renderOpps();
   document.getElementById('results-content').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function jumpToPage(val) {
+  const totalPages = Math.ceil(state.filteredList.length / 15);
+  const page = Math.max(1, Math.min(parseInt(val) || 1, totalPages));
+  state.currentPage = page;
+  renderOpps();
+  document.getElementById('results-content').scrollIntoView({behavior:'smooth', block:'start'});
+  const input = document.getElementById('page-jump');
+  if (input) input.value = '';
 }
 
 function oppCard(o) {
@@ -12166,6 +12180,19 @@ function changeSchPage(dir) {
   document.getElementById('page-scholarships').scrollIntoView({behavior:'smooth', block:'start'});
 }
 
+function jumpToSchPage(val) {
+  const allScholarships = OPPS.filter(o => o.type.includes('scholarship'));
+  let list = allScholarships;
+  if (schFilter === 'eligible') list = allScholarships.filter(o => o.eligible !== false);
+  if (schFilter === 'plan') list = allScholarships.filter(o => o.eligible === false);
+  const totalPages = Math.ceil(list.length / SCH_PER_PAGE);
+  schCurrentPage = Math.max(1, Math.min(parseInt(val) || 1, totalPages));
+  renderScholarships();
+  document.getElementById('page-scholarships').scrollIntoView({behavior:'smooth', block:'start'});
+  const input = document.getElementById('sch-page-jump');
+  if (input) input.value = '';
+}
+
 function renderScholarships() {
   const allScholarships = OPPS.filter(o => o.type.includes('scholarship'));
   let list = allScholarships;
@@ -12211,6 +12238,8 @@ function renderScholarships() {
     if (list.length > SCH_PER_PAGE) {
       pag.style.display = 'flex';
       document.getElementById('sch-page-info').textContent = 'Page '+schCurrentPage+' of '+totalPages;
+      const schJumpInput = document.getElementById('sch-page-jump');
+      if (schJumpInput) schJumpInput.placeholder = schCurrentPage;
       document.getElementById('sch-prev-btn').disabled = schCurrentPage === 1;
       document.getElementById('sch-next-btn').disabled = schCurrentPage === totalPages;
     } else {
