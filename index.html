@@ -1243,7 +1243,8 @@ textarea.dash-form-input{min-height:64px;resize:vertical;line-height:1.5;}
             <option value="urban">Urban Planning & Design</option>
           </select>
         </div>
-        <select id="mobile-prov-select" onchange="handleMobileProvChange(this)" style="width:100%;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.5rem 0.75rem;font-size:0.85rem;color:var(--text);font-family:'DM Sans',sans-serif;outline:none;cursor:pointer;appearance:none;background-image:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2210%22 height=%226%22 viewBox=%220 0 10 6%22><path d=%22M0 0l5 6 5-6z%22 fill=%22%23999%22/></svg>');background-repeat:no-repeat;background-position:right 0.75rem center;padding-right:2rem;">
+        <div style="display:flex;gap:0.5rem;">
+        <select id="mobile-prov-select" onchange="handleMobileProvChange(this)" style="flex:1;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.5rem 0.75rem;font-size:0.85rem;color:var(--text);font-family:'DM Sans',sans-serif;outline:none;cursor:pointer;appearance:none;background-image:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2210%22 height=%226%22 viewBox=%220 0 10 6%22><path d=%22M0 0l5 6 5-6z%22 fill=%22%23999%22/></svg>');background-repeat:no-repeat;background-position:right 0.75rem center;padding-right:2rem;">
           <option value="all">All Locations</option>
           <optgroup label="Canadian Provinces">
             <option value="AB">Alberta</option>
@@ -1264,12 +1265,13 @@ textarea.dash-form-input{min-height:64px;resize:vertical;line-height:1.5;}
             <option value="intl">Outside Canada</option>
           </optgroup>
         </select>
-        <select id="mobile-deadline-select" onchange="handleMobileDeadlineChange(this)" style="width:100%;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.5rem 0.75rem;font-size:0.85rem;color:var(--text);font-family:'DM Sans',sans-serif;outline:none;cursor:pointer;appearance:none;background-image:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2210%22 height=%226%22 viewBox=%220 0 10 6%22><path d=%22M0 0l5 6 5-6z%22 fill=%22%23999%22/></svg>');background-repeat:no-repeat;background-position:right 0.75rem center;padding-right:2rem;">
+        <select id="mobile-deadline-select" onchange="handleMobileDeadlineChange(this)" style="flex:1;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.5rem 0.75rem;font-size:0.85rem;color:var(--text);font-family:'DM Sans',sans-serif;outline:none;cursor:pointer;appearance:none;background-image:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2210%22 height=%226%22 viewBox=%220 0 10 6%22><path d=%22M0 0l5 6 5-6z%22 fill=%22%23999%22/></svg>');background-repeat:no-repeat;background-position:right 0.75rem center;padding-right:2rem;">
           <option value="all">All Deadlines</option>
           <option value="open">Apply Now</option>
           <option value="rolling">Year-Round / Rolling</option>
           <option value="passed">Deadline Passed</option>
         </select>
+        </div>
       </div>
       <div class="results-body">
         <!-- Sidebar -->
@@ -13568,6 +13570,450 @@ const OPPS = [
     howToApply:'Register through the UKMT website. Canadian schools can register for paper-based challenges.',
     practiceLinks:[{label:'🔗 UKMT', url:'https://www.ukmt.org.uk'}],
     link:'https://www.ukmt.org.uk'
+  },
+  {
+    id:1283, title:'Canadian Astronomy Competition (CAC)', org:'University of Toronto / Canadian Astronomical Society',
+    field:['stem'], type:['competition'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Competition typically fall/winter', cost:'Free', grades:'9-12',
+    competitiveness:'Medium-High', time:'Written exam',
+    skills:'Physics; mathematics; knowledge of astronomy and astrophysics concepts',
+    match:91,
+    why:"The Canadian Astronomy Competition is the national qualifying pathway for the IOAA. Strong performance is required to represent Canada internationally. A prestigious credential for students serious about astrophysics — demonstrating mastery of both physics and astronomy at a competitive level.",
+    howToApply:'Register through your school or the Canadian Astronomical Society website.',
+    practiceLinks:[{label:'🔗 Canadian Astronomy Competition', url:'https://www.cascacompetition.ca'}],
+    link:'https://www.cascacompetition.ca'
+  },
+  {
+    id:1284, title:'British Physics Olympiad (BPhO)', org:'British Physics Olympiad',
+    field:['stem'], type:['competition'], national:true,
+    deadline:'Papers typically November–February', cost:'Low', grades:'11-12',
+    competitiveness:'High', time:'Multiple written papers',
+    skills:'Advanced physics; mathematical rigour; problem-solving under pressure',
+    match:90,
+    why:"The BPhO is one of the most rigorous physics competitions in the world, open to international participants. It includes an astrophysics paper and challenges students at the frontier of physics knowledge. A top BPhO result is an outstanding international physics credential recognized by universities globally.",
+    howToApply:'Register through the BPhO website. Canadian students can participate in most rounds.',
+    practiceLinks:[{label:'🔗 British Physics Olympiad', url:'https://www.bpho.org.uk'}],
+    link:'https://www.bpho.org.uk'
+  },
+  {
+    id:1285, title:'USA Astronomy & Astrophysics Olympiad (USAAAO)', org:'USAAAO',
+    field:['stem'], type:['competition'], national:true,
+    deadline:'National exam typically January–February', cost:'Free', grades:'9-12',
+    competitiveness:'High', time:'Written exam rounds',
+    skills:'Astronomy; astrophysics; physics; mathematics',
+    match:90,
+    why:"The USAAAO is the American pathway to the IOAA and is open to Canadian students. It tests deep knowledge of astronomy and astrophysics through rigorous multiple-choice and free-response exams. Placing highly is a strong credential for students aiming to represent North America at the IOAA.",
+    howToApply:'Register through the USAAAO website. Canadian students are eligible to participate.',
+    practiceLinks:[{label:'🔗 USAAAO', url:'https://www.usaaao.org'}],
+    link:'https://www.usaaao.org'
+  },
+  {
+    id:1286, title:'PhysicsBowl', org:'American Association of Physics Teachers',
+    field:['stem'], type:['competition'], national:true,
+    deadline:'Registration typically January–February; exam April', cost:'Low', grades:'11-12',
+    competitiveness:'High', time:'Written multiple-choice exam',
+    skills:'Advanced high school physics; problem-solving speed and accuracy',
+    match:88,
+    why:"PhysicsBowl is a national physics competition run by the American Association of Physics Teachers, open to Canadian students. It tests advanced physics including mechanics, electromagnetism, optics, and modern physics. Placing in the top tier is a strong international physics credential.",
+    howToApply:'Register through the AAPT website for PhysicsBowl.',
+    practiceLinks:[{label:'🔗 PhysicsBowl', url:'https://www.aapt.org/Programs/PhysicsBowl/'}],
+    link:'https://www.aapt.org/Programs/PhysicsBowl/'
+  },
+  {
+    id:1287, title:'Astronomy League — Youth Awards & Programs', org:'Astronomical League',
+    field:['stem'], type:['program','club'], national:true,
+    deadline:'Observing programs are self-paced year-round', cost:'Low (membership)', grades:'9-12',
+    competitiveness:'Low-Medium', time:'Self-paced observing program',
+    skills:'Enthusiasm for observational astronomy; access to a telescope (some programs work with binoculars)',
+    match:86,
+    why:"The Astronomical League runs observing certificate programs and youth astronomy awards recognizing students who complete structured observing challenges. Earning observing certificates demonstrates hands-on practical astronomy — a distinctive credential that shows you actually go outside and look at the sky, not just study it in textbooks.",
+    howToApply:'Join through a local astronomy club affiliated with the Astronomical League.',
+    practiceLinks:[{label:'🔗 Astronomical League', url:'https://www.astroleague.org/observing-programs/'}],
+    link:'https://www.astroleague.org/observing-programs/'
+  },
+  {
+    id:1288, title:'NASA Space Apps Challenge', org:'NASA',
+    field:['stem','tech'], type:['competition'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Annual hackathon — typically October', cost:'Free', grades:'9-12',
+    competitiveness:'Medium', time:'48-hour hackathon',
+    skills:'Coding; data analysis; problem-solving; teamwork; interest in space and earth science',
+    match:91,
+    why:"NASA Space Apps is the world's largest hackathon, where teams tackle NASA-provided challenges using open space data. Canadian students participate at local hubs across the country. A prestigious NASA credential that combines technical problem-solving with genuine space science — global winners get to visit NASA facilities.",
+    howToApply:'Register at spaceapps.nasa.gov and find a local event hub in your city.',
+    practiceLinks:[{label:'🔗 NASA Space Apps', url:'https://www.spaceappschallenge.org'}],
+    link:'https://www.spaceappschallenge.org'
+  },
+  {
+    id:1289, title:'NASA Student Launch Competition', org:'NASA',
+    field:['stem','tech'], type:['competition'], national:true,
+    deadline:'Registration typically September; launch April', cost:'Free (NASA funded)', grades:'11-12',
+    competitiveness:'High', time:'Full school year project',
+    skills:'Rocketry; engineering design; physics; teamwork; technical writing',
+    match:92,
+    why:"NASA Student Launch is a year-long competitive program where student teams design, build, and launch high-powered rockets with a scientific payload. Teams receive NASA mentorship and compete at Huntsville, Alabama. An extraordinary engineering and astrophysics credential — you literally build and launch a rocket with NASA support.",
+    howToApply:'Register your school team through the NASA Student Launch website in September.',
+    practiceLinks:[{label:'🔗 NASA Student Launch', url:'https://www.nasa.gov/stem-ed-resources/student-launch.html'}],
+    link:'https://www.nasa.gov/stem-ed-resources/student-launch.html'
+  },
+  {
+    id:1290, title:'International Space Settlement Design Competition', org:'NASA / NSS / Boeing',
+    field:['stem','tech'], type:['competition'], national:true,
+    deadline:'Regional competitions fall–spring; finals at NASA summer', cost:'Low', grades:'9-12',
+    competitiveness:'High', time:'Team project + presentations',
+    skills:'Engineering; physics; systems thinking; teamwork; presentation',
+    match:91,
+    why:"The ISSDC challenges student teams to design a complete space settlement — habitat, energy systems, life support, economics, and governance. Teams present to panels of NASA engineers and scientists. One of the most prestigious and distinctive STEM competitions in the world for aspiring aerospace engineers and astrophysicists.",
+    howToApply:'Enter through the National Space Society website and find a regional competition.',
+    practiceLinks:[{label:'🔗 ISSDC', url:'https://www.nss.org/space-settlement-design-competition/'}],
+    link:'https://www.nss.org/space-settlement-design-competition/'
+  },
+  {
+    id:1291, title:'Zooniverse — Citizen Science Projects', org:'Zooniverse',
+    field:['stem'], type:['research','volunteer'], national:true,
+    deadline:'Projects available year-round', cost:'Free', grades:'9-12',
+    competitiveness:'Low', time:'Self-paced; project based',
+    skills:'Attention to detail; curiosity; basic computer skills',
+    match:85,
+    why:"Zooniverse is the world's largest citizen science platform, hosting hundreds of real research projects — many in astronomy, including galaxy classification, exoplanet hunting, and solar storm detection. Contributions by students become part of published scientific research. A genuine research credential demonstrating that you have contributed to real scientific knowledge.",
+    howToApply:'Create a free account at zooniverse.org and join any astronomy or space science project.',
+    practiceLinks:[{label:'🔗 Zooniverse', url:'https://www.zooniverse.org'}],
+    link:'https://www.zooniverse.org'
+  },
+  {
+    id:1292, title:'University of Toronto — Physics Outreach & Research Programs', org:'University of Toronto',
+    field:['stem'], type:['program','research'], national:false, provinces:['ON'],
+    deadline:'Program-specific; contact department directly', cost:'Free', grades:'11-12',
+    competitiveness:'Very High', time:'Summer research placement or outreach event',
+    skills:'Exceptional physics and math ability; genuine research curiosity',
+    match:91,
+    why:"U of T's Department of Physics and Dunlap Institute for Astronomy are among the most productive astrophysics research groups in the world. Their outreach programs and occasional high school research placements expose exceptional students to world-class cosmology, gravitational waves, and exoplanet research. A U of T physics credential is extraordinary.",
+    howToApply:'Contact the U of T Physics Department and Dunlap Institute directly. MITACS and NSERC funding can support placements.',
+    practiceLinks:[{label:'🔗 UofT Dunlap Institute', url:'https://www.dunlap.utoronto.ca'}],
+    link:'https://www.dunlap.utoronto.ca'
+  },
+  {
+    id:1293, title:'University of Waterloo — Physics Enrichment Programs', org:'University of Waterloo',
+    field:['stem'], type:['program'], national:false, provinces:['ON'],
+    deadline:'Program-specific', cost:'Free', grades:'10-12',
+    competitiveness:'Medium-High', time:'Workshop or short program',
+    skills:'Strong physics and math; curiosity about fundamental science',
+    match:89,
+    why:"Waterloo's physics department runs enrichment programs for high school students — including workshops connected to their world-class quantum information and astrophysics research groups. Engaging with Waterloo physics as a high schooler is a strong credential for students applying to physics, engineering, or mathematics programs.",
+    howToApply:'Check the Waterloo Physics Department and Institute for Quantum Computing website for high school enrichment opportunities.',
+    practiceLinks:[{label:'🔗 Waterloo Physics', url:'https://uwaterloo.ca/physics-astronomy/'}],
+    link:'https://uwaterloo.ca/physics-astronomy/'
+  },
+  {
+    id:1294, title:'MIT PRIMES — Research in Mathematics and Science', org:'Massachusetts Institute of Technology',
+    field:['stem'], type:['research','program'], national:true,
+    deadline:'Applications open October; deadline December', cost:'Free', grades:'10-11',
+    competitiveness:'Extremely High', time:'Year-long research program',
+    skills:'Exceptional mathematical and scientific ability; prior competition or research experience',
+    match:95,
+    why:"MIT PRIMES is one of the most prestigious high school research programs in the world — students conduct year-long original research mentored by MIT faculty and graduate students in mathematics, physics, computer science, and biology. Research frequently leads to published papers. An MIT research credential at this level is essentially unmatched for any university application.",
+    howToApply:'Apply through the MIT PRIMES website in October. Extremely competitive — requires exceptional academic record.',
+    practiceLinks:[{label:'🔗 MIT PRIMES', url:'https://math.mit.edu/research/highschool/primes/'}],
+    link:'https://math.mit.edu/research/highschool/primes/'
+  },
+  {
+    id:1295, title:'CERN High School Student Programs', org:'CERN',
+    field:['stem'], type:['program'], national:true,
+    deadline:'Applications open fall; deadline typically January–February', cost:'Free (travel support available)', grades:'11-12',
+    competitiveness:'Very High', time:'2 weeks (Geneva, Switzerland)',
+    skills:'Exceptional physics and mathematics; genuine interest in particle physics and astrophysics',
+    match:94,
+    why:"CERN runs the world's largest particle physics laboratory — home to the Large Hadron Collider and the discovery of the Higgs boson. Their high school student programs bring exceptional students to Geneva for two weeks working alongside CERN physicists. A CERN credential is one of the most extraordinary available to any high school student globally.",
+    howToApply:'Apply through the CERN High School Student Programme website. Highly competitive internationally.',
+    practiceLinks:[{label:'🔗 CERN HST Programme', url:'https://hst.web.cern.ch'}],
+    link:'https://hst.web.cern.ch'
+  },
+  {
+    id:1296, title:'Canadian Astronomical Society — Youth Initiatives', org:'Canadian Astronomical Society (CASCA)',
+    field:['stem'], type:['program','volunteer'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Program-specific', cost:'Free or low', grades:'10-12',
+    competitiveness:'Low-Medium', time:'Flexible',
+    skills:'Passion for astronomy; curiosity about the universe',
+    match:87,
+    why:"CASCA is Canada's national professional astronomy organization. Their youth initiatives connect aspiring astronomers with Canada's professional astronomy community — including access to researchers at institutions like NRC Herzberg, Perimeter Institute, and major Canadian observatories.",
+    howToApply:'Check the CASCA website for student and youth engagement opportunities.',
+    practiceLinks:[{label:'🔗 CASCA', url:'https://casca.ca/education-and-outreach/'}],
+    link:'https://casca.ca/education-and-outreach/'
+  },
+  {
+    id:1297, title:'Royal Astronomical Society of Canada (RASC) — Youth Membership & Programs', org:'Royal Astronomical Society of Canada',
+    field:['stem'], type:['club','program'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Join anytime; observing programs self-paced', cost:'Low (student rates)', grades:'9-12',
+    competitiveness:'Low', time:'Flexible; club based',
+    skills:'Enthusiasm for astronomy; access to dark skies (helpful)',
+    match:87,
+    why:"RASC is Canada's national astronomy organization with local centres across the country. Youth membership gives access to star parties, telescope loans, dark sky sites, and the astronomy community. A foundational credential for any Canadian student serious about astronomy.",
+    howToApply:'Join through the RASC website and find your local centre.',
+    practiceLinks:[{label:'🔗 RASC', url:'https://rasc.ca'}],
+    link:'https://rasc.ca'
+  },
+  {
+    id:1298, title:'RASC — Observing Certificate Programs', org:'Royal Astronomical Society of Canada',
+    field:['stem'], type:['program'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Self-paced; complete observations at your own pace', cost:'Low (RASC membership)', grades:'9-12',
+    competitiveness:'Low', time:'Self-paced observing',
+    skills:'Access to a telescope or binoculars; patience; ability to observe under dark skies',
+    match:85,
+    why:"RASC observing certificates — for objects like the Messier catalogue, double stars, or deep sky wonders — recognize students who have systematically observed the night sky. Earning certificates demonstrates hands-on practical astronomy and genuine dedication beyond classroom learning.",
+    howToApply:'Join RASC and begin working through observing programs at your own pace.',
+    practiceLinks:[{label:'🔗 RASC Observing Programs', url:'https://rasc.ca/programs'}],
+    link:'https://rasc.ca/programs'
+  },
+  {
+    id:1299, title:'Ontario Science Centre — Astronomy Programs', org:'Ontario Science Centre',
+    field:['stem'], type:['program'], national:false, provinces:['ON'],
+    deadline:'Programs offered throughout year', cost:'Low', grades:'9-12',
+    competitiveness:'Low', time:'Day or short program',
+    skills:'Curiosity about space and science',
+    match:82,
+    why:"The Ontario Science Centre runs astronomy and space science programs for students — including telescope nights, planetarium shows, and STEM workshops. An accessible entry point to astronomy for Ontario students building their interest and credentials.",
+    howToApply:'Check the Ontario Science Centre website for current astronomy programs and events.',
+    practiceLinks:[{label:'🔗 Ontario Science Centre', url:'https://www.ontariosciencecentre.ca'}],
+    link:'https://www.ontariosciencecentre.ca'
+  },
+  {
+    id:1300, title:'NASA High School Aerospace Scholars (HAS)', org:'NASA',
+    field:['stem','tech'], type:['program'], national:true,
+    deadline:'Applications open fall; deadline typically December', cost:'Free', grades:'11',
+    competitiveness:'High', time:'Online program (spring) + onsite week at NASA (summer)',
+    skills:'Strong STEM academics; interest in aerospace and space exploration; US residency (check eligibility)',
+    match:90,
+    why:"NASA HAS is a competitive program where students complete an online STEM curriculum then attend an onsite experience at a NASA facility — working in teams on aerospace design challenges mentored by NASA engineers. A NASA credential is transformative for any student pursuing aerospace, engineering, or astrophysics.",
+    howToApply:'Apply through the NASA HAS website. Check current Canadian eligibility.',
+    practiceLinks:[{label:'🔗 NASA HAS', url:'https://has.txstate.edu'}],
+    link:'https://has.txstate.edu'
+  },
+  {
+    id:1301, title:'SETI Institute — Student Programs & Citizen Science', org:'SETI Institute',
+    field:['stem'], type:['research','program'], national:true,
+    deadline:'Program-specific; citizen science year-round', cost:'Free', grades:'10-12',
+    competitiveness:'Low-Medium', time:'Flexible',
+    skills:'Curiosity about astrobiology and the search for extraterrestrial intelligence; data analysis interest',
+    match:87,
+    why:"The SETI Institute is the world's leading organization dedicated to the search for extraterrestrial intelligence and astrobiology. Student programs and citizen science projects allow high schoolers to contribute to real research in one of science's most intriguing questions. A distinctive and conversation-starting credential.",
+    howToApply:'Explore SETI Institute student programs and citizen science projects through their website.',
+    practiceLinks:[{label:'🔗 SETI Institute', url:'https://www.seti.org/education'}],
+    link:'https://www.seti.org/education'
+  },
+  {
+    id:1302, title:'Planetarium Volunteering', org:'Various (Ontario Science Centre, H.R. MacMillan, etc.)',
+    field:['stem'], type:['volunteer'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Rolling', cost:'Free', grades:'10-12',
+    competitiveness:'Low', time:'Regular volunteer shifts',
+    skills:'Enthusiasm for astronomy; comfort speaking to the public; reliability',
+    match:84,
+    why:"Volunteering at a local planetarium — such as the H.R. MacMillan Space Centre in Vancouver, the Ontario Science Centre, or the Telus World of Science in Edmonton — gives hands-on astronomy education experience while demonstrating communication and science outreach skills. A distinctive credential that combines scientific passion with public engagement.",
+    howToApply:'Contact your nearest planetarium or science centre directly to inquire about volunteer opportunities.',
+    practiceLinks:[{label:'🔗 HR MacMillan Space Centre', url:'https://www.spacecentre.ca/volunteer'}],
+    link:'https://www.spacecentre.ca/volunteer'
+  },
+  {
+    id:1303, title:'MIT OpenCourseWare — Astrophysics Self-Study', org:'Massachusetts Institute of Technology',
+    field:['stem'], type:['program'], national:true,
+    deadline:'Self-paced; free anytime', cost:'Free', grades:'11-12',
+    competitiveness:'Low', time:'Self-paced online',
+    skills:'Strong calculus and physics; genuine self-motivation',
+    match:85,
+    why:"MIT OpenCourseWare offers free access to MIT undergraduate and graduate astrophysics courses — including Introduction to Astronomy, Relativity, and Astrophysics I/II. Systematically working through MIT astrophysics material and building projects or notes around it demonstrates university-level self-directed learning — a meaningful portfolio credential.",
+    howToApply:'Access for free at ocw.mit.edu. No registration required.',
+    practiceLinks:[{label:'🔗 MIT OCW Astrophysics', url:'https://ocw.mit.edu/courses/find-by-topic/#cat=science&subcat=astrophysics'}],
+    link:'https://ocw.mit.edu/courses/find-by-topic/#cat=science&subcat=astrophysics'
+  },
+  {
+    id:1304, title:'FLEX Abroad — Future Leaders Exchange Program', org:'U.S. Department of State / FLEX',
+    field:['arts','law'], type:['program'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Applications open fall; deadline typically December', cost:'Free (fully funded)', grades:'10-11',
+    competitiveness:'Very High', time:'Full academic year in the United States',
+    skills:'Strong academics; adaptability; openness to living with a host family; English proficiency',
+    match:93,
+    why:"FLEX is a fully funded U.S. State Department exchange program placing students from eligible countries for a full year in an American high school with a host family. A government-funded full-year abroad is one of the most transformative and prestigious exchange credentials available — demonstrating exceptional selection, adaptability, and cross-cultural competence.",
+    howToApply:'Check U.S. Embassy Canada or the FLEX program website for Canadian applicant eligibility and application process.',
+    practiceLinks:[{label:'🔗 FLEX Program', url:'https://www.irex.org/project/future-leaders-exchange-flex-program'}],
+    link:'https://www.irex.org/project/future-leaders-exchange-flex-program'
+  },
+  {
+    id:1305, title:'Congress-Bundestag Youth Exchange (CBYX)', org:'U.S. Congress / German Bundestag',
+    field:['arts','law','business'], type:['program'], national:true,
+    deadline:'Applications open fall; deadline typically December', cost:'Free (fully funded)', grades:'10-11',
+    competitiveness:'Very High', time:'Full academic year in Germany',
+    skills:'Interest in Germany and German-American relations; adaptability; strong academics',
+    match:93,
+    why:"CBYX is a fully funded bilateral exchange placing students in Germany for a full academic year — including language training, a host family, and a German high school. One of the world's most prestigious youth exchange programs, funded by the U.S. and German governments. A CBYX credential signals exceptional intercultural competence and is recognized by universities worldwide.",
+    howToApply:'Apply through the CBYX program website. Canadian students may be eligible — check current program criteria.',
+    practiceLinks:[{label:'🔗 Congress-Bundestag Youth Exchange', url:'https://www.cbyx.info'}],
+    link:'https://www.cbyx.info'
+  },
+  {
+    id:1306, title:"Kennedy-Lugar YES Abroad — Youth Exchange and Study", org:'U.S. Department of State',
+    field:['arts','law'], type:['program'], national:true,
+    deadline:'Applications open fall; deadline typically November', cost:'Free (fully funded)', grades:'10-11',
+    competitiveness:'Very High', time:'Full academic year abroad',
+    skills:'Strong academics; genuine interest in Muslim-majority countries and cross-cultural exchange',
+    match:92,
+    why:"YES Abroad places American and eligible international students for a full year in predominantly Muslim countries — Morocco, Indonesia, Malaysia, Ghana, India, and others. Fully funded by the U.S. State Department. An extraordinary credential demonstrating genuine cross-cultural curiosity and global engagement at the highest level.",
+    howToApply:'Check the YES Abroad website and U.S. Embassy Canada for Canadian applicant eligibility.',
+    practiceLinks:[{label:'🔗 YES Abroad', url:'https://www.yesabroad.org'}],
+    link:'https://www.yesabroad.org'
+  },
+  {
+    id:1307, title:'TechGirls — Technology Exchange Program', org:'U.S. Department of State',
+    field:['tech','arts'], type:['program'], national:true,
+    deadline:'Applications open winter; deadline typically February', cost:'Free (fully funded)', grades:'10-11',
+    competitiveness:'Very High', time:'Summer (5 weeks in the United States)',
+    skills:'Interest in STEM and technology; leadership potential; English proficiency; eligibility by country',
+    match:91,
+    why:"TechGirls is a fully funded U.S. State Department program bringing young women from eligible countries to the US for intensive STEM and technology training. Participants intern at tech companies and return home to lead community projects. A prestigious, government-funded credential combining technology skills with international exchange.",
+    howToApply:'Check U.S. Embassy Canada and the TechGirls website for Canadian eligibility and application.',
+    practiceLinks:[{label:'🔗 TechGirls', url:'https://www.irex.org/project/techgirls'}],
+    link:'https://www.irex.org/project/techgirls'
+  },
+  {
+    id:1308, title:'United World Colleges (UWC) — Full Scholarship Abroad', org:'United World Colleges',
+    field:['arts','law','stem'], type:['program'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Applications open fall; national selection typically winter', cost:'Free (full scholarships available)', grades:'10-11',
+    competitiveness:'Extremely High', time:'2 years (IB Diploma abroad)',
+    skills:'Exceptional academics; leadership; genuine global mindset; commitment to UWC mission of peace',
+    match:96,
+    why:"United World Colleges is arguably the most prestigious secondary school program in the world. Full scholarships send Canadian students to one of 18 UWC schools across the globe — studying the IB Diploma alongside peers from 150+ countries. UWC alumni include heads of state, Nobel laureates, and global leaders. A UWC scholarship is transformative — universally recognized as an extraordinary credential at every top university in the world.",
+    howToApply:'Apply through UWC Canada National Committee. Competitive national selection process.',
+    practiceLinks:[{label:'🔗 UWC Canada', url:'https://www.uwc.ca'}],
+    link:'https://www.uwc.ca'
+  },
+  {
+    id:1309, title:'Rotary Youth Exchange — Year Abroad', org:'Rotary International',
+    field:['arts','law'], type:['program'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Applications open spring/summer; varies by district', cost:'Varies (Rotary supported; host family provides accommodation)', grades:'10-11',
+    competitiveness:'Medium-High', time:'Full academic year abroad (80+ countries)',
+    skills:'Adaptability; openness to new cultures; strong personal character; community engagement',
+    match:91,
+    why:"Rotary Youth Exchange sends students abroad for a full academic year to 80+ countries, supported by local Rotary clubs and host families. One of the world's largest and most established exchange programs — a full-year abroad with Rotary is a well-recognized credential for intercultural competence, independence, and global citizenship.",
+    howToApply:'Contact your local Rotary club or the Rotary Youth Exchange District Coordinator in your province.',
+    practiceLinks:[{label:'🔗 Rotary Youth Exchange', url:'https://www.rotary.org/en/our-programs/youth-exchanges'}],
+    link:'https://www.rotary.org/en/our-programs/youth-exchanges'
+  },
+  {
+    id:1310, title:'CIEE Global Navigator Scholarship', org:'CIEE',
+    field:['arts','law'], type:['program'], national:true,
+    deadline:'Rolling scholarship applications; program deadlines vary', cost:'Scholarship available (covers significant portion)', grades:'10-12',
+    competitiveness:'Medium-High', time:'Summer or semester abroad',
+    skills:'Strong academics; genuine interest in global study; language interest',
+    match:89,
+    why:"The CIEE Global Navigator Scholarship provides financial support for students to study abroad through CIEE programs. Receiving a competitive scholarship for international study demonstrates both merit and initiative — and the resulting study abroad experience builds the cross-cultural competence universities increasingly value.",
+    howToApply:'Apply for the Global Navigator Scholarship through the CIEE website alongside your program application.',
+    practiceLinks:[{label:'🔗 CIEE Scholarships', url:'https://www.ciee.org/scholarships'}],
+    link:'https://www.ciee.org/scholarships'
+  },
+  {
+    id:1311, title:'YFU — Youth For Understanding Exchange Scholarships', org:'Youth For Understanding',
+    field:['arts','law'], type:['program'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Applications open fall; deadline typically December–January', cost:'Varies (scholarships available)', grades:'10-11',
+    competitiveness:'Medium', time:'Full year, semester, or summer abroad',
+    skills:'Adaptability; openness to cultural immersion; commitment to exchange mission',
+    match:89,
+    why:"YFU is one of the world's oldest international exchange organizations, operating since 1951 across 60+ countries. Their scholarships support Canadian students on year, semester, and summer exchanges. A YFU exchange demonstrates cross-cultural competence and the kind of independence that universities associate with mature, globally-minded applicants.",
+    howToApply:'Apply through YFU Canada for exchange programs and scholarship opportunities.',
+    practiceLinks:[{label:'🔗 YFU Canada', url:'https://www.yfu-canada.org'}],
+    link:'https://www.yfu-canada.org'
+  },
+  {
+    id:1312, title:'CIEE High School Summer Abroad', org:'CIEE',
+    field:['arts','law'], type:['program'], national:true,
+    deadline:'Applications open year-round; programs fill early', cost:'Varies (scholarships available)', grades:'9-12',
+    competitiveness:'Low-Medium', time:'3–6 weeks (summer abroad)',
+    skills:'Language interest; cultural curiosity; independence',
+    match:87,
+    why:"CIEE's summer abroad programs offer high school students immersive cultural and language experiences in 30+ countries. A structured summer abroad credential demonstrates initiative and cross-cultural engagement — particularly meaningful for students who can't commit to a full year away.",
+    howToApply:'Browse and apply for summer programs through the CIEE website.',
+    practiceLinks:[{label:'🔗 CIEE High School Summer', url:'https://www.ciee.org/go-abroad/high-school-study-abroad/summer'}],
+    link:'https://www.ciee.org/go-abroad/high-school-study-abroad/summer'
+  },
+  {
+    id:1313, title:'Greenheart Travel — High School Study Abroad', org:'Greenheart Travel',
+    field:['arts','law'], type:['program'], national:true,
+    deadline:'Applications open year-round', cost:'Varies (scholarships available)', grades:'10-12',
+    competitiveness:'Low', time:'Semester or year abroad',
+    skills:'Language interest; adaptability; comfort with independence',
+    match:85,
+    why:"Greenheart Travel is a certified B Corp exchange organization placing students abroad for semester and year exchanges in 15+ countries. Their programs emphasize sustainable travel and cultural depth. An accessible entry point for students seeking an international exchange credential.",
+    howToApply:'Apply through the Greenheart Travel website for high school exchange programs.',
+    practiceLinks:[{label:'🔗 Greenheart Travel', url:'https://www.greenhearttravel.org/programs/high-school'}],
+    link:'https://www.greenhearttravel.org/programs/high-school'
+  },
+  {
+    id:1314, title:'ISE — International Student Exchange Programs', org:'ISE',
+    field:['arts','law'], type:['program'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Applications open year-round; placements available for fall/winter/spring starts', cost:'Varies (financial aid available)', grades:'10-12',
+    competitiveness:'Low', time:'Semester or year abroad',
+    skills:'Adaptability; language interest; openness to host family living',
+    match:84,
+    why:"ISE is one of the largest U.S.-based student exchange organizations, placing students abroad in 30+ countries. Canadian students can access ISE programs for semester or year exchanges. A structured, accredited exchange credential demonstrating international experience.",
+    howToApply:'Apply through the ISE website or contact ISE Canada for program placements.',
+    practiceLinks:[{label:'🔗 ISE', url:'https://www.iseusa.org'}],
+    link:'https://www.iseusa.org'
+  },
+  {
+    id:1315, title:'AFS Summer Programs Abroad', org:'AFS Canada',
+    field:['arts','law'], type:['program'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Applications open fall/winter; summer programs fill quickly', cost:'Varies (financial aid available)', grades:'9-12',
+    competitiveness:'Low-Medium', time:'3–6 weeks (summer abroad)',
+    skills:'Cultural curiosity; language interest; adaptability',
+    match:87,
+    why:"AFS summer programs place Canadian students in immersive cultural experiences abroad for 3–6 weeks — combining language learning, host family living, and community engagement. A trusted, globally recognized exchange credential for students beginning their international experience.",
+    howToApply:'Apply through AFS Canada for summer abroad programs.',
+    practiceLinks:[{label:'🔗 AFS Canada Summer', url:'https://afs.org/ca/programs/summer/'}],
+    link:'https://afs.org/ca/programs/summer/'
+  },
+  {
+    id:1316, title:'CIEE Semester Abroad — High School', org:'CIEE',
+    field:['arts','law'], type:['program'], national:true,
+    deadline:'Applications open year-round; fall semester deadline typically May', cost:'Varies (scholarships available)', grades:'10-12',
+    competitiveness:'Low-Medium', time:'Semester abroad (3–4 months)',
+    skills:'Language interest; adaptability; academic ability to continue coursework abroad',
+    match:88,
+    why:"CIEE semester programs place students in accredited schools abroad for a full semester in countries including France, Spain, Japan, Costa Rica, and others. A semester abroad is a substantial cross-cultural credential that demonstrates genuine commitment to international experience and language development.",
+    howToApply:'Apply through the CIEE website for semester high school programs.',
+    practiceLinks:[{label:'🔗 CIEE Semester Abroad', url:'https://www.ciee.org/go-abroad/high-school-study-abroad/semester'}],
+    link:'https://www.ciee.org/go-abroad/high-school-study-abroad/semester'
+  },
+  {
+    id:1317, title:'ISSYP — International Summer School for Young Physicists', org:'Perimeter Institute for Theoretical Physics',
+    field:['stem'], type:['program'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Applications open January; deadline typically March', cost:'Free (fully funded)', grades:'11',
+    competitiveness:'Very High', time:'2 weeks (Waterloo, Ontario)',
+    skills:'Exceptional physics and mathematics ability; genuine theoretical curiosity',
+    match:95,
+    why:"ISSYP is run by the Perimeter Institute — the world's leading centre for theoretical physics. Students live at Perimeter for two weeks learning cutting-edge physics from world-class researchers including Nobel laureates and Breakthrough Prize winners. A fully funded program with a global application pool. One of the most prestigious physics credentials available to any high school student in the world.",
+    howToApply:'Apply through the Perimeter Institute website. Highly competitive internationally.',
+    practiceLinks:[{label:'🔗 ISSYP', url:'https://perimeterinstitute.ca/issyp'}],
+    link:'https://perimeterinstitute.ca/issyp'
+  },
+  {
+    id:1318, title:'Oxford Royale Academy — Summer Programs (UK)', org:'Oxford Royale Academy',
+    field:['arts','law','stem','business'], type:['program'], national:true,
+    deadline:'Applications open year-round; summer programs fill early', cost:'Varies (scholarships available)', grades:'10-12',
+    competitiveness:'Low-Medium', time:'1–4 weeks (Oxford or Cambridge, UK)',
+    skills:'Strong academics; curiosity in chosen subject area',
+    match:86,
+    why:"Oxford Royale Academy runs academic summer programs at Oxford and Cambridge for international students across a wide range of subjects. Studying in Oxford or Cambridge — even at a pre-college level — is a prestigious and distinctive credential, combining academic rigour with the cultural experience of the world's most celebrated university towns.",
+    howToApply:'Apply through the Oxford Royale Academy website.',
+    practiceLinks:[{label:'🔗 Oxford Royale Academy', url:'https://www.oxford-royale.com'}],
+    link:'https://www.oxford-royale.com'
+  },
+  {
+    id:1319, title:'Canada World Youth (CWY) — Exchange Programs', org:'Canada World Youth',
+    field:['arts','law'], type:['program','volunteer'], national:true, provinces:['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'],
+    deadline:'Applications open periodically; check website', cost:'Varies (funded by Global Affairs Canada)', grades:'11-12',
+    competitiveness:'Medium', time:'Several months (Canada + partner country)',
+    skills:'Commitment to community development; adaptability; interest in global citizenship',
+    match:90,
+    why:"Canada World Youth is one of Canada's most respected international exchange organizations, funded by Global Affairs Canada. Their programs combine community service in Canada and a partner country — building cross-cultural competence, global perspective, and development experience. A well-recognized Canadian credential for students interested in international development or global citizenship.",
+    howToApply:'Apply through the Canada World Youth website during open application periods.',
+    practiceLinks:[{label:'🔗 Canada World Youth', url:'https://canadaworldyouth.org'}],
+    link:'https://canadaworldyouth.org'
   }
 ];
 
