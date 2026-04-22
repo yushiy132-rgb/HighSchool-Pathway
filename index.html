@@ -14027,6 +14027,228 @@ const authState = { loggedIn: false, guest: false, name: '', userId: null };
 const state = { fields:[], types:[], grade:null, prov:null, bookmarks:[], statuses:{}, viewed:new Set(), filterType:'all', filterField:'all', filterProv:'all', filterDeadline:'all', fromQuiz:false, currentPage:1, filteredList:[] };
 let profileData = {};
 let deadlineEntries = [];
+let calendarEvents = {};
+let calViewYear = new Date().getFullYear();
+let calViewMonth = new Date().getMonth();
+let calSelectedDate = null;
+const CAL_MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const CAL_SHORT_MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+function calDKey(y,m,d){ return y+'-'+String(m+1).padStart(2,'0')+'-'+String(d).padStart(2,'0'); }
+function calTypeLabel(t){ return {deadline:'Deadline',app:'Application',reminder:'Reminder',program:'Program date'}[t]||t; }
+
+function calRenderCalendar() {
+  const grid = document.getElementById('cal-grid');
+  if (!grid) return;
+  const existing = grid.querySelectorAll('.cal-cell');
+  existing.forEach(c => c.remove());
+  document.getElementById('cal-month-label').textContent = CAL_MONTHS[calViewMonth] + ' ' + calViewYear;
+  const today = new Date();
+  const todayKey = calDKey(today.getFullYear(), today.getMonth(), today.getDate());
+  const first = new Date(calViewYear, calViewMonth, 1).getDay();
+  const total = new Date(calViewYear, calViewMonth+1, 0).getDate();
+  const prevTotal = new Date(calViewYear, calViewMonth, 0).getDate();
+
+  for (let i = 0; i < first; i++) {
+    const d = prevTotal - first + 1 + i;
+    const pm = calViewMonth === 0 ? 11 : calViewMonth - 1;
+    const py = calViewMonth === 0 ? calViewYear - 1 : calViewYear;
+    grid.appendChild(calMakeCell(py, pm, d, true));
+  }
+  for (let d = 1; d <= total; d++) {
+    const cell = calMakeCell(calViewYear, calViewMonth, d, false);
+    const key = calDKey(calViewYear, calViewMonth, d);
+    if (key === todayKey) cell.classList.add('cal-today');
+    if (calSelectedDate === key) cell.classList.add('cal-selected');
+    grid.appendChild(cell);
+  }
+  const filled = first + total;
+  const remaining = filled % 7 === 0 ? 0 : 7 - (filled % 7);
+  for (let d = 1; d <= remaining; d++) {
+    const nm = calViewMonth === 11 ? 0 : calViewMonth + 1;
+    const ny = calViewMonth === 11 ? calViewYear + 1 : calViewYear;
+    grid.appendChild(calMakeCell(ny, nm, d, true));
+  }
+}
+
+function calMakeCell(y, m, d, other) {
+  const cell = document.createElement('div');
+  cell.className = 'cal-cell' + (other ? ' cal-other' : '');
+  const numEl = document.createElement('div');
+  numEl.className = 'cal-num';
+  numEl.textContent = d;
+  cell.appendChild(numEl);
+  const key = calDKey(y, m, d);
+  if (!other && calendarEvents[key]) {
+    const evs = calendarEvents[key];
+    evs.slice(0, 2).forEach(e => {
+      const dot = document.createElement('div');
+      dot.className = 'cal-ev-dot cev-' + e.type;
+      dot.textContent = e.title;
+      cell.appendChild(dot);
+    });
+    if (evs.length > 2) {
+      const more = document.createElement('div');
+      more.className = 'cal-ev-dot cev-more';
+      more.textContent = '+' + (evs.length - 2) + ' more';
+      cell.appendChild(more);
+    }
+  }
+  if (!other) {
+    cell.onclick = () => calSelectDate(key, y, m, d);
+  }
+  return cell;
+}
+
+function calSelectDate(key, y, m, d) {
+  calSelectedDate = key;
+  const fullMonths = CAL_MONTHS;
+  const dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const dayName = dayNames[new Date(y, m, d).getDay()];
+  const el = document.getElementById('cal-sel-date-label');
+  if (el) el.textContent = dayName + ', ' + fullMonths[m] + ' ' + d;
+  calRenderDayEvents(key);
+  calRenderCalendar();
+}
+
+function calRenderDayEvents(key) {
+  const el = document.getElementById('cal-day-events');
+  if (!el) return;
+  const evs = calendarEvents[key] || [];
+  if (!evs.length) { el.innerHTML = '<div class="cal-empty">No events for this date.</div>'; return; }
+  el.innerHTML = evs.map(e => `
+    <div class="cal-ev-item">
+      <div class="cal-ev-bar cal-bar-${e.type}"></div>
+      <div class="cal-ev-body">
+        <div class="cal-ev-title">${e.title}</div>
+        <div class="cal-ev-meta">${calTypeLabel(e.type)}</div>
+        ${e.linkedOppId ? `<button onclick="openFullPage(${e.linkedOppId})" style="margin-top:3px;background:var(--accent-light);border:1px solid var(--accent);border-radius:20px;padding:1px 8px;font-size:10px;color:var(--accent-dark);cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;display:block;text-align:left;">🔗 ${e.linkedOppTitle}</button>` : ''}
+      </div>
+      <button class="cal-ev-del" onclick="calDeleteEvent('${key}','${e.id}')">&#x2715;</button>
+    </div>`).join('');
+}
+
+function calDeleteEvent(key, id) {
+  if (!calendarEvents[key]) return;
+  calendarEvents[key] = calendarEvents[key].filter(e => String(e.id) !== String(id));
+  if (!calendarEvents[key].length) delete calendarEvents[key];
+  calRenderDayEvents(key);
+  calRenderCalendar();
+  calRenderUpcoming();
+  saveUserData();
+}
+
+let calLinkedOpp = null;
+
+function calFilterOppSearch(val) {
+  const dropdown = document.getElementById('cal-opp-dropdown');
+  const q = val.trim().toLowerCase();
+  if (!q) { dropdown.style.display = 'none'; return; }
+  const matches = OPPS.filter(o =>
+    o.title.toLowerCase().includes(q) || o.org.toLowerCase().includes(q)
+  ).slice(0, 8);
+  if (!matches.length) { dropdown.style.display = 'none'; return; }
+  dropdown.innerHTML = matches.map(o =>
+    `<div onclick="calSelectOpp(${o.id})" style="padding:7px 10px;font-size:12px;cursor:pointer;border-bottom:0.5px solid var(--border);transition:background 0.1s;" onmouseover="this.style.background='var(--tag-bg)'" onmouseout="this.style.background=''">
+      <div style="font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${o.title}</div>
+      <div style="font-size:10px;color:var(--faint);">${o.org}</div>
+    </div>`
+  ).join('');
+  dropdown.style.display = 'block';
+}
+
+function calSelectOpp(id) {
+  const o = OPPS.find(x => x.id === id);
+  if (!o) return;
+  calLinkedOpp = o;
+  document.getElementById('cal-opp-search').value = '';
+  document.getElementById('cal-opp-dropdown').style.display = 'none';
+  const sel = document.getElementById('cal-opp-selected');
+  const selName = document.getElementById('cal-opp-selected-name');
+  selName.textContent = o.title;
+  sel.style.display = 'flex';
+  const titleEl = document.getElementById('cal-ev-title');
+  if (titleEl && !titleEl.value.trim()) titleEl.value = o.title;
+}
+
+function calClearOppLink() {
+  calLinkedOpp = null;
+  const sel = document.getElementById('cal-opp-selected');
+  if (sel) sel.style.display = 'none';
+  const searchEl = document.getElementById('cal-opp-search');
+  if (searchEl) searchEl.value = '';
+}
+
+function calAddEvent() {
+  const titleEl = document.getElementById('cal-ev-title');
+  const title = titleEl ? titleEl.value.trim() : '';
+  const typeEl = document.getElementById('cal-ev-type');
+  const type = typeEl ? typeEl.value : 'deadline';
+  if (!title) { if (titleEl) titleEl.focus(); return; }
+  if (!calSelectedDate) { alert('Click a date on the calendar first.'); return; }
+  if (!calendarEvents[calSelectedDate]) calendarEvents[calSelectedDate] = [];
+  calendarEvents[calSelectedDate].push({
+    title,
+    type,
+    id: Date.now(),
+    linkedOppId: calLinkedOpp ? calLinkedOpp.id : null,
+    linkedOppTitle: calLinkedOpp ? calLinkedOpp.title : null
+  });
+  if (titleEl) titleEl.value = '';
+  calClearOppLink();
+  calRenderDayEvents(calSelectedDate);
+  calRenderCalendar();
+  calRenderUpcoming();
+  saveUserData();
+}
+
+function calChangeMonth(dir) {
+  calViewMonth += dir;
+  if (calViewMonth > 11) { calViewMonth = 0; calViewYear++; }
+  if (calViewMonth < 0) { calViewMonth = 11; calViewYear--; }
+  calRenderCalendar();
+}
+
+function calRenderUpcoming() {
+  const el = document.getElementById('cal-upcoming-list');
+  if (!el) return;
+  const today = new Date(); today.setHours(0,0,0,0);
+  const all = [];
+  Object.entries(calendarEvents).forEach(([key, evs]) => {
+    const d = new Date(key + 'T00:00:00');
+    if (d >= today) evs.forEach(e => all.push({ ...e, date: key, dateObj: d }));
+  });
+  all.sort((a, b) => a.dateObj - b.dateObj);
+  if (!all.length) { el.innerHTML = '<div class="cal-empty">No upcoming events. Add some from the Month view.</div>'; return; }
+  el.innerHTML = all.slice(0, 25).map(e => {
+    const d = e.dateObj;
+    const diff = Math.ceil((d - today) / (1000*60*60*24));
+    const dl = diff === 0 ? 'Today' : diff === 1 ? 'Tomorrow' : 'In ' + diff + ' days';
+    return `<div class="cal-up-item">
+      <div class="cal-up-dateblock">
+        <div class="cal-up-month">${CAL_SHORT_MONTHS[d.getMonth()]}</div>
+        <div class="cal-up-day">${d.getDate()}</div>
+      </div>
+      <div class="cal-up-body">
+        <div class="cal-up-title">${e.title}</div>
+        <span class="cal-up-badge cbadge-${e.type}">${calTypeLabel(e.type)}</span>
+        ${e.linkedOppId ? `<div style="margin-top:3px;"><button onclick="openFullPage(${e.linkedOppId})" style="background:var(--accent-light);border:1px solid var(--accent);border-radius:20px;padding:1px 8px;font-size:10px;color:var(--accent-dark);cursor:pointer;font-family:'DM Sans',sans-serif;">🔗 ${e.linkedOppTitle}</button></div>` : ''}
+        <div class="cal-days-left">${dl}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function calShowInner(tab, btn) {
+  document.querySelectorAll('.cal-inner-tab').forEach(t => t.classList.remove('act'));
+  btn.classList.add('act');
+  const monthEl = document.getElementById('cal-inner-month');
+  const upEl = document.getElementById('cal-inner-upcoming');
+  if (monthEl) monthEl.style.display = tab === 'month' ? '' : 'none';
+  if (upEl) upEl.style.display = tab === 'upcoming' ? '' : 'none';
+  if (tab === 'upcoming') calRenderUpcoming();
+  if (tab === 'month') calRenderCalendar();
+}
 const accomplishments = [];
 
 // ── SUPABASE DATA HELPERS ──
@@ -14041,29 +14263,42 @@ async function saveUserData() {
     deadlines: deadlineEntries,
     updated_at: new Date().toISOString()
   };
-  await sb.from('user_data').upsert(payload, { onConflict: 'user_id' });
+  // Try saving with calendar_events; if the column doesn't exist yet, fall back without it
+  try {
+    const { error } = await sb.from('user_data').upsert({ ...payload, calendar_events: calendarEvents }, { onConflict: 'user_id' });
+    if (error && (error.message || '').includes('calendar_events')) {
+      await sb.from('user_data').upsert(payload, { onConflict: 'user_id' });
+    }
+  } catch(e) {
+    try { await sb.from('user_data').upsert(payload, { onConflict: 'user_id' }); } catch(e2) {}
+  }
 }
 
 async function loadUserData() {
   if (!authState.userId) return;
-  const { data, error } = await sb.from('user_data').select('*').eq('user_id', authState.userId).single();
-  if (error || !data) return;
-  if (data.bookmarks) state.bookmarks = data.bookmarks;
-  if (data.statuses) Object.assign(state.statuses, data.statuses);
-  if (data.profile) {
-    Object.assign(profileData, data.profile);
-    if (profileData.grade) state.grade = profileData.grade;
-    if (profileData.location) state.prov = profileData.location;
-    if (profileData.fields) state.fields = profileData.fields.split(', ').filter(Boolean);
-  }
-  if (data.accomplishments) {
-    accomplishments.length = 0;
-    data.accomplishments.forEach(a => accomplishments.push(a));
-  }
-  if (data.deadlines) {
-    deadlineEntries.length = 0;
-    data.deadlines.forEach(d => deadlineEntries.push(d));
-  }
+  try {
+    const { data, error } = await sb.from('user_data').select('*').eq('user_id', authState.userId).single();
+    if (error || !data) return;
+    if (data.bookmarks) state.bookmarks = data.bookmarks;
+    if (data.statuses) Object.assign(state.statuses, data.statuses);
+    if (data.profile) {
+      Object.assign(profileData, data.profile);
+      if (profileData.grade) state.grade = profileData.grade;
+      if (profileData.location) state.prov = profileData.location;
+      if (profileData.fields) state.fields = profileData.fields.split(', ').filter(Boolean);
+    }
+    if (data.accomplishments) {
+      accomplishments.length = 0;
+      data.accomplishments.forEach(a => accomplishments.push(a));
+    }
+    if (data.deadlines) {
+      deadlineEntries.length = 0;
+      data.deadlines.forEach(d => deadlineEntries.push(d));
+    }
+    if (data.calendar_events) {
+      Object.assign(calendarEvents, data.calendar_events);
+    }
+  } catch(e) {}
 }
 
 function onUserLoggedIn(user, displayName) {
@@ -14539,12 +14774,16 @@ async function handleLogin() {
   if (!email) { if (errEl) errEl.textContent = 'Please enter your email address.'; document.getElementById('login-email').focus(); return; }
   if (!password) { if (errEl) errEl.textContent = 'Please enter your password.'; document.getElementById('login-password').focus(); return; }
   if (errEl) errEl.textContent = 'Signing in…';
-  const { data, error } = await sb.auth.signInWithPassword({ email, password });
-  if (error) { if (errEl) errEl.textContent = error.message; return; }
-  document.getElementById('login-email').value = '';
-  document.getElementById('login-password').value = '';
-  onUserLoggedIn(data.user);
-  goTo('home');
+  try {
+    const { data, error } = await sb.auth.signInWithPassword({ email, password });
+    if (error) { if (errEl) errEl.textContent = error.message; return; }
+    document.getElementById('login-email').value = '';
+    document.getElementById('login-password').value = '';
+    onUserLoggedIn(data.user);
+    goTo('home');
+  } catch(e) {
+    if (errEl) errEl.textContent = 'Network error — please check your connection and try again.';
+  }
 }
 
 async function handleSignup() {
@@ -14560,17 +14799,21 @@ async function handleSignup() {
   if (!password) { if (errEl) errEl.textContent = 'Please choose a password.'; document.getElementById('signup-password').focus(); return; }
   if (password.length < 6) { if (errEl) errEl.textContent = 'Password must be at least 6 characters.'; document.getElementById('signup-password').focus(); return; }
   if (errEl) errEl.textContent = 'Creating account…';
-  const { data, error } = await sb.auth.signUp({ email, password, options: { data: { name } } });
-  if (error) { if (errEl) errEl.textContent = error.message; return; }
-  document.getElementById('signup-firstname').value = '';
-  document.getElementById('signup-lastname').value = '';
-  document.getElementById('signup-email').value = '';
-  document.getElementById('signup-password').value = '';
-  if (data.user && data.session) {
-    onUserLoggedIn(data.user, name);
-    goTo('home');
-  } else {
-    if (errEl) { errEl.style.color = '#15803d'; errEl.textContent = 'Check your email to confirm your account, then log in.'; }
+  try {
+    const { data, error } = await sb.auth.signUp({ email, password, options: { data: { name } } });
+    if (error) { if (errEl) errEl.textContent = error.message; return; }
+    document.getElementById('signup-firstname').value = '';
+    document.getElementById('signup-lastname').value = '';
+    document.getElementById('signup-email').value = '';
+    document.getElementById('signup-password').value = '';
+    if (data.user && data.session) {
+      onUserLoggedIn(data.user, name);
+      goTo('home');
+    } else {
+      if (errEl) { errEl.style.color = '#15803d'; errEl.textContent = 'Check your email to confirm your account, then log in.'; }
+    }
+  } catch(e) {
+    if (errEl) errEl.textContent = 'Network error — please check your connection and try again.';
   }
 }
 
@@ -14600,10 +14843,14 @@ async function submitForgotPassword() {
   const email = emailEl ? emailEl.value.trim() : '';
   if (!email) { if (errEl) errEl.textContent = 'Please enter your email address.'; if (emailEl) emailEl.focus(); return; }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { if (errEl) errEl.textContent = 'Please enter a valid email address.'; if (emailEl) emailEl.focus(); return; }
-  const { error } = await sb.auth.resetPasswordForEmail(email);
-  if (error) { if (errEl) errEl.textContent = error.message; return; }
-  if (successEl) successEl.style.display = 'block';
-  if (emailEl) emailEl.value = '';
+  try {
+    const { error } = await sb.auth.resetPasswordForEmail(email);
+    if (error) { if (errEl) errEl.textContent = error.message; return; }
+    if (successEl) successEl.style.display = 'block';
+    if (emailEl) emailEl.value = '';
+  } catch(e) {
+    if (errEl) errEl.textContent = 'Network error — please check your connection and try again.';
+  }
 }
 
 function continueAsGuest() {
@@ -15159,8 +15406,11 @@ function renderDashCommitted() {
 function switchDashTab(tab) {
   document.getElementById('dash-panel-deadlines').style.display = tab==='deadlines'?'block':'none';
   document.getElementById('dash-panel-profile').style.display = tab==='profile'?'block':'none';
+  document.getElementById('dash-panel-calendar').style.display = tab==='calendar'?'block':'none';
   document.getElementById('tab-deadlines').classList.toggle('active', tab==='deadlines');
   document.getElementById('tab-profile').classList.toggle('active', tab==='profile');
+  document.getElementById('tab-calendar').classList.toggle('active', tab==='calendar');
+  if (tab === 'calendar') calRenderCalendar();
 }let dlLinkQuery = '';
 let dlLinkedOpp = null;
 
@@ -15382,6 +15632,12 @@ function closeMobileNav() {
 }
 // Close mobile nav when clicking outside
 document.addEventListener('click', function(e) {
+  // Close calendar opp dropdown when clicking outside
+  const calSearch = document.getElementById('cal-opp-search');
+  const calDrop = document.getElementById('cal-opp-dropdown');
+  if (calDrop && calDrop.style.display !== 'none' && calSearch && !calSearch.contains(e.target) && !calDrop.contains(e.target)) {
+    calDrop.style.display = 'none';
+  }
   const nav = document.getElementById('mobile-nav');
   const btn = document.getElementById('nav-hamburger');
   if (nav && nav.classList.contains('open') && !nav.contains(e.target) && !btn.contains(e.target)) {
@@ -15547,6 +15803,7 @@ window.addEventListener('DOMContentLoaded', function() {
     <div class="dash-tabs">
       <button class="dash-tab active" id="tab-profile" onclick="switchDashTab('profile')">Personal Info</button>
       <button class="dash-tab" id="tab-deadlines" onclick="switchDashTab('deadlines')">Deadlines &amp; Notes</button>
+      <button class="dash-tab" id="tab-calendar" onclick="switchDashTab('calendar')">Calendar</button>
     </div>
     <div id="dash-panel-deadlines" style="display:none;">
       <div class="dash-section">
@@ -15665,6 +15922,118 @@ window.addEventListener('DOMContentLoaded', function() {
             <button class="dash-btn-sm dash-btn-ghost" onclick="toggleProfileEdit()">Cancel</button>
             <button class="dash-btn-sm dash-btn-primary" onclick="saveProfileEdit()">Save changes</button>
           </div>
+        </div>
+      </div>
+    </div>
+    <div id="dash-panel-calendar" style="display:none;">
+      <div class="dash-section">
+        <style>
+          .cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.85rem;gap:8px}
+          .cal-nav-btn{border:1px solid var(--border);background:var(--surface);border-radius:6px;padding:4px 10px;font-size:13px;cursor:pointer;color:var(--text);font-family:'DM Sans',sans-serif;transition:background 0.12s}
+          .cal-nav-btn:hover{background:var(--tag-bg)}
+          .cal-month-label{font-size:14px;font-weight:600;color:var(--text)}
+          .cal-grid-wrap{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+          .cal-day-hdr{font-size:10px;color:var(--faint);text-align:center;padding:3px 0;font-weight:500;text-transform:uppercase;letter-spacing:0.04em}
+          .cal-cell{min-height:58px;border-radius:6px;border:1px solid var(--border);padding:4px 5px;cursor:pointer;transition:border-color 0.12s,background 0.12s;background:var(--surface)}
+          .cal-cell:hover{border-color:var(--border2);background:var(--tag-bg)}
+          .cal-cell.cal-other{background:var(--bg);opacity:0.45;pointer-events:none}
+          .cal-cell.cal-today .cal-num{background:var(--text);color:var(--bg);border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center}
+          .cal-cell.cal-selected{border-color:var(--accent-dark)!important;border-width:1.5px!important}
+          .cal-num{font-size:11px;font-weight:600;color:var(--text);width:20px;height:20px;display:flex;align-items:center;justify-content:center}
+          .cal-ev-dot{font-size:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:1px 4px;border-radius:3px;margin-top:1px;max-width:100%;line-height:1.4}
+          .cal-ev-dot.cev-deadline{background:#FAEEDA;color:#633806}
+          .cal-ev-dot.cev-app{background:#E6F1FB;color:#0C447C}
+          .cal-ev-dot.cev-reminder{background:#EAF3DE;color:#27500A}
+          .cal-ev-dot.cev-program{background:#EEEDFE;color:#3C3489}
+          .cal-ev-dot.cev-more{color:var(--faint);font-size:8px;padding-left:4px}
+          .cal-layout{display:grid;grid-template-columns:1fr 210px;gap:1rem;align-items:start}
+          @media(max-width:520px){.cal-layout{grid-template-columns:1fr}}
+          .cal-sidebar{display:flex;flex-direction:column;gap:0.75rem}
+          .cal-sel-label{font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:2px}
+          .cal-sel-date{font-size:14px;font-weight:600;color:var(--text)}
+          .cal-ev-list{display:flex;flex-direction:column;gap:5px;max-height:180px;overflow-y:auto}
+          .cal-ev-item{display:flex;align-items:flex-start;gap:7px;padding:7px 9px;border-radius:7px;border:1px solid var(--border);background:var(--surface)}
+          .cal-ev-bar{width:3px;border-radius:2px;flex-shrink:0;align-self:stretch;min-height:32px}
+          .cal-bar-deadline{background:#BA7517}.cal-bar-app{background:#378ADD}.cal-bar-reminder{background:#639922}.cal-bar-program{background:#7F77DD}
+          .cal-ev-body{flex:1;min-width:0}
+          .cal-ev-title{font-size:12px;font-weight:600;color:var(--text);line-height:1.3}
+          .cal-ev-meta{font-size:10px;color:var(--faint);margin-top:1px}
+          .cal-ev-del{border:none;background:none;cursor:pointer;color:var(--faint);font-size:13px;padding:0;flex-shrink:0}
+          .cal-ev-del:hover{color:var(--text)}
+          .cal-add-form{border:1px solid var(--border);border-radius:8px;padding:0.85rem;background:var(--surface)}
+          .cal-form-row{margin-bottom:8px}
+          .cal-form-row label{font-size:11px;color:var(--faint);display:block;margin-bottom:3px}
+          .cal-form-row input,.cal-form-row select{font-size:12px;border-radius:6px;border:1px solid var(--border);padding:5px 7px;background:var(--surface);color:var(--text);font-family:'DM Sans',sans-serif;width:100%}
+          .cal-form-row input:focus,.cal-form-row select:focus{outline:none;border-color:var(--accent-dark)}
+          .cal-btn-add{border:none;background:var(--text);color:var(--bg);border-radius:6px;padding:6px 12px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;width:100%;font-weight:500;transition:opacity 0.15s}
+          .cal-btn-add:hover{opacity:0.85}
+          .cal-tab-btns{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:1rem}
+          .cal-inner-tab{padding:0.4rem 0.85rem;font-size:12px;color:var(--faint);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;transition:color 0.15s,border-color 0.15s;font-family:'DM Sans',sans-serif}
+          .cal-inner-tab.act{color:var(--text);border-bottom-color:var(--text);font-weight:500}
+          .cal-up-item{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border-radius:7px;border:1px solid var(--border);background:var(--surface);margin-bottom:6px}
+          .cal-up-dateblock{min-width:34px;text-align:center;flex-shrink:0}
+          .cal-up-month{font-size:9px;text-transform:uppercase;letter-spacing:0.05em;color:var(--faint)}
+          .cal-up-day{font-size:17px;font-weight:600;color:var(--text);line-height:1.1}
+          .cal-up-body{flex:1;min-width:0}
+          .cal-up-title{font-size:12px;font-weight:600;color:var(--text)}
+          .cal-up-badge{display:inline-block;font-size:9px;padding:1px 6px;border-radius:3px;margin-top:2px}
+          .cbadge-deadline{background:#FAEEDA;color:#633806}.cbadge-app{background:#E6F1FB;color:#0C447C}.cbadge-reminder{background:#EAF3DE;color:#27500A}.cbadge-program{background:#EEEDFE;color:#3C3489}
+          .cal-days-left{font-size:10px;color:var(--faint);margin-top:2px}
+          .cal-empty{text-align:center;padding:1.5rem 0;color:var(--faint);font-size:12px}
+        </style>
+        <div class="cal-tab-btns">
+          <button class="cal-inner-tab act" id="cal-inner-tab-month" onclick="calShowInner('month',this)">Month view</button>
+          <button class="cal-inner-tab" id="cal-inner-tab-upcoming" onclick="calShowInner('upcoming',this)">Upcoming</button>
+        </div>
+        <div id="cal-inner-month">
+          <div class="cal-layout">
+            <div>
+              <div class="cal-head">
+                <button class="cal-nav-btn" onclick="calChangeMonth(-1)">&#8592;</button>
+                <span class="cal-month-label" id="cal-month-label"></span>
+                <button class="cal-nav-btn" onclick="calChangeMonth(1)">&#8594;</button>
+              </div>
+              <div class="cal-grid-wrap" id="cal-grid">
+                <div class="cal-day-hdr">S</div><div class="cal-day-hdr">M</div><div class="cal-day-hdr">T</div>
+                <div class="cal-day-hdr">W</div><div class="cal-day-hdr">T</div><div class="cal-day-hdr">F</div><div class="cal-day-hdr">S</div>
+              </div>
+            </div>
+            <div class="cal-sidebar">
+              <div>
+                <div class="cal-sel-label">Selected</div>
+                <div class="cal-sel-date" id="cal-sel-date-label">Click a date</div>
+              </div>
+              <div class="cal-ev-list" id="cal-day-events"><div class="cal-empty">No events.</div></div>
+              <div class="cal-add-form">
+                <div class="cal-form-row" style="position:relative;">
+                  <label>Link an opportunity <span style="font-weight:400;color:var(--faint);">(optional)</span></label>
+                  <input type="text" id="cal-opp-search" placeholder="Search opportunities…" autocomplete="off" oninput="calFilterOppSearch(this.value)" onfocus="calFilterOppSearch(this.value)"/>
+                  <div id="cal-opp-dropdown" style="display:none;position:absolute;top:100%;left:0;right:0;background:var(--surface);border:1px solid var(--border2);border-radius:7px;box-shadow:0 4px 16px rgba(0,0,0,0.1);z-index:999;max-height:160px;overflow-y:auto;margin-top:2px;"></div>
+                </div>
+                <div id="cal-opp-selected" style="display:none;margin-bottom:8px;padding:5px 8px;background:var(--accent-light);border:1px solid var(--accent);border-radius:6px;font-size:11px;color:var(--accent-dark);display:flex;align-items:center;justify-content:space-between;gap:6px;">
+                  <span id="cal-opp-selected-name" style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></span>
+                  <button onclick="calClearOppLink()" style="background:none;border:none;color:var(--accent-dark);cursor:pointer;font-size:13px;padding:0;flex-shrink:0;line-height:1;">✕</button>
+                </div>
+                <div class="cal-form-row">
+                  <label>Title <span style="font-weight:400;color:var(--faint);">(auto-fills from opportunity)</span></label>
+                  <input type="text" id="cal-ev-title" placeholder="e.g. CEMC Euclid deadline"/>
+                </div>
+                <div class="cal-form-row">
+                  <label>Type</label>
+                  <select id="cal-ev-type">
+                    <option value="deadline">Deadline</option>
+                    <option value="app">Application</option>
+                    <option value="reminder">Reminder</option>
+                    <option value="program">Program date</option>
+                  </select>
+                </div>
+                <button class="cal-btn-add" onclick="calAddEvent()">Add to selected date</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="cal-inner-upcoming" style="display:none">
+          <div id="cal-upcoming-list"></div>
         </div>
       </div>
     </div>
