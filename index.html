@@ -13184,8 +13184,8 @@ const OPPS = [
     match:91,
     why:"The International Psychology Olympiad is a prestigious academic competition testing knowledge of psychology — from cognitive science and neuroscience to social and developmental psychology. Top national performers represent their country internationally. A rare and outstanding credential for students interested in psychology, medicine, or the social sciences.",
     howToApply:'Find your national psychology olympiad qualifying competition. In Canada, check the Canadian Psychological Association for student competition pathways.',
-    practiceLinks:[{label:'🔗 International Psychology Olympiad', url:'https://ipho.eu'}],
-    link:'https://ipho.eu'
+    practiceLinks:[{label:'🔗 International Psychology Olympiad', url:'https://www.ipsyo.org/'}],
+    link:'https://www.ipsyo.org/'
   },
   {
     id:1251, title:'The Earth Prize', org:'The Earth Prize',
@@ -14080,7 +14080,7 @@ function calMakeCell(y, m, d, other) {
   cell.appendChild(numEl);
   const key = calDKey(y, m, d);
   if (!other && calendarEvents[key]) {
-    const evs = calendarEvents[key];
+    const evs = calendarEvents[key].filter(e => e && e.id != null);
     evs.slice(0, 2).forEach(e => {
       const dot = document.createElement('div');
       dot.className = 'cal-ev-dot cev-' + e.type;
@@ -14114,7 +14114,7 @@ function calSelectDate(key, y, m, d) {
 function calRenderDayEvents(key) {
   const el = document.getElementById('cal-day-events');
   if (!el) return;
-  const evs = calendarEvents[key] || [];
+  const evs = (calendarEvents[key] || []).filter(e => e && e.id != null);
   if (!evs.length) { el.innerHTML = '<div class="cal-empty">No events for this date.</div>'; return; }
   el.innerHTML = evs.map(e => `
     <div class="cal-ev-item">
@@ -14130,7 +14130,7 @@ function calRenderDayEvents(key) {
 
 function calDeleteEvent(key, id) {
   if (!calendarEvents[key]) return;
-  calendarEvents[key] = calendarEvents[key].filter(e => String(e.id) !== String(id));
+  calendarEvents[key] = calendarEvents[key].filter(e => e && e.id != null && String(e.id) !== String(id));
   if (!calendarEvents[key].length) delete calendarEvents[key];
   calRenderDayEvents(key);
   calRenderCalendar();
@@ -14216,7 +14216,7 @@ function calRenderUpcoming() {
   const all = [];
   Object.entries(calendarEvents).forEach(([key, evs]) => {
     const d = new Date(key + 'T00:00:00');
-    if (d >= today) evs.forEach(e => all.push({ ...e, date: key, dateObj: d }));
+    if (d >= today) evs.filter(e => e && e.id != null).forEach(e => all.push({ ...e, date: key, dateObj: d }));
   });
   all.sort((a, b) => a.dateObj - b.dateObj);
   if (!all.length) { el.innerHTML = '<div class="cal-empty">No upcoming events. Add some from the Month view.</div>'; return; }
@@ -14279,24 +14279,29 @@ async function loadUserData() {
   try {
     const { data, error } = await sb.from('user_data').select('*').eq('user_id', authState.userId).single();
     if (error || !data) return;
-    if (data.bookmarks) state.bookmarks = data.bookmarks;
-    if (data.statuses) Object.assign(state.statuses, data.statuses);
-    if (data.profile) {
+    if (Array.isArray(data.bookmarks)) state.bookmarks = data.bookmarks.filter(id => id != null && typeof id === 'number');
+    if (data.statuses && typeof data.statuses === 'object') Object.assign(state.statuses, data.statuses);
+    if (data.profile && typeof data.profile === 'object') {
       Object.assign(profileData, data.profile);
       if (profileData.grade) state.grade = profileData.grade;
       if (profileData.location) state.prov = profileData.location;
       if (profileData.fields) state.fields = profileData.fields.split(', ').filter(Boolean);
     }
-    if (data.accomplishments) {
+    if (Array.isArray(data.accomplishments)) {
       accomplishments.length = 0;
-      data.accomplishments.forEach(a => accomplishments.push(a));
+      data.accomplishments.filter(a => a && typeof a === 'object' && a.title).forEach(a => accomplishments.push(a));
     }
-    if (data.deadlines) {
+    if (Array.isArray(data.deadlines)) {
       deadlineEntries.length = 0;
-      data.deadlines.forEach(d => deadlineEntries.push(d));
+      data.deadlines.filter(d => d && typeof d === 'object' && d.title && d.id != null).forEach(d => deadlineEntries.push(d));
     }
-    if (data.calendar_events) {
-      Object.assign(calendarEvents, data.calendar_events);
+    if (data.calendar_events && typeof data.calendar_events === 'object') {
+      Object.entries(data.calendar_events).forEach(([key, evs]) => {
+        if (Array.isArray(evs)) {
+          const clean = evs.filter(e => e && typeof e === 'object' && e.id != null && e.title && e.type);
+          if (clean.length) calendarEvents[key] = clean;
+        }
+      });
     }
   } catch(e) {}
 }
@@ -14305,7 +14310,7 @@ function onUserLoggedIn(user, displayName) {
   authState.loggedIn = true;
   authState.guest = false;
   authState.userId = user.id;
-  authState.name = displayName || user.user_metadata?.name || user.email.split('@')[0];
+  authState.name = displayName || user.user_metadata?.name || (user.email ? user.email.split('@')[0] : 'User');
   updateNavUser();
   loadUserData().then(() => {
     renderDashBookmarks?.();
@@ -14755,7 +14760,12 @@ function renderSaved() {
 
 function scrollToCard(id) {
   const el = document.getElementById('card-'+id);
-  if (el) el.scrollIntoView({behavior:'smooth',block:'center'});
+  if (el) {
+    el.scrollIntoView({behavior:'smooth',block:'center'});
+  } else {
+    // Card may be on a different page — open full page instead
+    openFullPage(id);
+  }
 }
 
 // ── CHAT ──
@@ -14851,14 +14861,6 @@ async function submitForgotPassword() {
   } catch(e) {
     if (errEl) errEl.textContent = 'Network error — please check your connection and try again.';
   }
-}
-
-function continueAsGuest() {
-  authState.loggedIn = false;
-  authState.guest = true;
-  authState.name = 'Guest';
-  updateNavUser();
-  goTo('home');
 }
 
 function updateNavUser() {
@@ -15240,8 +15242,13 @@ function submitInlineForm() {
 
 // ── FULL PAGE OPP ──
 let _savedScrollY = 0;
+let _fullPageSource = 'results'; // tracks where openFullPage was called from
 function openFullPage(id) {
   _savedScrollY = window.scrollY;
+  // Determine caller context
+  const dashOpen = document.getElementById('dashboard-modal').classList.contains('open');
+  const schActive = document.getElementById('page-scholarships').classList.contains('active');
+  _fullPageSource = dashOpen ? 'dashboard' : (schActive ? 'scholarships' : 'results');
   const o = OPPS.find(x=>x.id===id);
   if (!o) return;
   state.viewed.add(id);
@@ -15312,12 +15319,24 @@ function openFullPage(id) {
       ${o.link ? `<a href="${o.link}" target="_blank" class="btn-primary" style="text-decoration:none;border:none;padding:0.6rem 1.25rem;font-size:0.875rem;border-radius:6px;">Official site ↗</a>` : ''}
     </div>
   `;
+  // Update back button label based on source
+  try {
+    const backBtn = document.querySelector('#opp-fullpage .opp-fullpage-back');
+    if (backBtn) {
+      const labels = { dashboard: '← Back to dashboard', scholarships: '← Back to scholarships', results: '← Back to opportunities' };
+      backBtn.textContent = labels[_fullPageSource] || '← Back';
+    }
+  } catch(err) {}
   document.getElementById('opp-fullpage').classList.add('open');
   window.scrollTo(0,0);
 }
 function closeFullPage() {
   document.getElementById('opp-fullpage').classList.remove('open');
-  window.scrollTo(0, _savedScrollY);
+  if (_fullPageSource === 'dashboard') {
+    openDashboard();
+  } else {
+    window.scrollTo(0, _savedScrollY);
+  }
 }
 
 // ── DASHBOARD ──
@@ -15452,7 +15471,7 @@ function saveDeadlineEntry() {
   saveUserData();
 }
 function deleteDeadlineEntry(id) {
-  deadlineEntries = deadlineEntries.filter(e=>e.id!==id);
+  deadlineEntries = deadlineEntries.filter(e => e && e.id != null && String(e.id) !== String(id));
   renderDeadlineList();
   saveUserData();
 }
@@ -15474,7 +15493,7 @@ function getStatusTag(status) {
 function renderDeadlineList() {
   const el = document.getElementById('deadline-list');
   if (!deadlineEntries.length) { el.innerHTML='<div class="dash-empty">No entries yet. Add a deadline or note above.</div>'; return; }
-  const sorted = [...deadlineEntries].sort((a,b)=>{if(!a.date&&!b.date)return 0;if(!a.date)return 1;if(!b.date)return -1;return new Date(a.date)-new Date(b.date);});
+  const sorted = [...deadlineEntries].filter(e => e && e.id != null && e.title).sort((a,b)=>{if(!a.date&&!b.date)return 0;if(!a.date)return 1;if(!b.date)return -1;return new Date(a.date)-new Date(b.date);});
   el.innerHTML = sorted.map(e=>`<div class="deadline-item"><div class="deadline-item-top"><div style="flex:1;min-width:0;">
     ${e.linkedOppId ? `<div style="margin-bottom:0.25rem;"><button onclick="openFullPage(${e.linkedOppId})" style="background:var(--accent-light);border:1px solid var(--accent);border-radius:20px;padding:2px 10px;font-size:0.72rem;color:var(--accent-dark);cursor:pointer;font-family:'DM Sans',sans-serif;">🔗 ${e.linkedOppTitle}</button></div>` : ''}
     <div class="deadline-title">${e.title}</div>
@@ -15591,16 +15610,17 @@ function addAccomplishment() {
 }
 function renderAccomplishments() {
   const list = document.getElementById('acc-list');
-  if (!accomplishments.length) { list.innerHTML=''; return; }
+  const validAccomplishments = accomplishments.filter(a => a && a.title);
+  if (!validAccomplishments.length) { list.innerHTML=''; return; }
   list.innerHTML = '<div style="font-size:0.78rem;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;color:var(--faint);margin-bottom:0.75rem;">Your accomplishments</div>' +
-    accomplishments.map((a,i)=>`<div class="opp-card" style="margin-bottom:0.6rem;">
+    validAccomplishments.map((a,i)=>`<div class="opp-card" style="margin-bottom:0.6rem;">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;">
         <div style="flex:1;min-width:0;">
           <div style="font-weight:600;color:#111;font-size:0.95rem;">${a.title}</div>
           <div style="font-size:0.78rem;color:var(--faint);margin-top:3px;">${a.cat||''} ${a.date ? '· '+a.date : ''}</div>
           ${a.linkedOppId ? `<button onclick="closeDashboard();openFullPage(${a.linkedOppId})" style="margin-top:0.4rem;background:var(--accent-light);border:1px solid var(--accent);border-radius:20px;padding:2px 10px;font-size:0.72rem;color:var(--accent-dark);cursor:pointer;font-family:'DM Sans',sans-serif;">🔗 ${a.linkedOppTitle}</button>` : ''}
         </div>
-        <button onclick="accomplishments.splice(${i},1);renderAccomplishments();renderDashAchievements();" style="background:none;border:none;color:var(--faint);cursor:pointer;font-size:12px;flex-shrink:0;margin-left:0.5rem;">Remove</button>
+        <button onclick="const _aid=${a.id||'null'};accomplishments.splice(accomplishments.findIndex(x=>(x.id!=null?x.id:null)===_aid),1);renderAccomplishments();renderDashAchievements();saveUserData();" style="background:none;border:none;color:var(--faint);cursor:pointer;font-size:12px;flex-shrink:0;margin-left:0.5rem;">Remove</button>
       </div>
       ${a.notes ? `<p style="font-size:0.82rem;color:var(--muted);margin-top:0.5rem;">${a.notes}</p>` : ''}
     </div>`).join('');
