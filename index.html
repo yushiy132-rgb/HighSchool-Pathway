@@ -1545,6 +1545,15 @@ textarea.dash-form-input{min-height:64px;resize:vertical;line-height:1.5;}
 
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+window.onerror = function(msg, src, line, col, err) {
+  const info = 'ERROR: ' + msg + '\nFile: ' + src + '\nLine: ' + line + ', Col: ' + col + (err && err.stack ? '\nStack: ' + err.stack : '');
+  console.error(info);
+  // Show a visible alert with the stack trace for debugging
+  if (msg && msg.includes('id')) {
+    alert('DEBUG - Full error:\n' + info);
+  }
+  return false;
+};
 // ── DATA ──
 const OPPS = [
   {
@@ -10064,8 +10073,8 @@ const OPPS = [
     match:93,
     why:"The International Philosophy Olympiad is the world's most prestigious philosophy competition for high school students. Participants write a philosophical essay on a given theme and top national performers represent their country internationally. Qualifying — let alone placing — is an extraordinary credential demonstrating rare depth of thought. One of the most distinctive competition credentials available to a high school student.",
     howToApply:'Compete through your national philosophy olympiad qualifying competition. In Canada, contact the Canadian Philosophical Association for qualifying information.',
-    practiceLinks:[{label:'🔗 International Philosophy Olympiad', url:'https://www.ipho.net'}],
-    link:'https://www.ipho.net'
+    practiceLinks:[{label:'🔗 International Philosophy Olympiad', url:'https://www.philosophy-olympiad.org/'}],
+    link:'https://www.philosophy-olympiad.org/'
   },
   {
     id:991, title:'American Philosophy Olympiad', org:'American Philosophy Olympiad',
@@ -16187,4 +16196,23 @@ window.addEventListener('DOMContentLoaded', function() {
     <div style="font-size:2rem;margin-bottom:0.75rem;">⚠️</div>
     <h4>Don't lose your progress!</h4>
     <p>You're browsing as a guest. Any bookmarks, application tracking, and notes you've added <strong>will be permanently lost</strong> when you leave. Log in to save everything.</p>
-    <div c
+    <div class="guest-exit-actions">
+      <button class="btn-secondary" style="padding:0.6rem 1.25rem;font-size:0.875rem;" onclick="dismissGuestExitWarning()">Stay on page</button>
+      <button class="btn-primary" style="padding:0.6rem 1.25rem;font-size:0.875rem;border:none;" onclick="dismissGuestExitWarning();goTo('login')">Log in to save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Login nudge (slides up after 45s for non-logged-in users) -->
+<div class="login-nudge" id="login-nudge">
+  <button class="nudge-close" onclick="dismissNudge()">✕</button>
+  <h4>Save your research 📌</h4>
+  <p>Create a free account to bookmark opportunities, track your applications, and keep notes.</p>
+  <div class="nudge-actions">
+    <button class="btn-primary" style="flex:1;border:none;font-size:0.8rem;padding:0.5rem 1rem;" onclick="dismissNudge();goTo('login')">Sign up free</button>
+    <button class="btn-secondary" style="font-size:0.78rem;padding:0.5rem 0.9rem;" onclick="dismissNudge()">Dismiss</button>
+  </div>
+</div>
+
+</body>
+</html>
