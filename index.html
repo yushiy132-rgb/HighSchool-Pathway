@@ -1546,12 +1546,8 @@ textarea.dash-form-input{min-height:64px;resize:vertical;line-height:1.5;}
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 window.onerror = function(msg, src, line, col, err) {
-  const info = 'ERROR: ' + msg + '\nFile: ' + src + '\nLine: ' + line + ', Col: ' + col + (err && err.stack ? '\nStack: ' + err.stack : '');
-  console.error(info);
-  // Show a visible alert with the stack trace for debugging
-  if (msg && msg.includes('id')) {
-    alert('DEBUG - Full error:\n' + info);
-  }
+  const info = 'ERROR: ' + msg + ' | Line: ' + line + ', Col: ' + col + (err && err.stack ? ' | Stack: ' + err.stack.split('\n').slice(0,3).join(' > ') : '');
+  console.error('[DEBUG]', info);
   return false;
 };
 // ── DATA ──
@@ -14670,7 +14666,7 @@ function oppCard(o) {
   const isBookmarked = state.bookmarks.includes(o.id);
   const isViewed = state.viewed.has(o.id);
   const status = state.statuses[o.id] || '';
-  const typeLabel = {competition:'Competition',program:'Summer Program',club:'Club / Org',research:'Research',scholarship:'Scholarship'};
+  const typeLabel = {competition:'Competition',program:'Summer Program',club:'Club / Org',research:'Research',scholarship:'Scholarship',nonprofit:'Non-Profit',volunteer:'Volunteer',writing:'Writing',tutoring:'Tutoring & Mentoring',internship:'Internship'};
   const types = o.type.map(t=>`<span class="meta-tag type">${typeLabel[t]||t}</span>`).join('');
   const natTag = o.national ? `<span class="meta-tag national">National</span>` : `<span class="meta-tag regional">Regional</span>`;
   const dlTag = o.deadline !== 'Ongoing' ? `<span class="meta-tag deadline">Deadline: ${o.deadline}</span>` : `<span class="meta-tag type">Open year-round</span>`;
@@ -15253,15 +15249,16 @@ function submitInlineForm() {
 let _savedScrollY = 0;
 let _fullPageSource = 'results'; // tracks where openFullPage was called from
 function openFullPage(id) {
+  try {
   _savedScrollY = window.scrollY;
   // Determine caller context
   const dashOpen = document.getElementById('dashboard-modal').classList.contains('open');
   const schActive = document.getElementById('page-scholarships').classList.contains('active');
   _fullPageSource = dashOpen ? 'dashboard' : (schActive ? 'scholarships' : 'results');
   const o = OPPS.find(x=>x.id===id);
-  if (!o) return;
+  if (!o) { console.warn('[openFullPage] no opp found for id:', id, typeof id); return; }
   state.viewed.add(id);
-  const typeLabel = {competition:'Competition',program:'Summer Program',club:'Club / Org',research:'Research',scholarship:'Scholarship'};
+  const typeLabel = {competition:'Competition',program:'Summer Program',club:'Club / Org',research:'Research',scholarship:'Scholarship',nonprofit:'Non-Profit',volunteer:'Volunteer',writing:'Writing',tutoring:'Tutoring & Mentoring',internship:'Internship'};
   const types = o.type.map(t=>typeLabel[t]||t).join(', ');
   document.getElementById('opp-fullpage-content').innerHTML = `
     <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1.25rem;">
@@ -15338,6 +15335,7 @@ function openFullPage(id) {
   } catch(err) {}
   document.getElementById('opp-fullpage').classList.add('open');
   window.scrollTo(0,0);
+  } catch(err) { console.error('[openFullPage] error for id', id, ':', err.message, err.stack); }
 }
 function closeFullPage() {
   document.getElementById('opp-fullpage').classList.remove('open');
